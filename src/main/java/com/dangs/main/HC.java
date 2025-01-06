@@ -12,7 +12,7 @@ public class HC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("content", "home.jsp");
+		request.setAttribute("content", "jsp/login.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
