@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+.logo{
+	width: 100px;
+	height: 100px;
+	object-fit: contain;
+}
+
+.logo-div{
+	width: 20%;
+	position: relative;
+	left: 30px;
+}
+
+.main-wrapper{
+	width: 100%;
+	border: 3px solid blue;
+	display: flex;
+	justify-content: space-around;
+	height: 120px;
+	position: sticky;
+	top: 0px;
+	z-index: 2;
+	background-color: ivory;
+}
+.login{
+	width: 400px;
+	height: 400px;
+	position: sticky;
+	top: 130px;
+	border: 9px solid red;
+	right: -30px;
+}
+.index-content{
+	margin-left: 150px;
+	border: 9px solid black;
+	width: 750px;
+	height: 2000px;
+}
