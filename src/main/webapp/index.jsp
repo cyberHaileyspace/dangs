@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/index.css">
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
 	<div class="main-wrapper">
@@ -16,7 +18,7 @@
 	<div>중고거래</div>
 	<div>산책로</div>
 	<div>커뮤니티</div>
-	<div>마이페이지</div>
+	<div class="myPage">마이페이지</div>
 	</div>
 	</div>
 	<div style="display: flex;">
