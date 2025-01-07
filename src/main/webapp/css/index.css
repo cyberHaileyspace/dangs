@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+<<<<<<< HEAD
 @charset "UTF-8";
 
 @font-face {
@@ -57,4 +58,42 @@ a:hover {
 .content {
 	padding-top: 5px;
 	min-height: 800px;
+=======
+.logo{
+	width: 100px;
+	height: 100px;
+	object-fit: contain;
+}
+
+.logo-div{
+	width: 20%;
+	position: relative;
+	left: 30px;
+}
+
+.main-wrapper{
+	width: 100%;
+	border: 3px solid blue;
+	display: flex;
+	justify-content: space-around;
+	height: 120px;
+	position: sticky;
+	top: 0px;
+	z-index: 2;
+	background-color: ivory;
+}
+.login{
+	width: 400px;
+	height: 400px;
+	position: sticky;
+	top: 130px;
+	border: 9px solid red;
+	right: -30px;
+}
+.index-content{
+	margin-left: 150px;
+	border: 9px solid black;
+	width: 750px;
+	height: 2000px;
+>>>>>>> d4f96d0350d16ae814b9fb2411b8de21e4cf9e66
 }

@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/HC")
 public class HC extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.setAttribute("content", "jsp/login.jsp");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("content", "jsp/main.jsp");
+		request.setAttribute("loginCheck", "jsp/login.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
