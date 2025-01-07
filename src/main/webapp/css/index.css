@@ -1,77 +1,18 @@
 @charset "UTF-8";
 
-<<<<<<< HEAD
-@charset "UTF-8";
-
-@font-face {
-	font-family: 'SokchoBadaBatang';
-	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_1@1.0/SokchoBadaBatang.woff2') format('woff2');
-	font-weight: normal;
-	font-style: normal;
-}
-
-body {
-	font-family: 'SokchoBadaBatang';
-	margin: 0;
-	padding: 0;
-	background-color: white;
-}
-
-a {
-	text-decoration: none;
-	color: black;
-}
-
-a:hover {
-	color: gold;
-}
-
-.container {
-	width: 100vw;
-	min-height: 99vh;
-}
-
-.container>div {
-	border-bottom: 2px solid;
-	width: 100%;
-	text-align: center;
-	font-size: 19pt;
-}
-
-.title {
-	height: 50px;
-	padding-top: 15px;
-	font-size: 23pt;
-}
-
-.menu {
-	padding-top: 5px;
-	height: 35px;
-	display: flex;
-	justify-content: space-evenly;
-}
-
-.menu>div {
-	display: inline-block;
-}
-
-.content {
-	padding-top: 5px;
-	min-height: 800px;
-=======
-.logo{
+.logo {
 	width: 100px;
 	height: 100px;
 	object-fit: contain;
 }
 
-.logo-div{
+.logo-div {
 	width: 20%;
 	position: relative;
 	left: 30px;
 }
 
-.main-wrapper{
+.main-wrapper {
 	width: 100%;
 	border: 3px solid blue;
 	display: flex;
@@ -82,18 +23,19 @@ a:hover {
 	z-index: 2;
 	background-color: ivory;
 }
-.login{
-	width: 400px;
+
+.login {
+	width: 30%;
 	height: 400px;
 	position: sticky;
 	top: 130px;
 	border: 9px solid red;
 	right: -30px;
 }
-.index-content{
+
+.index-content {
 	margin-left: 150px;
 	border: 9px solid black;
-	width: 750px;
+	width: 50%;
 	height: 2000px;
->>>>>>> d4f96d0350d16ae814b9fb2411b8de21e4cf9e66
 }
