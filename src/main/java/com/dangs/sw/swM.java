@@ -3,28 +3,27 @@ package com.dangs.sw;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-
+import com.dangs.jm.DBManager;
 
 public class swM {
 	public static Connection con = null;
-	
+
 	public static void loginCheck(HttpServletRequest req) {
 		UserDTO u = (UserDTO) req.getSession().getAttribute("user");
 		if (u == null) {
 			req.setAttribute("loginCheck", "jsp/sw/login.jsp");
 		} else {
-			req.setAttribute("loginCheck", "jsp/sw/loginOK.jsp");			
+			req.setAttribute("loginCheck", "jsp/sw/loginOK.jsp");
 		}
 	}
-	
+
 	public static void loginConfirm(HttpServletRequest request) {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from user_db where l_id=?";
@@ -46,14 +45,14 @@ public class swM {
 					HttpSession hs = request.getSession();
 					hs.setAttribute("user", user);
 					hs.setMaxInactiveInterval(10);
-				}else {
+				} else {
 					result = "비밀번호가 틀렸습니다.";
 				}
 			}
 			request.setAttribute("result", result);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
 	}

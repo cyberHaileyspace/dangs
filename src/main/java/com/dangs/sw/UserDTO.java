@@ -5,7 +5,7 @@ public class UserDTO {
 	private String pw;
 	private String name;
 	private String no;
-	
+
 	public UserDTO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -54,5 +54,5 @@ public class UserDTO {
 	public String toString() {
 		return "UserDTO [id=" + id + ", pw=" + pw + ", name=" + name + ", no=" + no + "]";
 	}
-	
+
 }
