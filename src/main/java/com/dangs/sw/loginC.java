@@ -11,7 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 public class loginC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			swM.login
+			swM.loginConfirm(request);
+			
+			swM.loginCheck(request);
+			
+			request.setAttribute("content", "jsp/sw/main.jsp");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
