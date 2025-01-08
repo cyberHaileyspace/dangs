@@ -1,4 +1,4 @@
-package com.dangs.main;
+package com.dangs.sw;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,16 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dangs.sw.swM;
-
-@WebServlet("/HC")
-public class HC extends HttpServlet {
+@WebServlet("/loginC")
+public class loginC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("content", "jsp/sw/main.jsp");
-		swM.loginCheck(request);
-		request.getRequestDispatcher("index.jsp").forward(request, response);
-		
+			swM.loginConfirm(request);
+			
+			swM.loginCheck(request);
+			
+			request.setAttribute("content", "jsp/sw/main.jsp");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
