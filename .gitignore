@@ -2,7 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse
 
 ### Eclipse ###
-DBManager.Java
+DBManager.java
 DBManager.class
 .metadata
 bin/
