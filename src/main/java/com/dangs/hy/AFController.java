@@ -14,9 +14,8 @@ public class AFController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setAttribute("content", "jsp/hy/adoptMain.jsp");
-		request.setAttribute("loginCheck", "jsp/sw/login.jsp");
 		
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
 		
 	}
 
