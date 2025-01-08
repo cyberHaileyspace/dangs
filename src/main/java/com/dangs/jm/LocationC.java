@@ -7,12 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/MapC")
-public class MapC extends HttpServlet {
+@WebServlet("/locationC")
+public class LocationC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		MapDAO.selectAllMap(request);
+		LocationDAO.location(request);
+		request.setAttribute("content", "location.jsp");
+		request.setAttribute("loginCheck", "jsp/sw/login.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
+		System.out.println("111");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
