@@ -6,12 +6,15 @@
 <meta charset="UTF-8">
 <title>Login Page</title>
 <link rel="stylesheet" href="css/login.css">
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+	crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/login.js"></script>
 </head>
 <body>
 <div class="login-container">
     <form action="loginC">
-        <input class="login-input" name="id" placeholder="ID를 입력하세요">
-        <input class="login-input" name="pw" placeholder="비밀번호를 입력하세요" type="password">
+        <input id="id" class="login-input" name="id" placeholder="ID를 입력하세요">
+        <input id="pw" class="login-input" name="pw" placeholder="비밀번호를 입력하세요" type="password">
         <button class="login-button">로그인</button>
         <a class="signup-link" href="#">회원가입</a>
     </form>
