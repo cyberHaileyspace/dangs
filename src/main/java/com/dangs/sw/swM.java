@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.dangs.jh.DBManager;
 
 
 public class swM {

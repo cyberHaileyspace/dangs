@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="css/jh/shop.css">
+<title>Shopping Page</title>
+<link rel="stylesheet" href="../../css/jh/shop.css">
 </head>
 <body>
     <div class="container">
@@ -27,7 +27,7 @@
         <div class="section-title">두 번째 항목 제목</div>
         <div class="product-grid">
             <!-- 5 x 4 그리드 (총 20개 상품) -->
-            <div class="product">상품 1</div>
+            <div class="product"> <a href="ProductC">상품 1</a></div>
             <div class="product">상품 2</div>
             <div class="product">상품 3</div>
             <div class="product">상품 4</div>
@@ -41,15 +41,6 @@
 
             <div class="product">상품 11</div>
             <div class="product">상품 12</div>
-            <div class="product">상품 13</div>
-            <div class="product">상품 14</div>
-            <div class="product">상품 15</div>
-
-            <div class="product">상품 16</div>
-            <div class="product">상품 17</div>
-            <div class="product">상품 18</div>
-            <div class="product">상품 19</div>
-            <div class="product">상품 20</div>
         </div>
     </div>
 </body>
