@@ -72,13 +72,12 @@ public class swM {
 		}
 	}
 
-	public static void loginValid(HttpServletRequest request) throws ServletException, IOException {
+	public static void loginValid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserDTO u = (UserDTO) request.getSession().getAttribute("user");
 		if (u == null) {
 			request.setAttribute("content", "jsp/sw/fullLogin.jsp");
-		} else {
-			request.setAttribute("content", "jsp/sw/myPage.jsp");	
-		}
+			request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
+		} 
 			
 	}
 
