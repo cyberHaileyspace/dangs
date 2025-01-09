@@ -1,4 +1,7 @@
 @charset "UTF-8";
+body{
+font-size: 40px;
+}
 
 .logo{
 	width: 100px;
