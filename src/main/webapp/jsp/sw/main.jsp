@@ -5,11 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-body{
-font-size: 40px;
-}
-</style>
+
 </head>
 <body>
 MAIN

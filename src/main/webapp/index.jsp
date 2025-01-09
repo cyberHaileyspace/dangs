@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="main-wrapper">
-	<div class="logo-div"><img class="logo" alt="" src="img/dog-nose.png" > </div>
+	<div class="logo-div" onclick="location.href='HC'"><img class="logo" alt="" src="img/dog-nose.png" > </div>
 	<div style="display: flex; width: 80%; justify-content: space-around;">
 	<div>입양</div>
 	<div>중고거래</div>
