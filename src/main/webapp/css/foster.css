@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 /* 전체 페이지 스타일 */
 body {
     font-family: Arial, sans-serif;
@@ -7,7 +8,7 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
-	text-align: center;
+    text-align: center;
 }
 
 /* 상단 네비게이션 바 */
@@ -102,4 +103,3 @@ a {
         padding: 15px;
     }
 }
-

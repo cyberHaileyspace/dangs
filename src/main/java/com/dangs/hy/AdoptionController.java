@@ -14,7 +14,7 @@ public class AdoptionController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		  // 요청 파라미터 "action" 값 확인
+		// 요청 파라미터 "action" 값 확인
         String action = request.getParameter("action");
         String contentPage = "jsp/hy/shelterAdoptions.jsp"; // 기본값: 보호소 입양 공고 페이지
 
@@ -24,16 +24,9 @@ public class AdoptionController extends HttpServlet {
         } 
         	
         // contentPage 속성 설정 및 index.jsp로 포워드
-        
         request.setAttribute("content", contentPage);
         
-        // request.setAttribute("contentPage", contentPage);
-
         request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
-        //RequestDispatcher dispatcher = request.getRequestDispatcher("noLoginIndex.jsp");
-        //dispatcher.forward(request, response);
-    
-		
 		
 	}
 

@@ -11,7 +11,13 @@
 </head>
 <body>
   
-  	<h1>입양 및 임시보호</h1>
+  	<div> 
+  		<ul class="tap">
+  			<a class="adopt"> 홈 </a>
+  			<a class="shelter" href="AdoptionController?action=shelterAdoption.jsp"> 보호소 입양 </a>
+  			<a class="foster" href="FosterController?action=fosterAdoptions.jsp"> 임시 보호 </a>
+  		</ul>
+  	</div>
 
     <div class="panel-container">
         <!-- 보호소 입양 패널 -->
