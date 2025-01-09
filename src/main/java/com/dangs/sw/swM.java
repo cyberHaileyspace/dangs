@@ -9,19 +9,18 @@ import javax.servlet.http.HttpSession;
 
 import com.dangs.jm.DBManager;
 
-
 public class swM {
 	public static Connection con = null;
-	
+
 	public static void loginCheck(HttpServletRequest request) {
 		UserDTO u = (UserDTO) request.getSession().getAttribute("user");
 		if (u == null) {
 			request.setAttribute("loginCheck", "jsp/sw/login.jsp");
 		} else {
-			request.setAttribute("loginCheck", "jsp/sw/loginOK.jsp");			
+			request.setAttribute("loginCheck", "jsp/sw/loginOK.jsp");
 		}
 	}
-	
+
 	public static void loginConfirm(HttpServletRequest request, HttpServletResponse response) {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
@@ -40,10 +39,9 @@ public class swM {
 			if (rs.next()) {
 				dbPw = rs.getString(3);
 				if (dbPw.equals(pw)) {
-					
 					UserDTO user = new UserDTO();
 					user.setId(id);
-					user.setPw(dbPw); // (암호화 이슈 때문에)
+					user.setPw(dbPw);
 					user.setName(rs.getString(4));
 					HttpSession hs = request.getSession();
 					hs.setAttribute("user", user);
@@ -56,7 +54,7 @@ public class swM {
 					request.setAttribute("result", result);
 					request.setAttribute("hidden", hidden);
 				}
-			}else {
+			} else {
 				result = "아이디를 확인하세요.";
 				hidden = "block";
 				request.setAttribute("result", result);
@@ -72,24 +70,20 @@ public class swM {
 	public static void loginValid(HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("application/json; charset=utf-8");
 		String id = request.getParameter("id");
-		
-		
-			
+
 	}
 
 	public static void logout(HttpServletRequest request) {
 		// 로그아웃 일 시키기
-		
+
 		// 만들어진 유저 세션을 없애기
 		HttpSession hs = request.getSession();
 //		hs.setAttribute("user", null);			방법 1
-		hs.removeAttribute("user");		//		방법 2
+		hs.removeAttribute("user"); // 방법 2
 //		hs.invalidate();						방법 3 (targeting 불가능)
-		
+
 		swM.loginCheck(request);
 
-		
-		
 	}
 
 }

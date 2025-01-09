@@ -20,6 +20,36 @@
 
 		var map = new kakao.maps.Map(container, options);
 
+		function btn(sample) {
+			alert(sample);
+		}
+
+		/* if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				var latitude = position.coords.latitude;
+				var longitude = position.coords.longitude;
+				// 현재 위치를 지도에 중심으로 설정
+				var locPosition = new kakao.maps.LatLng(latitude, longitude);
+				map.setCenter(locPosition);
+				// 마커를 현재 위치에 추가
+				var marker = new kakao.maps.Marker({
+					position : locPosition
+				});
+				marker.setMap(map);
+			}, function(error) {
+				console.log(error);
+				alert('위치 정보를 가져올 수 없습니다.');
+			});
+		} else {
+			alert('이 브라우저는 위치 정보 서비스를 지원하지 않습니다.');
+		} */
+
+		// document.getElementById('locationButton').addEventListener('click', getLocation);
+		/* $(function () {
+			$("button").click(function () {
+
+				$.ajax({
+					
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(position) {
 				var latitude = position.coords.latitude;
@@ -38,10 +68,13 @@
 			});
 		} else {
 			alert('이 브라우저는 위치 정보 서비스를 지원하지 않습니다.');
-		}
+		}					
+					
+				});
+			});
+		}); */
 	</script>
-	<div style="display: flex; width: 100px; height: 100px">
-		<div style="text-align: center;">내 위치</div>
-	</div>
+	<div class="locationButton" onclick="javascript:alert('먼저 로그인을 해주세요')">
+		우리 동네 찾기</div>
 </body>
 </html>

@@ -12,7 +12,8 @@ import com.dangs.sw.swM;
 @WebServlet("/HC")
 public class HC extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setAttribute("content", "jsp/sw/main.jsp");
 		swM.loginCheck(request);
 		request.getRequestDispatcher("index.jsp").forward(request, response);

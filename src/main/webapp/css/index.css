@@ -1,6 +1,7 @@
 @charset "UTF-8";
-body{
-font-size: 40px;
+
+body {
+	font-size: 40px;
 }
 
 @font-face {
@@ -61,7 +62,22 @@ body {
 .map {
 	margin: auto;
 	margin-top: 50px;
-	border: 9px solid black;
+	border: 5px solid black;
 	width: 80%;
 	height: 25%;
+}
+
+.locationButton {
+	margin: auto;
+	top: 50px;
+	border: 5px solid black;
+	display: flex;
+	width: 80%;
+	height: 100px;
+	background-color: #f1f1f1;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+	cursor: pointer;
+
 }

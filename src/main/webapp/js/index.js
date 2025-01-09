@@ -1,11 +1,11 @@
-$(function(){
-	
-	$('.myPage').click(function(){
-		
-		location.href="myPageC"
-		
+$(function() {
+
+	$('.myPage').click(function() {
+
+		location.href = "myPageC"
+
 	})
-	
-	
-	
+
+
+
 })
