@@ -11,28 +11,25 @@
 	width: 100%;
 	padding: 10px;
 	margin: 10px 0;
-	border: 1px solid #a5d6a7;
+	border: 1px solid #FFB26F;
 	border-radius: 4px;
 }
 
 .login-button {
-	width: 100%;
-	padding: 10px;
-	background-color: #66bb6a;
-	color: white;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
+	display: block;
+	margin-top: 10px;
+	color: #DE8F5F;
+	text-decoration: none;
 }
 
 .login-button:hover {
-	background-color: #4caf50;
+	background-color: #FFB38E;
 }
 
 .signup-link {
 	display: block;
 	margin-top: 10px;
-	color: #66bb6a;
+	color: #DE8F5F;
 	text-decoration: none;
 }
 
