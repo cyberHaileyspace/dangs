@@ -1,9 +1,11 @@
 package com.dangs.sw;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -70,11 +72,13 @@ public class swM {
 		}
 	}
 
-	public static void loginValid(HttpServletRequest request, HttpServletResponse response) {
-		response.setContentType("application/json; charset=utf-8");
-		String id = request.getParameter("id");
-		
-		
+	public static void loginValid(HttpServletRequest request) throws ServletException, IOException {
+		UserDTO u = (UserDTO) request.getSession().getAttribute("user");
+		if (u == null) {
+			request.setAttribute("content", "jsp/sw/fullLogin.jsp");
+		} else {
+			request.setAttribute("content", "jsp/sw/myPage.jsp");	
+		}
 			
 	}
 
