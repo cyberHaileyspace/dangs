@@ -12,6 +12,7 @@
 <script type="text/javascript" src="js/login.js"></script>
 </head>
 <body>
+<<<<<<< HEAD
 	<div class="login-container">
 		<form action="loginC" method="post">
 			<input id="id" class="login-input" name="id" placeholder="ID를 입력하세요" />
@@ -23,5 +24,18 @@
 		</form>
 	</div>
 	<script type="text/javascript"></script>
+=======
+<div class="login-container">
+    <form action="loginC" method="post">
+        <input id="id" class="login-input" name="id" placeholder="ID를 입력하세요">
+        <input id="pw" class="login-input" name="pw" placeholder="비밀번호를 입력하세요" type="password">
+        <div class="sw-result" style="display: ${hidden}">${result }</div>
+        <button class="login-button">로그인</button>
+    </form>
+         <button id="openModalBtn">회원가입</button>
+</div>
+<script type="text/javascript">
+</script>
+>>>>>>> 83515571c6beabdf44fd5bce3bedb667238ecc5f
 </body>
 </html>

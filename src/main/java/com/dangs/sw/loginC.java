@@ -10,9 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/loginC")
 public class loginC extends HttpServlet {
 
+<<<<<<< HEAD
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		swM.loginValid(request, response);
+=======
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+>>>>>>> 83515571c6beabdf44fd5bce3bedb667238ecc5f
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
