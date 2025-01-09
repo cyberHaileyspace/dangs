@@ -9,6 +9,10 @@
 
 body {
 	font-family: 'SokchoBadaBatang';
+	font-size: 30pt;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
 }
 
 .logo {
@@ -49,4 +53,12 @@ body {
 	border: 9px solid black;
 	width: 50%;
 	height: 2000px;
+}
+
+.map {
+	margin: auto;
+	margin-top: 50px;
+	border: 9px solid black;
+	width: 80%;
+	height: 25%;
 }

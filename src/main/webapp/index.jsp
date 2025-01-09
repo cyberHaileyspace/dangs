@@ -10,7 +10,6 @@
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
 <script type="text/javascript" src="js/index.js"></script>
-
 </head>
 <body>
 	<div class="main-wrapper">

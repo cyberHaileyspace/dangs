@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/login.css">
 </head>
 <body>
 	${sessionScope.user.id } (${sessionScope.user.name }) 님 환영합니다

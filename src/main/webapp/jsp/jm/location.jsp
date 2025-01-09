@@ -3,24 +3,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>카카오 지도 API 예제</title>
-    <!-- 카카오 지도 API JavaScript SDK 로드 -->
-    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a63b00ddcc6e53d9861a59b28e3a08e7&libraries=services,clusterer"></script>
+<meta charset="utf-8" />
+<title>카카오 지도 시작하기</title>
+<link rel="stylesheet" href="css/index.css">
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=afd7b38172ac4306c02c60ef10383c6c"></script>
 </head>
 <body>
-    <div id="map" style="width: 500px; height: 500px;"></div>
+	<div id="map" class="map"></div>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center : new kakao.maps.LatLng(33.450701, 126.570667),
+			level : 3
+		};
 
-    <script>
-        // 지도 생성
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-            mapOption = { 
-                center: new kakao.maps.LatLng(37.5665, 126.9780), // 서울의 좌표
-                level: 3 // 지도의 확대 레벨
-            };
+		var map = new kakao.maps.Map(container, options);
 
-        var map = new kakao.maps.Map(mapContainer, mapOption);
-    </script>
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				var latitude = position.coords.latitude;
+				var longitude = position.coords.longitude;
+				// 현재 위치를 지도에 중심으로 설정
+				var locPosition = new kakao.maps.LatLng(latitude, longitude);
+				map.setCenter(locPosition);
+				// 마커를 현재 위치에 추가
+				var marker = new kakao.maps.Marker({
+					position : locPosition
+				});
+				marker.setMap(map);
+			}, function(error) {
+				console.log(error);
+				alert('위치 정보를 가져올 수 없습니다.');
+			});
+		} else {
+			alert('이 브라우저는 위치 정보 서비스를 지원하지 않습니다.');
+		}
+	</script>
+	<div style="display: flex; width: 100px; height: 100px">
+		<div style="text-align: center;">내 위치</div>
+	</div>
 </body>
 </html>
