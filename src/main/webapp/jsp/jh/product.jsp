@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../../css/jh/product.css">
+<script type="text/javascript" src="../js/jh/product.js" defer="defer"></script>
 </head>
 <body>
 	<body>
@@ -30,7 +31,15 @@
             	<img class="share-img" style="width: 25px; height: 25px" src="https://png.pngtree.com/png-vector/20230316/ourmid/pngtree-share-line-icon-vector-png-image_6651445.png" alt="Share image">
 			</div>
 			<hr>            
-            <p>귀여운 강아지 팜미다. 아니요 안팜미다. 제가 키우기로 했습니다. 감사합니다.</p>
+            <p> <b>구매혜택 : </b>1000 포인트 적립예정</p>
+            <p> <b>배송 방법 : </b> 택배</p>
+            <p> <b>배송비 : </b> 100,000원 (1,000,000원 이상 무료배송)</p>
+            
+        	<div class="counter-container">
+    			<button id="decrease">-</button>
+    			<div class="number-display" id="number">1</div>
+    			<button id="increase">+</button>
+  			</div>
         </div>
     </div>
 

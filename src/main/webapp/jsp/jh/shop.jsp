@@ -27,18 +27,18 @@
         <div class="section-title">두 번째 항목 제목</div>
         <div class="product-grid">
             <!-- 5 x 4 그리드 (총 20개 상품) -->
-            <div class="product"> <a href="ProductC">상품 1</a></div>
+            <div class="product"> <a href="../../ProductC">상품 1</a></div>
             <div class="product">상품 2</div>
             <div class="product">상품 3</div>
             <div class="product">상품 4</div>
+         
             <div class="product">상품 5</div>
-
             <div class="product">상품 6</div>
             <div class="product">상품 7</div>
             <div class="product">상품 8</div>
+            
             <div class="product">상품 9</div>
             <div class="product">상품 10</div>
-
             <div class="product">상품 11</div>
             <div class="product">상품 12</div>
         </div>
