@@ -5,36 +5,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>Insert title here</title>
-<<<<<<< HEAD
-</head>
-<body>
-	MAIN
-	<br /> a
-	<br /> b
-	<br /> c
-	<br /> d
-	<br /> e
-	<br /> f
-	<br /> g
-	<br /> h
-	<br /> i
-	<br /> j
-	<br /> k
-	<br /> l
-	<br /> m
-	<br /> n
-	<br /> o
-	<br /> p
-	<br /> q
-	<br /> r
-	<br /> s
-	<br /> t
-	<br /> u
-	<br /> w
-	<br /> x
-	<br /> y
-	<br /> z
-=======
+
 <style type="text/css">
 .heart-icon {
   font-size: 24px;
@@ -90,6 +61,6 @@ document.getElementById('wishlist-button').addEventListener('click', function() 
 	  });
 	});
 </script>
->>>>>>> 83515571c6beabdf44fd5bce3bedb667238ecc5f
+
 </body>
 </html>

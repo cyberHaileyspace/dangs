@@ -11,6 +11,8 @@
 </head>
 <body>
 	<div id="map" class="map"></div>
+	<div class="locationButton" onclick="myLocation()">
+		우리 동네 찾기</div>
 	<script>
 		var container = document.getElementById('map');
 		var options = {
@@ -23,8 +25,11 @@
 		function btn(sample) {
 			alert(sample);
 		}
-
-		/* if (navigator.geolocation) {
+function myLocation(){
+	
+	location.href="loginC";
+	
+		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(position) {
 				var latitude = position.coords.latitude;
 				var longitude = position.coords.longitude;
@@ -42,8 +47,8 @@
 			});
 		} else {
 			alert('이 브라우저는 위치 정보 서비스를 지원하지 않습니다.');
-		} */
-
+		}
+}
 		// document.getElementById('locationButton').addEventListener('click', getLocation);
 		/* $(function () {
 			$("button").click(function () {
@@ -74,7 +79,5 @@
 			});
 		}); */
 	</script>
-	<div class="locationButton" onclick="javascript:alert('먼저 로그인을 해주세요')">
-		우리 동네 찾기</div>
 </body>
 </html>
