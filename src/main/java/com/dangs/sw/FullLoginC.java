@@ -18,9 +18,14 @@ public class FullLoginC extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		swM.loginConfirm(request, response);
+<<<<<<< HEAD
 
 		swM.loginValid(request, response);
 
+=======
+		swM.loginValid(request, response);
+		
+>>>>>>> 810920e614e01959f1be164036d61a26530f647d
 		request.setAttribute("content", "jsp/sw/main.jsp");
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
