@@ -25,19 +25,40 @@ body {
 	width: 20%;
 	position: relative;
 	left: 30px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.logo-div-02 {
+	width: 60%;
+	position: relative;
+	left: 30px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.logo-div-03 {
+	width: 20%;
+	position: relative;
+	left: 30px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 
 .main-wrapper {
-	font-size: 40px;
+	font-size: 20pt;
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
-	height: 120px;
+	height: 60px;
 	position: sticky;
 	top: 0px;
 	z-index: 2;
-	background-color: ivory;
-	border: 3px outset red;
+	background-color: #fefefe;
+	border-bottom: 1px solid lightgrey;
 }
 
 .index-content {
