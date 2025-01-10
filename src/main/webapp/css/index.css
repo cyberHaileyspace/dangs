@@ -63,7 +63,7 @@ body {
 	position: sticky;
 	top: 0px;
 	z-index: 2;
-	background-color: ivory;
+	background-color: #F4C84B;
 	border-bottom: 1px solid red;
 }
 
@@ -72,13 +72,13 @@ body {
 	height: 400px;
 	position: sticky;
 	top: 125px;
-	border: 9px solid red;
+	border: 9px solid #F1E1D2;
 	right: -30px;
 }
 
 .index-content {
 	margin-left: 150px;
-	border: 9px solid black;
+	border: 9px solid #E77D67;
 	width: 50%;
 	height: 2000px;
 }

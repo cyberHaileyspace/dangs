@@ -30,7 +30,7 @@ public class swM {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from user_db where l_id=?";
+		String sql = "select * from userDB where user_id=?";
 		String result = null;
 		String hidden = null;
 		try {
@@ -40,12 +40,12 @@ public class swM {
 			rs = pstmt.executeQuery();
 			String dbPw = null;
 			if (rs.next()) {
-				dbPw = rs.getString(3);
+				dbPw = rs.getString(2);
 				if (dbPw.equals(pw)) {
 					UserDTO user = new UserDTO();
 					user.setId(id);
 					user.setPw(dbPw);
-					user.setName(rs.getString(4));
+					user.setName(rs.getString(3));
 					HttpSession hs = request.getSession();
 					hs.setAttribute("user", user);
 					hs.setMaxInactiveInterval(10);
