@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+body{
+margin: 0;
+padding: 0;
+box-sizing:border-box;
+}
+
 .logo{
 	width: 100px;
 	height: 100px;
@@ -13,8 +19,8 @@
 }
 
 .main-wrapper{
+	font-size: 40px;
 	width: 100%;
-	border: 3px solid blue;
 	display: flex;
 	justify-content: space-around;
 	height: 120px;
@@ -22,6 +28,7 @@
 	top: 0px;
 	z-index: 2;
 	background-color: ivory;
+	border: 3px outset red;
 }
 
 .index-content{

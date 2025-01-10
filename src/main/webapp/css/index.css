@@ -1,6 +1,18 @@
 @charset "UTF-8";
+
+@font-face {
+    font-family: 'RixInooAriDuriR';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 body{
-font-size: 40px;
+margin: 0;
+padding: 0;
+box-sizing:border-box;
+font-family: 'RixInooAriDuriR';
 }
 
 .logo{
@@ -16,8 +28,8 @@ font-size: 40px;
 }
 
 .main-wrapper{
+	font-size: 40px;
 	width: 100%;
-	border: 3px solid blue;
 	display: flex;
 	justify-content: space-around;
 	height: 120px;
@@ -25,12 +37,13 @@ font-size: 40px;
 	top: 0px;
 	z-index: 2;
 	background-color: ivory;
+	border-bottom: 1px solid red;
 }
 .login{
 	width: 400px;
 	height: 400px;
 	position: sticky;
-	top: 130px;
+	top: 125px;
 	border: 9px solid red;
 	right: -30px;
 }
