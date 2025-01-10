@@ -21,7 +21,9 @@
 			<div class="adopt">입양</div>
 			<div onclick="location.href='ShopC'">중고거래</div>
 			<div onclick="location.href='locationC'">산책로</div>
-			<div><a href="CmMainC">커뮤니티</a></div>
+			<div>
+				<a href="CmMainC">커뮤니티</a>
+			</div>
 			<div class="myPage">마이페이지</div>
 		</div>
 	</div>

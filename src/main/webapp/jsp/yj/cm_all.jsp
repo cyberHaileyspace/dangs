@@ -8,25 +8,29 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.body{
-margin: 0;
-padding: 0;
+.body {
+	margin: 0;
+	padding: 0;
 }
-.container-cm-all{
-display: flex;
+
+.container-cm-all {
+	display: flex;
 }
-.cm-all-post{
-display: flex;
+
+.cm-all-post {
+	display: flex;
 }
-.post-info{
-display: flex;
+
+.post-info {
+	display: flex;
 }
 </style>
 </head>
 <body>
 	<div class="container-cm-all">
 		<div class="cm-all-img">
-			<img alt="" src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.namu.wiki%2Fi%2FNqAfQ710Z4IejlTwoibjuP5A3BZhfOtVvosO0OXV2qp6_9oONtnW9Hzf04Oo6fyPKyONMT11UMwZuNVinu6NhQ.webp&type=a340">
+			<img alt=""
+				src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.namu.wiki%2Fi%2FNqAfQ710Z4IejlTwoibjuP5A3BZhfOtVvosO0OXV2qp6_9oONtnW9Hzf04Oo6fyPKyONMT11UMwZuNVinu6NhQ.webp&type=a340">
 		</div>
 		<div class="cm-all-post">
 			<div class="post-title">제목</div>
