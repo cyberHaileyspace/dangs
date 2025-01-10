@@ -5,11 +5,11 @@ $(function() {
 		location.href = "myPageC"
 
 	})
-	
-	$('.adopt').click(function(){
-		
-		location.href="AFController"
-		
+
+	$('.adopt').click(function() {
+
+		location.href = "AFController"
+
 	})
-	
+
 })

@@ -1,12 +1,12 @@
 @charset "UTF-8";
 
-body{
-margin: 0;
-padding: 0;
-box-sizing:border-box;
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-.logo{
+.logo {
 	width: 100px;
 	height: 100px;
 	object-fit: contain;
@@ -18,7 +18,7 @@ box-sizing:border-box;
 	left: 30px;
 }
 
-.main-wrapper{
+.main-wrapper {
 	font-size: 40px;
 	width: 100%;
 	display: flex;
