@@ -2,104 +2,103 @@
 
 /* 전체 페이지 스타일 */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
-    color: #333;
+	font-family: Arial, sans-serif;
+	background-color: #f9f9f9;
+	margin: 0;
+	padding: 0;
+	color: #333;
 	text-align: center;
 }
 
 /* 상단 네비게이션 바 */
 .tap {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #fff;
-    padding: 10px 0;
-    border-bottom: 2px solid #f1f1f1;
-    margin: 0;
-    list-style-type: none;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: #fff;
+	padding: 10px 0;
+	border-bottom: 2px solid #f1f1f1;
+	margin: 0;
+	list-style-type: none;
 }
 
 a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 10px 20px;
-    transition: color 0.3s ease, background-color 0.3s ease;
-    border-radius: 8px;
-    cursor: pointer;
+	text-decoration: none;
+	color: #333;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px 20px;
+	transition: color 0.3s ease, background-color 0.3s ease;
+	border-radius: 8px;
+	cursor: pointer;
 }
 
 .tap a:hover {
-    color: #fff;
-    background-color: #ff7f50;
+	color: #fff;
+	background-color: #ff7f50;
 }
 
 /* 메인 컨테이너 */
 .panel-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 20px;
+	padding: 40px;
+	max-width: 1200px;
+	margin: 0 auto;
 }
 
 /* 개별 패널 스타일 */
 .panel {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	padding: 20px;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	cursor: pointer;
 }
 
 .panel:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+	transform: translateY(-5px);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .panel-title {
-    font-size: 20px;
-    font-weight: bold;
-    color: #ff7f50;
-    margin-bottom: 20px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #ff7f50;
+	margin-bottom: 20px;
 }
 
 .panel-button {
-    background-color: #ff7f50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+	background-color: #ff7f50;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-size: 14px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
 .panel-button:hover {
-    background-color: #e06641;
+	background-color: #e06641;
 }
 
 /* 반응형 처리 */
 @media (max-width: 768px) {
-    .tap {
-        flex-direction: column;
-        gap: 10px;
-    }
+	.tap {
+		flex-direction: column;
+		gap: 10px;
+	}
 
-    .panel-container {
-        padding: 20px;
-    }
+	.panel-container {
+		padding: 20px;
+	}
 
-    .panel {
-        padding: 15px;
-    }
+	.panel {
+		padding: 15px;
+	}
 }
-
