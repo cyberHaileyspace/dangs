@@ -1,4 +1,4 @@
-package com.dangs.main;
+package com.dangs.jm;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dangs.sw.swM;
 
-@WebServlet("/HC")
-public class HC extends HttpServlet {
+@WebServlet("/locationC")
+public class LocationC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("content", "jsp/sw/main.jsp");
+		LocationDAO.location(request);
+		request.setAttribute("content", "jsp/jm/location.jsp");
+//		request.setAttribute("loginCheck", "jsp/sw/login.jsp");
 		swM.loginCheck(request);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
