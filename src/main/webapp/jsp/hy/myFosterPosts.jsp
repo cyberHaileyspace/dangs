@@ -24,9 +24,9 @@
 	<div>
 		<div id="header2">
 			<div>
-				<a href="AdoptionController?action=shelterAdoption.jsp"> 임시보호 </a> <a
-					href="AdoptionController?action=myFosterPosts"> 내가 작성한 공고 </a> <a
-					href="AdoptionController?action=myFavoritesFoster"> 나의 관심 공고 </a>
+				<a href="FosterController?action=shelterAdoption.jsp"> 임시보호 </a> <a
+					href="FosterController?action=myFosterPosts"> 내가 작성한 공고 </a> <a
+					href="FosterController?action=myFavoritesFoster"> 나의 관심 공고 </a>
 			</div>
 		</div>
 	</div>
