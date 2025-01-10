@@ -37,7 +37,6 @@ body {
 
 body {
 	font-family: "GowunDodum-Regular";
-	font-size: 30pt;
 	margin: 0;
 	padding: 0;
 }
@@ -52,19 +51,40 @@ body {
 	width: 20%;
 	position: relative;
 	left: 30px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.logo-div-02 {
+	width: 60%;
+	position: relative;
+	left: 30px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.logo-div-03 {
+	width: 20%;
+	position: relative;
+	left: 30px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 
 .main-wrapper {
-	font-size: 40px;
+	font-size: 20pt;
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
-	height: 120px;
+	height: 60px;
 	position: sticky;
 	top: 0px;
 	z-index: 2;
-	background-color: #F4C84B;
-	border-bottom: 1px solid red;
+	background-color: #fefefe;
+	border-bottom: 1px solid lightgrey;
 }
 
 .login {
@@ -99,9 +119,8 @@ body {
 	width: 80%;
 	height: 100px;
 	background-color: #ffcf9d;
-	align-items: center;
 	justify-content: center;
-	margin: auto;
+	align-items: center;
 	cursor: pointer;
 }
 
