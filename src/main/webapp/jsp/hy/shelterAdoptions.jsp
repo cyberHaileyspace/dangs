@@ -23,7 +23,7 @@
 		<div id="header2">
 			<div>
 				<a href="AdoptionController?action=shelterAdoption.jsp"> 보호소 입양 </a>
-				<a href="AdoptionController?action=myFavorites"> 나의 관심 공고 </a>  <!-- 로그인 여부에 따라서 가는 페이지가 달라짐 -->
+				<a href="AdoptionController?action=myFavoritesAdopt"> 나의 관심 공고 </a>  <!-- 로그인 여부에 따라서 가는 페이지가 달라짐 -->
 			</div>
 		</div>
 	</div>
