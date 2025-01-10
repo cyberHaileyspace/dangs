@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,27 +9,31 @@
 </head>
 <body>
 
- 	<div>
-  		<div id="header1"> 
-  			<ul class="tap">
-  				<a class="adopt"> 입양 홈 </a>
-  				<a class="shelter" href="AdoptionController?action=shelterAdoption.jsp"> 보호소 입양 </a>
-  				<a class="foster" href="FosterController?action=fosterAdoptions.jsp"> 임시 보호 </a>
-  			</ul>
-  		</div>
+	<div>
+		<div id="header1">
+			<ul class="tap">
+				<a class="adopt"> 입양 홈 </a>
+				<a class="shelter"
+					href="AdoptionController?action=shelterAdoption.jsp"> 보호소 입양 </a>
+				<a class="foster" href="FosterController?action=fosterAdoptions.jsp">
+					임시 보호 </a>
+			</ul>
+		</div>
 	</div>
-	
+
 	<div>
 		<div id="header2">
 			<div>
-				<a href="FosterController?action=fosterAdoptions.jsp"> 임시보호 </a>
-				<a href="FosterController?action=myFosterPosts"> 내가 작성한 공고 </a>
-				<a href="FosterController?action=myFavoritesFoster"> 나의 관심 공고 </a>
+				<a href="AdoptionController?action=shelterAdoption.jsp"> 임시보호 </a> <a
+					href="AdoptionController?action=myFosterPosts"> 내가 작성한 공고 </a> <a
+					href="AdoptionController?action=myFavoritesFoster"> 나의 관심 공고 </a>
 			</div>
 		</div>
 	</div>
 
-<h1> 임시 보호 공고 페이지 </h1>
-
+	<h1>임시 보호 공고 페이지</h1>
+	<nav>
+		<a href="FosterController?action=myFosterPosts">내가 작성한 공고</a> <a
+			href="FosterController?action=myFavoritesFoster">내 관심 공고</a>
 </body>
 </html>
