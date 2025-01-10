@@ -23,7 +23,7 @@
 		<div id="header2">
 			<div>
 				<a href="AdoptionController?action=shelterAdoption.jsp"> 보호소 입양 </a>
-				<a href="AdoptionController?action=myFavorites"> 나의 관심 공고 </a>
+				<a href="AdoptionController?action=myFavoritesAdopt"> 나의 관심 공고 </a>
 			</div>
 		</div>
 	</div>

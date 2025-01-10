@@ -19,7 +19,7 @@ public class AdoptionController extends HttpServlet {
         String contentPage = "jsp/hy/shelterAdoptions.jsp"; // 기본값: 보호소 입양 공고 페이지
 
         // "action" 값에 따라 다른 페이지로 설정
-        if ("myFavorites".equals(action)) {
+        if ("myFavoritesAdopt".equals(action)) {
         	contentPage = "jsp/hy/myFavoritesAdopt.jsp"; // 관심 공고 페이지
         } 
         	
