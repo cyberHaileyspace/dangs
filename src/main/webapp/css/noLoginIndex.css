@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-<<<<<<< HEAD
-.logo {
-=======
 body{
 margin: 0;
 padding: 0;
@@ -10,7 +7,6 @@ box-sizing:border-box;
 }
 
 .logo{
->>>>>>> 810920e614e01959f1be164036d61a26530f647d
 	width: 100px;
 	height: 100px;
 	object-fit: contain;
@@ -22,12 +18,8 @@ box-sizing:border-box;
 	left: 30px;
 }
 
-<<<<<<< HEAD
-.main-wrapper {
-=======
 .main-wrapper{
 	font-size: 40px;
->>>>>>> 810920e614e01959f1be164036d61a26530f647d
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
