@@ -63,8 +63,8 @@ body {
 	position: sticky;
 	top: 0px;
 	z-index: 2;
-	background-color: ivory;
-	border-bottom: 1px solid red;
+	background-color: #fefefe;
+	border-bottom: 1px solid lightgrey;
 }
 
 .login {
