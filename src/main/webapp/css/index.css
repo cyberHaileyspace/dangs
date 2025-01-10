@@ -1,8 +1,5 @@
 @charset "UTF-8";
-
-body {
-	font-size: 40px;
-}
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 
 @font-face {
 	font-family: "SokchoBadaBatang";
@@ -11,10 +8,30 @@ body {
 	font-style: normal;
 }
 
+@font-face {
+	font-family: 'nanumsquare';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-3@1.0/Batang_Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: 'RixInooAriDuriR';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-	font-family: "SokchoBadaBatang";
+	font-family: "GowunDodum-Regular";
 	font-size: 30pt;
-	font-weight: bold;
 	margin: 0;
 	padding: 0;
 }
@@ -40,7 +57,6 @@ body {
 	position: sticky;
 	top: 0px;
 	z-index: 2;
-	background-color: #ffcf9d;
 }
 
 .login {

@@ -21,7 +21,7 @@
 </style>
 </head>
 <body>
-	<p>${sessionScope.user.name}님환영합니다.</p>
+	<p>${sessionScope.user.name}님 환영합니다.</p>
 	<button class="logout" onclick="location.href='logoutC'">logout</button>
 </body>
 </html>
