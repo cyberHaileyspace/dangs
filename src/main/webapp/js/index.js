@@ -7,9 +7,7 @@ $(function(){
 	})
 	
 	$('.adopt').click(function(){
-		
 		location.href="AFController"
-		
 	})
 	
 })
