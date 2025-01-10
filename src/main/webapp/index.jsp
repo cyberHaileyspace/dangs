@@ -14,7 +14,7 @@
 	<div class="main-wrapper">
 	<div class="logo-div" onclick="location.href='HC'"><img class="logo" alt="" src="img/dog-nose.png" > </div>
 	<div style="display: flex; width: 80%; justify-content: space-around;">
-	<div>입양</div>
+	<div class="adopt">입양</div>
 	<div onclick="location.href='ShopC'">중고거래</div>
 	<div>산책로</div>
 	<div><a href="CmMainC">커뮤니티</a></div>
