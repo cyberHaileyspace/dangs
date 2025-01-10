@@ -1,3 +1,6 @@
+window.onload = ()=>{
+
+
 // 모달 요소 가져오기
 var modal = document.getElementById("signupModal");
 var btn = document.getElementById("openModalBtn");
@@ -24,3 +27,4 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+};
