@@ -14,15 +14,18 @@
 <body>
 	<div class="main-wrapper">
 
-	<div class="logo-div" onclick="location.href='HC'"><img class="logo" alt="" src="img/dog-nose.png" > </div>
-	<div style="display: flex; width: 80%; justify-content: space-around;">
-	<div class="adopt">입양</div>
-	<div onclick="location.href='ShopC'">중고거래</div>
-	<div onclick="location.href='locationC'">산책로</div>
-	<div><a href="CmMainC">커뮤니티</a></div>
-	<div class="myPage">마이페이지</div>
-	</div>
-
+		<div class="logo-div" onclick="location.href='HC'" style="cursor: pointer;">
+			<img class="logo" alt="" src="img/dog-nose.png"
+				style="width: 40px; height: 40px;">
+		</div>
+		<div class="logo-div-02">
+			<div class="adopt" style="cursor: pointer;">입양</div>
+			<div onclick="location.href='ShopC'" style="cursor: pointer;">중고거래</div>
+			<div onclick="location.href='locationC'" style="cursor: pointer;">산책로</div>
+			<div onclick="location.href='CmMainC'" style="cursor: pointer;">커뮤니티</div>
+			<div class="myPage" style="cursor: pointer;">마이페이지</div>
+		</div>
+		<div class="logo-div-03"></div>
 	</div>
 	<div style="display: flex;">
 		<div class="index-content">

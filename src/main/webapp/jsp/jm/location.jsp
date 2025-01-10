@@ -26,7 +26,7 @@
 		}
 		function myLocation() {
 
-			/* location.href="loginC"; */
+			location.href="loginC";
 
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(
