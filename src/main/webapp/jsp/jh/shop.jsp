@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Shopping Page</title>
-<link rel="stylesheet" href="../../css/jh/shop.css">
+<link rel="stylesheet" href="css/jh/shop.css">
 </head>
 <body>
     <div class="container">
@@ -27,7 +27,7 @@
         <div class="section-title">두 번째 항목 제목</div>
         <div class="product-grid">
             <!-- 5 x 4 그리드 (총 20개 상품) -->
-            <div class="product"> <a href="../../ProductC">상품 1</a></div>
+            <div class="product" onclick="location.href='ProductC'">상품 1</div>
             <div class="product">상품 2</div>
             <div class="product">상품 3</div>
             <div class="product">상품 4</div>
