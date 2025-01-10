@@ -17,7 +17,7 @@
 	<div class="adopt">입양</div>
 	<div>중고거래</div>
 	<div>산책로</div>
-	<div>커뮤니티</div>
+	<div><a href="CmMainC">커뮤니티</a></div>
 	<div class="myPage">마이페이지</div>
 	</div>
 	</div>

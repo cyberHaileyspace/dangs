@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+<<<<<<< HEAD
 import com.dangs.hy.DBManager;
-//import com.dangs.yj.DBManager;
+=======
+import com.dangs.yj.DBManager;
+>>>>>>> d1ac82ac7bc1af7cc5e6e9d5300c809b7e1c2cc3
 
 
 
