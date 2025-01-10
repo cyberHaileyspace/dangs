@@ -13,29 +13,16 @@
 </head>
 <body>
 	<div class="main-wrapper">
-<<<<<<< HEAD
-		<div class="logo-div" onclick="location.href='HC'">
-			<img class="logo" alt="" src="img/dog-nose.png">
-		</div>
-		<div style="display: flex; width: 80%; justify-content: space-around;">
-			<div class="adopt">입양</div>
-			<div>중고거래</div>
-			<div onclick="location.href='locationC'">산책로</div>
-			<div>
-				<a href="CmMainC">커뮤니티</a>
-			</div>
-			<div class="myPage">마이페이지</div>
-		</div>
-=======
+
 	<div class="logo-div" onclick="location.href='HC'"><img class="logo" alt="" src="img/dog-nose.png" > </div>
 	<div style="display: flex; width: 80%; justify-content: space-around;">
 	<div class="adopt">입양</div>
 	<div onclick="location.href='ShopC'">중고거래</div>
-	<div>산책로</div>
+	<div onclick="location.href='locationC'">산책로</div>
 	<div><a href="CmMainC">커뮤니티</a></div>
 	<div class="myPage">마이페이지</div>
 	</div>
->>>>>>> 0e2bfd7f2e29afec6b3c920eaf05c15b8758ab0a
+
 	</div>
 	<div style="display: flex;">
 		<div class="index-content">
