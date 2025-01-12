@@ -31,23 +31,48 @@
 			<jsp:include page="${content }"></jsp:include>
 		</div>
 	</div>
-	<!-- 모달 -->
+<!-- 모달 -->
 	<div id="signupModal" class="modal">
 		<div class="modal-content">
-			<span class="close">&times;</span>
-			<form id="signupForm">
-				<input type="text" id="username" name="username" required
-					placeholder="아이디"> <input type="password" id="password"
-					name="password" required placeholder="비밀번호"> <input
-					type="password" id="confirmPassword" name="confirmPassword"
-					required placeholder="비밀번호 확인"> <input type="text"
-					id="nickname" name="nickname" required placeholder="닉네임"> <input
-					type="email" id="email" name="email" required placeholder="이메일">
-				<button type="submit">회원가입</button>
-				<button type="button" id="cancelBtn">취소</button>
-			</form>
+		<div style="display: flex; justify-content: space-between;">
+		<div> <img class="logo" alt="" src="img/dog-nose.png"
+				style="width: 40px; height: 40px;"></div>
+  			<div> <span class="close">&times;</span></div> </div>
+			<div id="signupForm">
+			<div class="swInputDiv">
+    <input type="text" id="username" name="username" required placeholder="아이디">
+    <span id="usernameError" class="error-message"></span>
+</div>
+<div class="swInputDiv">
+    <input type="password" id="password" name="password" required placeholder="비밀번호">
+    <span id="passwordError" class="error-message"></span>
+</div><div class="swInputDiv">
+    <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="비밀번호 확인">
+    <span id="confirmPasswordError" class="error-message"></span>
+</div><div class="swInputDiv">
+    <input type="text" id="name" name="name" required placeholder="이름">
+    <span id="nameError" class="error-message"></span>
+</div><div class="swInputDiv">
+    <input type="number" id="age" name="age" required placeholder="나이">
+    <span id="ageError" class="error-message"></span>
+</div><div class="swInputDiv">
+    <input type="email" id="email" name="email" required placeholder="이메일">
+    <span id="emailError" class="error-message"></span>
+</div><div class="swInputDiv">
+    <input type="number" id="tel" name="tel" required placeholder="연락처">
+    <span id="telError" class="error-message"></span>
+</div><div class="swInputDiv">
+    <input type="text" id="address" name="address" required placeholder="주소">
+    <span id="addressError" class="error-message"></span>
+</div>
+
+				<div style="display: flex; width=500px;">
+				<button type="button" id="RegSubmit" onclick="regi()">회원가입</button>
+			<button type="button" id="cancelBtn">취소</button>
+			</div>
+			</div>
+			</div>
 		</div>
-	</div>
 	<!-- 모달 끝 -->
 	<script type="text/javascript" src="js/sw_reg_modal.js"></script>
 </body>
