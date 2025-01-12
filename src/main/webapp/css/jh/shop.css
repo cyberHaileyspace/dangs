@@ -4,24 +4,32 @@ body {
 	padding: 0;
 }
 
+.breadcrumb {
+	margin: 10px;
+	font-size: 17px;
+	color: #888;
+}
+
 .container {
 	width: 90%;
 	margin: 0 auto;
 }
 
-.slider-placeholder {
+.rank-wrapper {
+	overflow: hidden;
 	width: 100%;
-	height: 300px;
+	height: 325px;
 	background-color: #f0f0f0;
 	text-align: center;
-	line-height: 300px;
+	/* line-height: 300px; */ /* 봉인 */
 	color: #999;
 	margin-bottom: 20px;
+	width: 100%;
 }
 
 .slider-placeholder2 {
 	width: 100%;
-	height: 180px;
+	height: 300px;
 	background-color: #f0f0f0;
 	text-align: center;
 	line-height: 180px;
@@ -32,16 +40,17 @@ body {
 .categories {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 20px;
+	margin-top: 20px;
 }
 
 .category {
-	flex: 1;
+	position: relative; flex : 1;
 	background-color: #ececec;
 	text-align: center;
 	padding: 10px;
 	margin: 0 10px;
 	border-radius: 5px;
+	flex: 1;
 }
 
 .category:first-child {
@@ -52,24 +61,138 @@ body {
 	margin-right: 0;
 }
 
+/* menu1 스타일 */
+#menu1 {
+	visibility: hidden; position : absolute;
+	width: 100%; /* b1과 같은 너비 */
+	border-collapse: collapse;
+	position: absolute; /* 테이블 겹치는 선 제거 */
+}
+
+#menu2 {
+	visibility: hidden;
+	left: 550px;
+	position: absolute;
+	width: 100%; /* b1과 같은 너비 */
+	border-collapse: collapse; /* 테이블 겹치는 선 제거 */
+}
+
+#menu3 {
+	visibility: hidden;
+	left: 887px;
+	position: absolute;
+	width: 100%; /* b1과 같은 너비 */
+	border-collapse: collapse; /* 테이블 겹치는 선 제거 */
+}
+
+#menu1 tr, #menu2 tr, #menu3 tr {
+	display: inline-grid;
+	background-color: white;
+	border-radius: 0.4px;
+}
+
+#menu1 td, #menu2 td, #menu3 td {
+	width: 300px;
+	border: 1px solid #ddd; /* 테이블 셀 경계선 */
+	padding: 8px; /* 셀 내부 여백 */
+	text-align: center; /* 텍스트 중앙 정렬 */
+	border-radius: 0.4px;
+}
+
 .section-title {
 	font-weight: bold;
-	font-size: 1.5em;
-	margin: 20px 0;
+	font-size: 25pt;
+	margin: 25px 0;
 }
 
 .product-grid {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
+	margin-top: 20px;
 }
 
 .product {
-	flex: 1 1 calc(20% - 10px);
-	/* 20% width minus gap */
+	/* 	flex: 1 1 calc(20% - 10px);
+	20% width minus gap
 	text-align: center;
 	padding: 10px;
-	background-color: #fafafa;
 	border: 1px solid #ddd;
-	border-radius: 5px;
+	border-radius: 5px; */
+	background-color: white;
+	width: 22%; /* 4개씩 배치되도록 너비 조정 */
+	min-height: 300px;
+	margin: 1%; /* 각 카드 사이 간격 */
+	box-sizing: border-box; /* 패딩 포함 크기 설정 */
+	border: 1px solid #ddd; /* 경계선 */
+	border-radius: 8px; /* 모서리 둥글게 */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+	text-align: center; /* 내용 가운데 정렬 */
+	display: inline-block; /* 카드형 배치 */
+	vertical-align: top; /* 줄 맞춤 */
+}
+
+/* 이미지 설정 */
+.product-img img {
+	width: 100%; /* div의 너비에 맞춤 */
+	height: auto; /* 비율 유지 */
+	min-height: 225px;
+	border-radius: 8px 8px 0 0; /* 상단 모서리 둥글게 */
+}
+
+/* 텍스트 스타일 */
+.product-name, .product-price, .product-date {
+	margin: 8px 0;
+	font-size: 14px;
+	color: #333;
+}
+
+/* 화면 크기에 따른 반응형 설정 */
+@media screen and (max-width: 768px) {
+	.product {
+		width: 48%; /* 화면 크기가 작아지면 2개씩 배치 */
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.product {
+		width: 100%; /* 화면 크기가 더 작아지면 1개씩 배치 */
+	}
+}
+
+/* rank */
+.product img {
+	max-width: 100%; /* 부모 div의 너비를 넘지 않음 */
+	max-height: 100%; /* 부모 div의 높이를 넘지 않음 */
+	min-height: 216px;
+	object-fit: contain; /* 이미지 비율을 유지하면서 영역에 맞춤 */
+}
+
+.rank-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/*스와이퍼 관련*/
+.swiper {
+	width: 100%;
+	height: 300px;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
