@@ -12,7 +12,6 @@ public class MyPageC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		swM.loginValid(request, response);
 		request.setAttribute("content", "jsp/sw/myPage.jsp");
 		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
 	}

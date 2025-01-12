@@ -144,11 +144,12 @@ body {
 .modal-content {
 	background-color: #fefefe;
 	margin: 5% auto;
-	padding: 20px;
+	padding: 22px;
 	border: 1px solid #888;
 	width: 80%;
-	max-width: 500px;
+	max-width: 430px;
 	border-radius: 8px;
+	position: relative;
 }
 
 /* 닫기 버튼 */
@@ -167,13 +168,10 @@ body {
 }
 
 /* 폼 스타일 */
-form label {
-	display: block;
-	margin: 8px 0 4px;
-}
 
-form input {
-	width: 100%;
+
+#signupForm input {
+	width: 95%;
 	padding: 8px;
 	margin: 4px 0 12px;
 	display: block;
@@ -181,7 +179,7 @@ form input {
 	border-radius: 4px;
 }
 
-form button {
+#signupForm button {
 	width: 48%;
 	padding: 10px;
 	margin: 8px 1%;
@@ -190,13 +188,28 @@ form button {
 	cursor: pointer;
 }
 
-form button[type="submit"] {
+
+#RegSubmit {
 	background-color: #ff6b6b;
 	color: white;
 }
 
-form button[type="button"] {
+#cancelBtn {
 	background-color: #ccc;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    display: none; /* 기본적으로 숨김 */
+}
+.swInputDiv{
+	position: relative;
+}
+.swInputDiv span{
+	position: absolute;
+    right: 9px;
+    top: 6px;
 }
 
 /*modal 끝*/
