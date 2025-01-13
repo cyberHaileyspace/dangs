@@ -8,7 +8,7 @@ $(function() {
 
 	$('.adopt').click(function() {
 
-		location.href = "AFController"
+		location.href = "AdoptionController"
 
 	})
 

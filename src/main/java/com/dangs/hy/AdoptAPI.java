@@ -19,8 +19,8 @@ public class AdoptAPI extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		AdoptionDAO.getInfoAPI();
-
+		AdoptionDAO.getAdao().getAPI();
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

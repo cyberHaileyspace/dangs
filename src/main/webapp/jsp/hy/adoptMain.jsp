@@ -37,5 +37,6 @@
 			<div class="panel-title">임시보호</div>
 			<button class="panel-button">보러가기</button>
 		</div>
+	</div>
 </body>
 </html>
