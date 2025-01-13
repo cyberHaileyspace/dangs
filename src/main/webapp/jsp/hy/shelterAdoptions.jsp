@@ -33,7 +33,7 @@
 
 	<div class="main">
 		<div class="main-wrap">
-			<div>관리자 로그인시 보일 버튼 <button onclick="APITest">데이터셋 생성</button> </div>
+			<div>관리자 로그인시 보일 버튼 <button onclick="location.href='AdoptAPI'">데이터셋 생성</button> </div>
 			<div class="shelter-title">보호소 입양</div>
 			<div>지역, 품종 필터</div>
 			<div> 필터링 된 컨텐츠 숫자 표시 </div>

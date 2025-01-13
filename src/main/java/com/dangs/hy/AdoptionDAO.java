@@ -4,13 +4,19 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import com.dangs.main.DBManager;
 
 public class AdoptionDAO {
-
+	
 		public static void getInfoAPI() {
+			  Connection con  = null;
+			  PreparedStatement pstmt = null;
 			try {
 	            // API URL 설정
-	            String apiURL = "http://apis.data.go.kr/1543061/animalShelterSrvc/shelterInfo?numOfRows=100&";
+	            String apiURL = "http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?";
 	            
 	            // API Key 설정
 	            String serviceKey = "PaQw4uKw%2FBnvpzwGrwVLUU3OEpMspXDv0IKVJS84H5bGSaAjVx%2BJh5J9vBdQhtZTt%2F6XhgoGCXaZpq0baUFjsA%3D%3D";
@@ -39,16 +45,27 @@ public class AdoptionDAO {
 	            }
 	            
 	            // 응답 출력
-	            StringBuilder response = new StringBuilder();
+	            StringBuilder response = new StringBuilder(); 
 	            String line;
-	            while ((line = br.readLine()) != null) {
+	            while ((line = br.readLine()) != null) { // 데이터를 한 줄씩 읽어옴
 	                response.append(line);
 	            }
 	            br.close();
-	            System.out.println("Response: " + response.toString());
-
-	        } catch (Exception e) {
-	            e.printStackTrace();
+				  br.close(); System.out.println(response.toString());
+				 
+				  String sql = "insert into json_data_table values(default,?)";
+				  		
+				  	con = DBManager.connect();
+				  	pstmt = con.prepareStatement(sql);
+				  	pstmt.setString(1, response.toString());
+				  	if(pstmt.executeUpdate()==1)
+				  		System.out.println("성공");
+				  
+				  
+				  
+	        } catch(Exception e){
+	        	e.printStackTrace();
 	        }
 		}
+		
 }
