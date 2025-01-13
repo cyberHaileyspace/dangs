@@ -1,0 +1,55 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+.container-add{
+	width: 90%;
+    margin: 20px auto;
+}
+.add-menu{
+	display: flex;
+	flex-direction: column;
+}
+.add-size{
+	display: flex;
+}
+.add-size div {
+/*	width: 50px;*/
+/*	height: 15px;*/
+	background-color:bisque;
+	text-align: center;
+     border: none;
+     padding: 10px 15px;
+     border-radius: 10px;
+     margin-right: 5px;
+}
+.add-title{
+	display: flex
+}
+.add-menu2{
+/*	display: flex*/
+	flex-direction: column;
+}
+.add-category{
+	display: flex;
+}
+.add-category div {
+/*	width: 80px;*/
+/*	height: 40px;*/
+     align-items: center;
+     background-color:bisque;
+     border: none;
+     padding: 10px 15px;
+     border-radius: 10px;
+     cursor: pointer;
+     margin-right: 5px;
+}
+.add-check{
+	display: flex;
+}
+.add-cancle, add-post{
+	width: 80px;
+	height: 40px;
+	background-color:bisque;
+	text-align: center;
+}
