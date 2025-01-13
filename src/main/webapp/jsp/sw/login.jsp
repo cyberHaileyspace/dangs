@@ -25,7 +25,7 @@
 		</form>
 		<button id="openModalBtn">회원가입</button>
 	</div>
-	<script type="text/javascript">
+	<script type="text/javascript" src="js/sw_reg_modal.js">
 		
 	</script>
 

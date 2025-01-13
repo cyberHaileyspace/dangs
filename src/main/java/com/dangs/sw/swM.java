@@ -44,11 +44,11 @@ public class swM {
 				if (dbPw.equals(pw)) {
 					UserDTO user = new UserDTO();
 					user.setId(id);
-					user.setPw(dbPw);
+				//	user.setPw(dbPw);
 					user.setName(rs.getString(3));
 					HttpSession hs = request.getSession();
 					hs.setAttribute("user", user);
-					hs.setMaxInactiveInterval(10);
+					hs.setMaxInactiveInterval(1000);
 					hidden = "none";
 					request.setAttribute("hidden", hidden);
 				} else {
@@ -91,6 +91,35 @@ public class swM {
 
 		swM.loginCheck(request);
 
+	}
+
+	public static void register(HttpServletRequest request) {
+		String id = request.getParameter("username");
+		String pw = request.getParameter("password");
+		String name = request.getParameter("name");
+		String age = request.getParameter("age");
+		String address = request.getParameter("address");
+		String tel = request.getParameter("tel");
+		
+		PreparedStatement pstmt = null;
+		String sql = "insert into userDB values(?,?,?,null,?,?,?)";
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			pstmt.setString(3, name);
+			pstmt.setString(4, age);
+			pstmt.setString(5, address);
+			pstmt.setString(6, tel);
+			if (pstmt.executeUpdate()==1) {
+				System.out.println("업데이트 성공");
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, null);
+		}
 	}
 
 }

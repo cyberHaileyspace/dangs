@@ -20,13 +20,26 @@
 		};
 
 		var map = new kakao.maps.Map(container, options);
-
+		// ---- 지도 ---- //
 		function btn(sample) {
 			alert(sample);
 		}
 		function myLocation() {
 
-			location.href="loginC";
+			/* $('#myPage').click(function() {
+			    var xhr = new XMLHttpRequest();
+			    xhr.open('GET', 'checkLogin', true);
+			    xhr.onreadystatechange = function() {
+			        if (xhr.readyState === 4 && xhr.status === 200) {
+			            if (xhr.responseText === 'loggedIn') {
+			                window.location.href = 'myPageC';
+			            } else if (xhr.responseText === 'notLoggedIn') {
+			                window.location.href = 'loginC';
+			            }
+			        }
+			    };
+			    xhr.send();
+			}); */
 
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(
