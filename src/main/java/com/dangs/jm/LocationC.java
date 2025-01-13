@@ -14,7 +14,7 @@ public class LocationC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		LocationDAO.location(request);
+//		LocationDAO.location(request);
 		request.setAttribute("content", "jsp/jm/location.jsp");
 //		request.setAttribute("loginCheck", "jsp/sw/login.jsp");
 		swM.loginCheck(request);
