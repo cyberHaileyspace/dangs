@@ -7,11 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/registerWalkMateC")
-public class RegisterWalkMateC extends HttpServlet {
+@WebServlet("/registerWalkingMateC")
+public class RegisterWalkingMateC extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		registerWalkingMateDAO.selectAllLocation(request);
+		request.setAttribute("content", "/jsp/jm/walkingmate.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

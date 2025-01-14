@@ -1,20 +1,6 @@
 @charset "UTF-8";
 
 @font-face {
-	font-family: "RixInooAriDuriR";
-	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2") format("woff2");
-	font-weight: normal;
-	font-style: normal;
-}
-
-body {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-@font-face {
 	font-family: "nanumsquare";
 	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-3@1.0/Batang_Regular.woff") format("woff");
 	font-weight: 400;
