@@ -41,8 +41,16 @@
 			</div>
 		</div>
 		
-		<textarea name="ir1" id="ir1" rows="10" cols="100">에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다. 냥냥</textarea>	
-		
+		<div class="add-write">
+			<div>내용</div>
+			<div>
+			<textarea name="ir1" id="ir1" rows="10" cols="100">에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다. 냥냥</textarea>	
+			</div>
+		</div>
+		<div class="add-file">
+			<div> <span>사진 업로드</span> <input type="file"> </div>
+			<div> <span>동영상 업로드</span> <input type="file"> </div>
+		</div>
 		<div class="add-check">
 			<button class="add-cancel">취소</button>
 			<button class="add-post">등록</button>

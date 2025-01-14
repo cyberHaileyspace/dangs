@@ -76,6 +76,7 @@ body {
 /*            flex-direction: column;*/
             justify-content: flex-start;
             margin-bottom: 20px;
+            width: 600px;
         }
         .size-cm .dog-size {
 			width: 70px;

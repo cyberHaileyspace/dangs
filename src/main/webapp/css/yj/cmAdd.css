@@ -6,12 +6,17 @@ body{
 	width: 90%;
     margin: 20px auto;
 }
+.container-add > div {
+    margin-bottom: 20px;
+  }
 .add-menu{
 	display: flex;
 	flex-direction: column;
+	margin-bottom: 10px;
 }
 .add-size{
 	display: flex;
+	margin-bottom: 10px;
 }
 .add-size div {
 /*	width: 50px;*/
@@ -24,14 +29,17 @@ body{
      margin-right: 5px;
 }
 .add-title{
-	display: flex
+	display: flex;
+	margin-bottom: 10px;
 }
 .add-menu2{
 /*	display: flex*/
 	flex-direction: column;
+	margin-bottom: 10px;
 }
 .add-category{
 	display: flex;
+	margin-bottom: 10px;
 }
 .add-category div {
 /*	width: 80px;*/
@@ -44,8 +52,19 @@ body{
      cursor: pointer;
      margin-right: 5px;
 }
+
+.add-write{
+	margin-bottom: 10px;
+}
+.add-write > div {
+    margin-bottom: 10px;
+  }
+.add-file{
+	margin-bottom: 10px;
+}
 .add-check{
 	display: flex;
+	margin-bottom: 10px;
 }
 .add-cancle, add-post{
 	width: 80px;
