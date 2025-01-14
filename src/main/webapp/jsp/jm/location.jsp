@@ -70,7 +70,8 @@
 				                    });
 				                    infowindow.open(map, marker);
 				                    
-				                    console.log(address);
+				                    /* console.log(address);
+				                    window.location.href="registerWalkMateC?location="+address; */
 				                    
 				                } else {
 				                	console.log("주소 반환에 실패했습니다.");
