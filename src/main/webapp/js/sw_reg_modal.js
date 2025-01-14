@@ -1,3 +1,6 @@
+//window.onload = ()=>{
+
+
 // 모달 요소 가져오기
 var modal = document.getElementById("signupModal");
 var btn = document.getElementById("openModalBtn");
@@ -18,12 +21,7 @@ cancelBtn.onclick = function() {
 	modal.style.display = "none";
 }
 
-// 모달 외부 클릭 시 닫기
-/*window.onclick = function(event) {
-	if (event.target == modal) {
-		modal.style.display = "none";
-	}
-}*/
+
 
 
 
@@ -140,3 +138,4 @@ alert('회원가입을 축하드립니다. 로그인 해주세요!');
     }
    
 }
+//}
