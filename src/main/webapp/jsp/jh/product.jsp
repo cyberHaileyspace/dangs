@@ -10,7 +10,7 @@
 <script type="text/javascript" src="js/jh/product.js" defer="defer"></script>
 
 <script type="text/javascript">
-/* db 만들면 비동기로 상세정보/구매평/Q&A 만들꺼 */	
+/* db 만들면 비동기로 정보 / 평점 / Q&A 만들 거 */	
 	/* $(function() {
 		$('.detail').click(function() {
 			
@@ -50,7 +50,7 @@
             	<img class="share-img" style="width: 25px; height: 25px" src="https://png.pngtree.com/png-vector/20230316/ourmid/pngtree-share-line-icon-vector-png-image_6651445.png" alt="Share image">
 			</div>
 			<hr>            
-            <p> <b>구매혜택 : </b>1000 포인트 적립예정</p> <!-- 얘는 culumn안만들고 price의 몇%로 js계산 -->
+            <p> <b>구매혜택 : </b>1000 포인트 적립예정</p> <!-- 얘는 culumn 안 만들고 price의 몇%로 js 계산 -->
             <p> <b>배송 방법 : </b> 택배</p> <!-- 택배 고정 -->
             <p> <b>배송비 : </b> 100,000원 (1,000,000원 이상 무료배송)</p> <!-- 2~3가지 경우수만 고려 culumn은 안만듬 -->
             

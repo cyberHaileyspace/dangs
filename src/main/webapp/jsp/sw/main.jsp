@@ -55,7 +55,7 @@ document.getElementById('wishlist-button').addEventListener('click', function() 
 	        }
 	      });
 	    } else {
-	      window.location.href = 'myPageC';
+	      window.location.href = 'loginC';
 	    }
 	  })
 	  .catch(error => {

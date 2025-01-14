@@ -1,6 +1,14 @@
 @charset "UTF-8";
 
+@font-face {
+	font-family: 'GowunDodum-Regular';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
 body {
+	font-family: "GowunDodum-Regular";
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -16,19 +24,40 @@ body {
 	width: 20%;
 	position: relative;
 	left: 30px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.logo-div-02 {
+	width: 60%;
+	position: relative;
+	left: 30px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.logo-div-03 {
+	width: 20%;
+	position: relative;
+	left: 30px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 
 .main-wrapper {
-	font-size: 40px;
+	font-size: 20pt;
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
-	height: 120px;
+	height: 60px;
 	position: sticky;
 	top: 0px;
 	z-index: 2;
-	background-color: ivory;
-	border: 3px outset red;
+	background-color: #fefefe;
+	border-bottom: 1px solid lightgrey;
 }
 
 .index-content {
@@ -37,8 +66,6 @@ body {
 	width: 1100px;
 	height: 2000px;
 }
-
-
 
 /*modal*/
 /* 모달 배경 */
@@ -55,16 +82,16 @@ body {
 	background-color: rgb(0, 0, 0);
 	background-color: rgba(0, 0, 0, 0.4);
 }
-
 /* 모달 내용 */
 .modal-content {
 	background-color: #fefefe;
 	margin: 5% auto;
-	padding: 20px;
+	padding: 22px;
 	border: 1px solid #888;
 	width: 80%;
-	max-width: 500px;
+	max-width: 430px;
 	border-radius: 8px;
+	position: relative;
 }
 
 /* 닫기 버튼 */
@@ -83,13 +110,10 @@ body {
 }
 
 /* 폼 스타일 */
-form label {
-	display: block;
-	margin: 8px 0 4px;
-}
 
-form input {
-	width: 100%;
+
+#signupForm input {
+	width: 95%;
 	padding: 8px;
 	margin: 4px 0 12px;
 	display: block;
@@ -97,7 +121,7 @@ form input {
 	border-radius: 4px;
 }
 
-form button {
+#signupForm button {
 	width: 48%;
 	padding: 10px;
 	margin: 8px 1%;
@@ -106,13 +130,28 @@ form button {
 	cursor: pointer;
 }
 
-form button[type="submit"] {
+
+#RegSubmit {
 	background-color: #ff6b6b;
 	color: white;
 }
 
-form button[type="button"] {
+#cancelBtn {
 	background-color: #ccc;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    display: none; /* 기본적으로 숨김 */
+}
+.swInputDiv{
+	position: relative;
+}
+.swInputDiv span{
+	position: absolute;
+    right: 9px;
+    top: 6px;
 }
 
 /*modal 끝*/
