@@ -3,9 +3,7 @@ package com.dangs.jh;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -163,5 +161,76 @@ public class ShopModel {
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
+	}
+
+	public static void showSameCategory(HttpServletRequest request, HttpServletResponse response) {
+		String pi = request.getParameter("product_id");
+		System.out.println("**************product_id = " + pi);
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select * from product where product_category = ( "
+				+ "select product_category "
+				+ "from product "
+				+ "where product_id = ?"
+				+ ") "
+				+ "and product_id != ?";
+
+		try {
+			if (con == null) {
+				con = DBManager.connect();
+			}
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pi);
+			pstmt.setString(2, pi);
+			rs = pstmt.executeQuery();
+
+			ProductDTO product = null;
+			ArrayList<ProductDTO> same_products = new ArrayList<ProductDTO>();
+
+			while (rs.next()) {
+				product = new ProductDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5),
+						rs.getString(6), rs.getString(7), rs.getDate(8), rs.getString(9));
+				same_products.add(product);
+			}
+
+			System.out.println("@@@@@@@@" + same_products);
+			request.setAttribute("same_products", same_products);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+	}
+
+	public static void paging(int pageNum, HttpServletRequest request) {
+request.setAttribute("curPageNum", pageNum);
+		
+		int total = products.size();  //총데이터수
+		System.out.println(total);
+		int count = 12; // 한페이지당보여줄개수
+		System.out.println(count);
+		
+//		페이지 수
+		int pageCount = (int) Math.ceil((double)total/ count);
+		System.out.println(pageCount); // 페이지개수 (총 페이지 수)
+		
+//		시작, 끝
+		int start = total - (count * (pageNum - 1));
+		
+		int end = (pageNum == pageCount) ? -1 : start - (count + 1);
+		
+		ArrayList<ProductDTO> items = new ArrayList<ProductDTO>();
+		
+		for (int i = start - 1; i > end; i--) {
+			items.add(products.get(i));
+		}
+		
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("products", items);
 	}
 }

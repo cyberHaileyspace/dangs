@@ -24,7 +24,7 @@ $(function() {
 	let menuVis2 = true;
 	let menuVis3 = true;
 
-	$('#b1').mouseover(function() {
+	$('#b1').click(function() {
 		if (menuVis1) {
 			$('#menu1').css('visibility', 'visible')
 		} else {
@@ -32,7 +32,7 @@ $(function() {
 		}
 		menuVis1 = !menuVis1;
 	})
-	$('#b2').mouseover(function() {
+	$('#b2').click(function() {
 		if (menuVis2) {
 			$('#menu2').css('visibility', 'visible')
 		} else {
@@ -40,7 +40,7 @@ $(function() {
 		}
 		menuVis2 = !menuVis2;
 	})
-	$('#b3').mouseover(function() {
+	$('#b3').click(function() {
 		if (menuVis3) {
 			$('#menu3').css('visibility', 'visible')
 		} else {

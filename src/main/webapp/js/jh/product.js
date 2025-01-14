@@ -35,15 +35,15 @@ increaseButton.addEventListener('click', () => {
 // 숫자 및 총 가격 업데이트 함수
 function updateDisplay() {
 	numberDisplay.textContent = count; // 수량 표시
-	totalPriceDisplay.textContent = (count * productPrice).toLocaleString() + "원"; // 총 가격 표시
+	totalPriceDisplay.textContent = (count * productPrice).toLocaleString() + "원  "; // 총 가격 표시
 
 	if ((count * productPrice) < 100000) {
-		totalPriceDisplay2.textContent = (count * productPrice + 3000).toLocaleString() + "원"; // 총 가격 표시
+		totalPriceDisplay2.textContent = (count * productPrice + 3000).toLocaleString() + "원  "; // 총 가격 표시
 	} else {
-		totalPriceDisplay2.textContent = (count * productPrice).toLocaleString() + "원"; // 총 가격 표시		
+		totalPriceDisplay2.textContent = (count * productPrice).toLocaleString() + "원  "; // 총 가격 표시		
 	}
 
-	firstPrice.textContent = productPrice.toLocaleString() + '원';
+	firstPrice.textContent = productPrice.toLocaleString() + '원  ';
 }
 
 //---------------------------------------------------------------
@@ -143,46 +143,114 @@ $(document).ready(function() {
 
 // 제품 상세정보 갱신
 function updateProductDetails(details) {
-	// product-grid 비우기
-	$('.long-description').empty();
+    // long-description 비우기
+    $('.long-description').empty();
 
-	// details 데이터를 순회하면서 HTML 생성
+    // details 데이터를 순회하면서 HTML 생성
     $.each(details, function(index, detail) {
-        var detailHtml =
-            "<div class='detail'>" +
-            "<div class='detail1'><img src='" + detail.pd_detail1 + "' alt='detail1'></div>" +
-            "<div class='detail2'><img src='" + detail.pd_detail2 + "' alt='detail2'></div>" +
-            "<div class='detail3'><img src='" + detail.pd_detail3 + "' alt='detail3'></div>" +
-            "</div>";
+        // 이미지 경로 유효성 검사
+        var detailHtml = "";
 
-		// 상세 정보를 long-description에 추가
-		$('.long-description').append(detailHtml);
-	});
+        if (detail.pd_detail1 || detail.pd_detail2 || detail.pd_detail3) {
+            detailHtml = "<div class='detail'>";
+
+            if (detail.pd_detail1) {
+                detailHtml += "<div class='detail1'><img src='" + detail.pd_detail1 + "' alt='detail1'></div>";
+            }
+
+            if (detail.pd_detail2) {
+                detailHtml += "<div class='detail2'><img src='" + detail.pd_detail2 + "' alt='detail2'></div>";
+            }
+
+            if (detail.pd_detail3) {
+                detailHtml += "<div class='detail3'><img src='" + detail.pd_detail3 + "' alt='detail3'></div>";
+            }
+
+            detailHtml += "</div>";
+
+            // 유효한 경우에만 long-description에 추가
+            $('.long-description').append(detailHtml);
+        }
+    });
 }
 
 // 제품 comment 갱신
 function updateProductComment(comments) {
-	$('.comment-section').empty();
+    // comment-section을 비우고 기본 구조 추가
+    $('.comment-section').empty();
 
-	// comments 데이터를 순회하면서 HTML 생성
+    // upper는 한 번만 추가
+    var upperHtml = `
+        <div class='upper'>
+            <div class='upp1'>comment</div>
+            <div class='upp-div'>
+                <div class='upp2'>user</div>
+                <div class='upp3'>date</div>
+            </div>
+        </div>
+    `;
+    $('.comment-section').append(upperHtml);
+
+    // comments 데이터를 순회하면서 댓글 HTML 추가
     $.each(comments, function(index, comment) {
-        var commentHtml =
-        	"<div class='upper'>" +
-            "<div class='upp1'> comment </div>" +
-            "<div class='upp-div'>" +
-            "<div class='upp2'> user </div>" +
-            "<div class='upp3'> date </div>" +
-            "</div>" +
-            "</div>" +
-            "<div class='comment'>" +
-            "<div class='comment1'>" + comment.pc_comment + "</div>" +
-            "<div class='userDate'>" +
-            "<div class='comment2'>" + comment.pc_user + "</div>" +
-            "<div class='comment3'>" + comment.pc_date + "</div>" +
-            "</div>" +
-            "</div>";
+        var commentHtml = `
+            <div class='comment'>
+                <div class='comment1'>${comment.pc_comment}</div>
+                <div class='userDate'>
+                    <div class='comment2'>${comment.pc_user}</div>
+                    <div class='comment3'>${comment.pc_date}</div>
+                </div>
+            </div>
+        `;
+        $('.comment-section').append(commentHtml);
+    });
 
-		// 상세 정보를 long-description에 추가
-		$('.comment-section').append(commentHtml);
-	});
+    // textarea는 마지막에 추가
+    var textareaHtml = `
+    <div class="add-comment">
+    	<textarea rows='' cols='' class='write-comment'></textarea>
+    	<button>add</button>
+	</div>
+    	`;
+    $('.comment-section').append(textareaHtml);
 }
+
+
+// detail, comment 숨김처리
+document.addEventListener("DOMContentLoaded", () => {
+  const detailButton = document.getElementById("detail");
+  const commentButton = document.getElementById("comment");
+  const longDescription = document.querySelector(".long-description");
+  const commentSection = document.querySelector(".comment-section");
+
+  // Details 버튼 클릭 이벤트
+  detailButton.addEventListener("click", () => {
+    longDescription.classList.remove("hidden"); // 상세 설명 보이기
+    commentSection.classList.add("hidden");    // 댓글 숨기기
+  });
+
+  // Comment 버튼 클릭 이벤트
+  commentButton.addEventListener("click", () => {
+    commentSection.classList.remove("hidden"); // 댓글 보이기
+    longDescription.classList.add("hidden");   // 상세 설명 숨기기
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const commentButton = document.getElementById("comment");
+  const commentSection = document.querySelector(".comment-section");
+  const detailButton = document.getElementById("detail");
+  const longDescription = document.querySelector(".long-description");
+
+  // Comment 버튼 클릭 시
+  commentButton.addEventListener("click", () => {
+    commentSection.classList.remove("hidden"); // 댓글 섹션 표시
+    longDescription?.classList.add("hidden"); // 상세 설명 숨기기
+  });
+
+  // Detail 버튼 클릭 시
+  detailButton.addEventListener("click", () => {
+    longDescription?.classList.remove("hidden"); // 상세 설명 표시
+    commentSection.classList.add("hidden");     // 댓글 섹션 숨기기
+  });
+});

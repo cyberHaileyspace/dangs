@@ -17,6 +17,7 @@ public class ProductC extends HttpServlet {
 		request.setAttribute("content", "jsp/jh/product.jsp");
 
 		ShopModel.getProduct(request, response);
+		ShopModel.showSameCategory(request, response);
 		swM.loginCheck(request);
 
 //		DB에서 정보 가져오는 로직 (여기에서 상품 attribute 받아옴)

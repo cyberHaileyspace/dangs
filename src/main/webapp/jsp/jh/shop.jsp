@@ -86,7 +86,9 @@
 					<c:forEach var="product" items="${products}">
 						<div class="product"
 							onclick="location.href='ProductC?product_id=${product.product_id}'">
-							<img src="${product.product_img}" alt="product-img">
+							<div class="img-wrapper">
+								<img src="${product.product_img}" alt="product-img">
+							</div>
 							<div class="product-name">${product.product_name}</div>
 							<div class="product-price">
 								<fmt:formatNumber value="${product.product_price}"
@@ -138,7 +140,7 @@
 		<!-- 카테고리 선택시 아래 항목 비동기 처리 -->
 		<div class="product-grid">
 			<c:forEach var="product" items="${products}">
-				<div class="product" 
+				<div class="product"
 					onclick="location.href='ProductC?product_id=${product.product_id}'">
 					<div class="product-img">
 						<img src="${product.product_img}" alt="product-img">
@@ -152,6 +154,39 @@
 				</div>
 			</c:forEach>
 		</div>
+		
+		<!-- paging 관련 -->
+		<c:choose>
+			<c:when test="${curPageNum != 1}">
+				<button class="shop-btn pn"
+					onclick="location.href='ShopPageC?p=${curPageNum - 1}'">prev</button>
+			</c:when>
+
+			<c:otherwise>
+				<button class="shop-btn pn">prev</button>
+			</c:otherwise>
+		</c:choose>
+
+		<c:choose>
+			<c:when test="${curPageNum != pageCount}">
+				<button class="shop-btn pn"
+					onclick="location.href='ShopPageC?p=${curPageNum + 1}'">next</button>
+			</c:when>
+
+			<c:otherwise>
+				<button class="shop-btn pn">next</button>
+			</c:otherwise>
+		</c:choose>
+
 	</div>
+
+	<div>
+		<a href="ShopPageC?p=1">[begin]</a>
+		<c:forEach begin="1" end="${pageCount}" var="i">
+			<a href="ShopPageC?p=${i}">[${i}]</a>
+		</c:forEach>
+		<a href="ShopPageC?p=${pageCount}">[last]</a>
+	</div>
+
 </body>
 </html>
