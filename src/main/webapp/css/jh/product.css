@@ -1,8 +1,16 @@
 @font-face {
 	font-family: "GowunDodum-Regular";
-	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff") format("woff");
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff")
+		format("woff");
 	font-weight: normal;
 	font-style: normal;
+}
+
+.breadcrumb {
+	margin: 10px;
+	font-size: 17px;
+	color: #888;
 }
 
 body {
@@ -12,9 +20,16 @@ body {
 	padding: 0;
 }
 
+p {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 0px;
+}
+
 .product-detail-container {
+	padding-top: 10px;
+	padding-bottom: 10px;
 	display: flex;
-	padding: 20px;
 }
 
 .product-image {
@@ -33,7 +48,8 @@ body {
 
 .product-info {
 	flex: 1;
-	padding: 20px;
+	padding-left: 20px;
+	padding-top: 20px;
 }
 
 .product-name {
@@ -42,15 +58,21 @@ body {
 	margin-bottom: 10px;
 }
 
-.product-price {
+/* .p-s product-price {
 	font-size: 20px;
 	color: #e74c3c;
 	margin-bottom: 20px;
-}
+} */
 
 .p-s {
 	display: flex;
+	justify-content: left;
+}
+
+.p-s-wrapper {
+	display: flex;
 	justify-content: space-between;
+	height: 30px;
 }
 
 .categories {
@@ -68,6 +90,7 @@ body {
 	border: 1px solid #ddd;
 	/* border-radius: 5px; */
 	width: 50%;
+	font-size: 20px;
 }
 
 .category:hover {
@@ -79,10 +102,8 @@ body {
 	/* padding: 20px; */
 	border-top: 1px solid #ddd;
 	display: grid;
-
 	/* index.jsp의 content border 없애면 쓰자 */
 	/* 사진이 엄청 커지는 걸 수정해야 함 */
-
 	display: flex;
 	flex-direction: column;
 	/* 세로로 정렬 */
@@ -90,7 +111,14 @@ body {
 
 .long-description img {
 	max-width: 100%;
+	width: 100%;
 	height: auto;
+	/* margin-bottom: 20px; */
+}
+
+.won {
+	font-size: 20px;
+	color: #e74c3c;
 	margin-bottom: 20px;
 }
 
@@ -100,13 +128,24 @@ body {
 	background-color: #f4f4f4;
 	border: 1px black;
 	border-radius: 3px;
+	margin-top: 20px;
 }
 
 .stock {
+	display: flex;
+	justify-content: space-between;
 	align-content: center;
 	font-size: 10pt;
 	height: 25px;
 	border-bottom: 1px dashed;
+}
+
+.st-quentity {
+	margin: 0 81px;
+}
+
+.st-price {
+	margin: 0 14px
 }
 
 .stock2 {
@@ -163,6 +202,7 @@ button:hover {
 
 .total-price {
 	align-content: center;
+	margin: 0 5px;
 }
 
 .total {
@@ -170,13 +210,14 @@ button:hover {
 	display: flex;
 	justify-content: space-between;
 	align-items: end;
+	font-size: 18pt;
+	margin: 10pt 0;
 }
 
 /* 구매 장바구니 찜 */
 .item-categories {
 	display: flex;
 	justify-content: space-between;
-	margin: 20px 0;
 }
 
 .item-category {
@@ -187,6 +228,8 @@ button:hover {
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	width: 140px;
+	height: 30px;
+	font-size: 20px;
 }
 
 .heart {
@@ -197,6 +240,8 @@ button:hover {
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	width: 140px;
+	height: 30px;
+	font-size: 20px;
 }
 
 /* 같은 카테고리 추천 관련 */
@@ -207,11 +252,98 @@ button:hover {
 
 .section-title {
 	font-weight: bold;
-	font-size: 1.5em;
-	margin: 20px 0;
+	font-size: 20pt;
+	margin: 10px 0;
+	margin: 25px 0;
+	margin: 10px 0;
 }
 
-.slider-placeholder {
+/* detail 관련*/
+.detail {
+	display: block; /* 세로로 정렬 */
+	justify-content: space-around; /* 아이템 간 간격 균등 */
+	align-items: center; /* 세로 중앙 정렬 */
+	/* margin: 10px 0; 상하 간격
+    padding: 10px; 내부 여백
+    border: 1px solid #ddd; 테두리 */
+	border-radius: 8px; /* 모서리 둥글게 */
+	background-color: #f9f9f9; /* 배경색 */
+}
+
+.detail>div {
+	flex: 1; /* 균등한 크기 */
+	text-align: center; /* 텍스트 및 이미지 중앙 정렬 */
+}
+
+.detail img {
+	max-width: 100%; /* 가로 크기를 부모에 맞춤 */
+	max-height: 100%; /* 세로 크기를 부모에 맞춤 */
+	object-fit: contain; /* 이미지 비율 유지하며 전체를 보여줌 */
+	border-radius: 5px; /* 이미지 모서리 둥글게 */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 이미지 그림자 */
+}
+
+.product-id {
+	position: absolute;
+	visibility: hidden;
+}
+
+/* comment 관련 */
+.comment-section {
+	/* min-height: 500px; */
+	padding-bottom: 25px;
+	font-size: 15px;
+}
+
+.comment, .upper {
+	margin: 10px;
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+}
+
+.userDate, .upp-div {
+	display: flex;
+}
+
+.upp {
+	justify-content: center;
+	text-align: center;
+}
+
+.comment1, .upp1 {
+	width: 100%;
+}
+
+.comment2, .upp2 {
+	min-width: 100px;
+	border-right: 1px solid #ddd;
+	margin-right: 10px;
+}
+
+.comment3, .upp3 {
+	min-width: 90px;
+	margin-left: 10px;
+}
+
+.add-comment {
+	display: flex;
+	justify-content: space-between;
+}
+
+textarea {
+	width: 100%;
+}
+
+.add-comment button {
+	margin: 0 5px;
+	width: 100px;
+}
+
+/*슬라이더 관련*/
+.swiper mySwiper {
 	width: 100%;
 	height: 180px;
 	background-color: #f0f0f0;
@@ -219,4 +351,86 @@ button:hover {
 	line-height: 180px;
 	color: #999;
 	margin-bottom: 20px;
+}
+
+.swiper {
+	overflow: hidden; /* 콘텐츠 넘침 방지 */
+	margin-top: 10px; /* 필요하면 Swiper 위쪽 여백 추가 */
+	margin-bottom: 10px; /* 필요하면 Swiper 아래쪽 여백 추가 */
+	width: 100%;
+	height: 380px;
+	background-color: #f4f4f4;
+	display: flex;
+	align-items: center;
+}
+
+.swiper-wrapper {
+	position: relative;
+	width: 100%;
+	height: 180px;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	transition-property: transform;
+	transition-timing-function: var(--swiper-wrapper-transition-timing-function, initial);
+	box-sizing: content-box;
+}
+
+.swiper-slide {
+	height: 360px;
+	text-align: center;
+	font-size: 18px;
+	/* background: #fff; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* swiepr 관련 */
+.swiper-slide .product {
+	max-height: 100%;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column; /* 세로로 정렬 */
+	align-items: center; /* 아이템들을 가운데 정렬 */
+	padding: 20px; /* 제품 간 여백 */
+	border: 1px solid #ddd; /* 제품 박스 테두리 */
+	border-radius: 8px; /* 둥근 모서리 */
+	background-color: #fff; /* 배경색 */
+	transition: transform 0.3s ease-in-out; /* 호버 시 부드러운 전환 */
+}
+
+.swiper-slide .product:hover {
+	transform: translateY(-10px); /* 마우스 오버 시 약간 떠오르기 */
+}
+
+.product-img img {
+	width: 225px;
+    height: 225px;
+	border-bottom: 1px solid #ddd; /* 이미지와 이름 구분선 */
+	margin-bottom: 10px; /* 이미지와 다음 요소 사이의 간격 */
+}
+
+.product-name {
+	font-size: 16px; /* 제품 이름 크기 */
+	font-weight: bold; /* 제품 이름 굵게 */
+	margin-bottom: 10px; /* 이름과 가격 사이 여백 */
+}
+
+.product-price {
+	font-size: 14px; /* 가격 크기 */
+	color: #333; /* 가격 색상 */
+	margin-bottom: 10px; /* 가격과 날짜 사이 여백 */
+}
+
+.product-date {
+	font-size: 12px; /* 날짜 크기 */
+	color: #888; /* 날짜 색상 */
 }
