@@ -1,27 +1,30 @@
 package com.dangs.hy;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/AFController")
-public class AFController extends HttpServlet {
+@WebServlet("/AdoptAPI")
+public class AdoptAPI extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setAttribute("content", "jsp/hy/adoptMain.jsp");
-
-		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
-
+		AdoptionDAO.getAdao().getAPI();
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 	}
 
 }
