@@ -1,4 +1,6 @@
-$(function() {
+$(function () {
+
+
 
 
 $('#myPage').click(function() {

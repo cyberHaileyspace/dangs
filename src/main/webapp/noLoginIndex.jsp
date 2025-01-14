@@ -74,6 +74,6 @@
 			</div>
 		</div>
 	<!-- 모달 끝 -->
-	<script type="text/javascript" src="js/sw_reg_modal.js"></script>
+ 	<script type="text/javascript" src="js/sw_reg_modal.js"></script>
 </body>
 </html>
