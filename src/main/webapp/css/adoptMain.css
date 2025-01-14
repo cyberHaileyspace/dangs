@@ -136,3 +136,59 @@ a {
     margin-top: 5px;
     border-radius: 5px;
 }
+
+/* 전체 컨테이너 */
+#resultAsdasd {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3개의 열로 고정 */
+    gap: 15px; /* 항목 간 간격 */
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: center; /* 중앙 정렬 */
+}
+
+/* 각 공고 카드 */
+.item {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px; /* 패딩 축소 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+    font-size: 12px; /* 텍스트 크기 축소 */
+}
+
+/* 고정된 이미지 크기 */
+.item img {
+   /* width: 100%; */
+   /* height: 150px; /* 고정 높이 축소 */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* 카드 텍스트 */
+.item div {
+    font-size: 12px; /* 텍스트 크기 축소 */
+    margin-bottom: 5px;
+}
+
+.item div strong {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+/* 반응형 디자인 (화면 크기별 열 조정) */
+@media screen and (max-width: 1024px) {
+    #resultAsdasd {
+        grid-template-columns: repeat(2, 1fr); /* 태블릿: 2개의 열 */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #resultAsdasd {
+        grid-template-columns: repeat(1, 1fr); /* 모바일: 1개의 열 */
+    }
+}
+

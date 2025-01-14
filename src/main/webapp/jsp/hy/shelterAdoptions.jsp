@@ -26,9 +26,27 @@
 
 
 <h1> 보호소 공고 </h1> 
-<button id="asdasd" style="width: 100px; height: 100px;"></button> 
 <div id="resultAsdasd">
+	<!-- API 데이터 표시 -->
 </div>
+
+<!-- 페이지 네비게이션 -->
+<div id="pagination">
+    <button id="prevPage">이전 페이지</button>
+    <button id="nextPage">다음 페이지</button>
+</div>
+
+
+<!-- <div>
+<button class="adopt-btn" onclick="AdoptPageController"> prev </button>
+<button class="adopt-btn" onclick="AdoptPageController"> next </button>
+</div>
+
+<div>
+<a href="AdoptPageController"> [begin] </a>
+<a href="AdoptPageController"> [end] </a>
+</div>
+ -->
 
 </body>
 </html>

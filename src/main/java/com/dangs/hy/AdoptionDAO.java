@@ -33,6 +33,9 @@ public class AdoptionDAO {
 		return ADAO;
 	}
 	
+	
+	// API를 DB에 저장
+	
 	public void getAPI() {
 			
 			PreparedStatement pstmt = null;
@@ -44,6 +47,7 @@ public class AdoptionDAO {
 	            
 	            // API Key 설정
 	            String serviceKey = "PaQw4uKw%2FBnvpzwGrwVLUU3OEpMspXDv0IKVJS84H5bGSaAjVx%2BJh5J9vBdQhtZTt%2F6XhgoGCXaZpq0baUFjsA%3D%3D";
+	            
 	            // 요청 파라미터 설정 (예시: 필요에 따라 수정)
 	            String queryParams = "serviceKey=" + serviceKey + "&_type=json";
 
@@ -93,6 +97,9 @@ public class AdoptionDAO {
 			}
 		} 
 
+	
+	// 데이터를 가져와서 보여줌 -> AjaxController
+	
 	@SuppressWarnings("deprecation")
 	public void getJSONtable(HttpServletRequest request, HttpServletResponse response) {
 		
