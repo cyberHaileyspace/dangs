@@ -11,7 +11,7 @@ body {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: "RixInooAriDuriR";
+    font-family: Arial, sans-serif;
 }
 
 @font-face {
@@ -35,11 +35,11 @@ body {
 	font-style: normal;
 }
 
-body {
+/*body {
 	font-family: "GowunDodum-Regular";
 	margin: 0;
 	padding: 0;
-}
+}*/
 
 .logo {
 	width: 100px;
@@ -92,7 +92,8 @@ body {
 	height: 400px;
 	position: sticky;
 	top: 125px;
-	border: 9px solid #F1E1D2;
+	border: 3px solid #F1E1D2;
+	border-radius: 10px;
 	right: -30px;
 }
 
