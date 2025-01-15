@@ -8,11 +8,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.dangs.main.DBManager;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class AdoptionDAO {
 	
@@ -36,7 +43,7 @@ public class AdoptionDAO {
 	
 	// API를 DB에 저장
 	
-	public void getAPI() {
+	public void getAPI(int pageNo, int numOfRows) {
 			
 			PreparedStatement pstmt = null;
 
@@ -48,8 +55,12 @@ public class AdoptionDAO {
 	            // API Key 설정
 	            String serviceKey = "PaQw4uKw%2FBnvpzwGrwVLUU3OEpMspXDv0IKVJS84H5bGSaAjVx%2BJh5J9vBdQhtZTt%2F6XhgoGCXaZpq0baUFjsA%3D%3D";
 	            
+	            String upkind = "417000";
+	            
 	            // 요청 파라미터 설정 (예시: 필요에 따라 수정)
-	            String queryParams = "serviceKey=" + serviceKey + "&_type=json";
+	            String queryParams = String.format("serviceKey=%s&_type=json&upkind=%s&numOfRows=%d&pageNo=%d", 
+	            								serviceKey, upkind , numOfRows, pageNo);
+	            		
 
 	            // URL 생성
 	            URL url = new URL(apiURL + queryParams);
@@ -65,75 +76,104 @@ public class AdoptionDAO {
 	            System.out.println("Response Code: " + responseCode);
 
 	            // 응답 데이터 읽기
-	            BufferedReader br;
-	            if (responseCode == 200) { // 정상 응답
-	                br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-	            } else { // 에러 응답
-	                br = new BufferedReader(new InputStreamReader(conn.getErrorStream(), "UTF-8"));
-	            }
-	            
-	            // 응답 출력
-	            StringBuilder response = new StringBuilder(); 
+	            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+	            StringBuilder response = new StringBuilder();
 	            String line;
-	            while ((line = br.readLine()) != null) { // 데이터를 한 줄씩 읽어옴
+	            while ((line = br.readLine()) != null) {
 	                response.append(line);
 	            }
 	            br.close();
-				  br.close(); System.out.println(response.toString());
-				 
-				  String sql = "insert into json_data_table values(default, ?)";
-				  		
-				  	con = DBManager.connect();
-				  	pstmt = con.prepareStatement(sql);
-				  	pstmt.setString(1, response.toString());
-				  	
-				  	if(pstmt.executeUpdate()==1)
-				  		System.out.println("성공");
-				  
-	        } catch(Exception e){
-	        	e.printStackTrace();
-	        } finally {
-				DBManager.close(con, pstmt, null);
-			}
-		} 
 
+	            // JSON 데이터 파싱
+	            JsonObject jsonResponse = JsonParser.parseString(response.toString()).getAsJsonObject();
+	            JsonArray items = jsonResponse
+	                .getAsJsonObject("response")
+	                .getAsJsonObject("body")
+	                .getAsJsonObject("items")
+	                .getAsJsonArray("item");
+
+	            System.out.println("데이터 파싱 완료: " + items.size() + "개");
+
+	            // SQL 쿼리 준비
+	            String sql = """
+	                MERGE INTO abandoned_animal_info target
+	                USING (SELECT ? AS desertionNo, ? AS json_data FROM dual) source
+	                ON (target.desertionNo = source.desertionNo)
+	                WHEN MATCHED THEN
+	                    UPDATE SET target.json_data = source.json_data, target.created_at = CURRENT_TIMESTAMP
+	                WHEN NOT MATCHED THEN
+	                    INSERT (desertionNo, json_data, created_at)
+	                    VALUES (source.desertionNo, source.json_data, CURRENT_TIMESTAMP);
+	            """;
+
+	            // 데이터베이스 연결 및 SQL 실행
+	            con = DBManager.connect();
+	            pstmt = con.prepareStatement(sql);
+
+	            for (int i = 0; i < items.size(); i++) {
+	                JsonObject item = items.get(i).getAsJsonObject();
+	                String desertionNo = item.get("desertionNo").getAsString();
+	                String jsonData = item.toString();
+
+	                pstmt.setString(1, desertionNo);
+	                pstmt.setString(2, jsonData);
+
+	                int result = pstmt.executeUpdate();
+	                System.out.println("데이터 삽입/업데이트 결과: " + result + "행 처리됨 (desertionNo=" + desertionNo + ")");
+	            }
+
+	            System.out.println("데이터 삽입 완료: " + items.size() + "개");
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            DBManager.close(con, pstmt, null);
+	        }
+	    }
 	
-	// 데이터를 가져와서 보여줌 -> AjaxController
+	
+	// 저장된 API 데이터를 호출
 	
 	@SuppressWarnings("deprecation")
-	public void getJSONtable(HttpServletRequest request, HttpServletResponse response) {
+	public List<JsonObject> getAdoptionData(int pageNo, int numOfRows) {
+		List<JsonObject> dataList = new ArrayList<>(); // List<JsonObject> 생성
 		
-		response.setContentType("application/json; charset=utf-8");
-		
-		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-	
-		String id = request.getParameter("name");
-		String sql = "SELECT json_data FROM json_data_table";
-		String asd = "";
+		
+		   String sql = """
+			        SELECT json_data
+			        FROM abandoned_animal_info
+			        ORDER BY created_at DESC
+			        LIMIT ? OFFSET ?;
+			    """;		
+		   // String jsonData = "";
 		
 		try {
 			
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
+			
+			int offset = (pageNo - 1) * numOfRows;
+			
+			pstmt.setInt(1, numOfRows);
+			pstmt.setInt(2, offset);
+			
 			rs = pstmt.executeQuery();
 
-			if (rs.next()) {
-				asd = rs.getString("json_data");
-				System.out.println(asd);
-			}
-
-			response.getWriter().print(asd);
-			
-			
+			while (rs.next()) {
+	                String jsonData = rs.getString("json_data");
+	                JsonObject jsonObject = JsonParser.parseString(jsonData).getAsJsonObject();
+	                dataList.add(jsonObject);
+	            }
+	            
 		} catch (Exception e) {
 			e.printStackTrace();
 		
-		}
-		finally {
+		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
+		return dataList;
 
 	}
 	
