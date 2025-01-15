@@ -142,7 +142,7 @@ public class swM {
 		String path = request.getServletContext().getRealPath("img/userProfile");
 		System.out.println("Upload Path: " + path);
 		try {
-
+			
 			MultipartRequest mr = new MultipartRequest(request, path, 1024 * 1024 * 20, "utf-8",
 					new DefaultFileRenamePolicy());
 			
