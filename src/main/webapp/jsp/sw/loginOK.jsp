@@ -8,7 +8,7 @@
     <div class="loginAA">
         <div class="profile-section">
             <div class="profile-icon">
-                <img src="${sessionScope.user.photo}" alt="Profile Image" />
+                <img src="img/userProfile/${sessionScope.user.photo}" alt="Profile Image" />
             </div>
             <div class="profile-name">${sessionScope.user.name}</div>
             <div class="settings-icon" onclick="location.href='updateUserInfoC'">⚙️</div>
