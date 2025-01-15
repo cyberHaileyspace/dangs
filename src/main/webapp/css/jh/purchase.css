@@ -1,0 +1,283 @@
+.body {
+	display: block;
+	unicode-bidi: isolate;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	color: #333;
+}
+
+.title {
+	font-size: 30px;
+	padding-top: 20px;
+}
+
+.title-now {
+	color: blue;
+}
+
+.next-stage {
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+.process {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.ordered-info {
+	margin-top: 20px
+}
+
+.ordered-product, .payment {
+	padding-left: 2px;
+	margin-bottom: 8px;
+	font-size: 20px;
+	font-weight: 700;
+	color: #333
+}
+
+.ordered-info {
+	width: 100%;
+	border-top: 2px solid #cecece
+}
+
+.ordered-col1 {
+	width: 104px;
+	border: solid #e4e4e4;
+	border-width: 0 1px 1px 0;
+	padding: 7px 10px 7px 15px;
+	font-weight: 700;
+	text-align: right;
+	background: #f4f4f4
+}
+
+.ordered-col2 {
+	border-bottom: 1px solid #e4e4e4;
+	padding: 10px 16px
+}
+
+.input-addr, .input-phone {
+	font-size: 20px;
+	height: 25px;
+}
+
+.addr-submit {
+	height: 25px;
+}
+
+.input-request {
+	font-size: 20px;
+	height: 25px;
+}
+
+/*결제 섹션*/
+.payment-method {
+	font-family: Arial, sans-serif;
+	color: #000;
+	background-color: #fff;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.payment-method-title {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.payment-method-body {
+	margin-top: 20px;
+}
+
+.card-or-point {
+	padding: 20px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.payment-method-radio input[type="radio"] {
+	margin-right: 10px;
+	transform: scale(1.2);
+}
+
+.payment-method-radio label {
+	font-size: 21px;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.payment-method-option {
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.bank-list, .purchase-option {
+	margin-bottom: 10px;
+}
+
+.select-bank, .select-purchase {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #000;
+	border-radius: 4px;
+	background-color: #fff;
+	font-size: 1rem;
+}
+
+.default {
+	margin-top: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.check-box {
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+.default-check {
+	font-size: 0.9rem;
+	cursor: pointer;
+}
+
+.description-section {
+	margin-top: 20px;
+	padding-left: 20px;
+	font-size: 0.9rem;
+	color: #555;
+	font-size: 0.9rem;
+}
+
+.description {
+	margin-bottom: 10px;
+}
+
+.detail-description {
+	margin-top: 20px;
+	padding-left: 20px;
+	font-weight: bold;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.other-method {
+	margin-top: 10px;
+	font-size: 1.5rem;
+	font-weight: bold;
+	/* border-top: 1px solid #ddd; */
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+svg {
+	margin-top: 22px;
+	cursor: pointer;
+	margin-bottom: 10px;
+}
+
+.payment-Btn {
+	background-color: #000;
+	color: #fff;
+	padding: 10px 30px;
+	text-align: center;
+	font-size: 30px;
+	border-radius: 4px;
+	transition: background-color 0.3s;
+}
+
+button#paymentBtn {
+	display: block;
+	margin: 20px auto;
+	border: none;
+	background: none;
+	padding: 0;
+	cursor: pointer;
+}
+
+button#paymentBtn:active .payment-Btn {
+	background-color: #007bff;
+}
+
+.additional-div {
+	padding-left: 20px;
+	display: block;
+	border-top: 1px solid #ddd;
+}
+
+.last-description {
+	padding-top: 20px;
+}
+
+.agreement {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+
+.agree {
+	font-weight: bold;
+}
+
+.last-description2 {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.last-check {
+	display: flex;
+	justify-content: center;
+	font-weight: bolder;
+	padding-top: 15px;
+}
+
+/* 다른 결제수단 관련 */
+.radio-table {
+	margin-top: 10px;
+	display: none; /* 테이블을 처음에 숨깁니다. */
+}
+
+.toggle-svg {
+	transition: transform 0.3s ease; /* 회전 애니메이션 추가 */
+	cursor: pointer; /* 커서 변경 */
+}
+
+.toggle-svg.rotated {
+	transform: rotate(180deg); /* 회전 효과 */
+}
+
+.hidden {
+	display: none; /* 테이블 숨김 클래스 */
+}
+
+.other-svg {
+	display: flex;
+}
+
+next-pm {
+	font-size: 21px;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+/* 법률 관련 */
+.detail-table-hidden {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease; /* 부드러운 표시 효과 */
+}
+
+.detail-in-detail {
+	display: flex;
+	justify-content: space-between;
+	padding: 5px;
+}

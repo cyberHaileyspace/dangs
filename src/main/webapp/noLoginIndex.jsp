@@ -22,7 +22,7 @@
 			<div onclick="location.href='ShopC'" style="cursor: pointer;">중고거래</div>
 			<div onclick="location.href='locationC'" style="cursor: pointer;">산책로</div>
 			<div onclick="location.href='CmMainC'" style="cursor: pointer;">커뮤니티</div>
-			<div class="myPage" id="myPage" style="cursor: pointer;">마이페이지</div>
+			<div class="myPage" style="cursor: pointer;" id="myPage">마이페이지</div>
 		</div>
 		<div class="logo-div-03"></div>
 	</div>

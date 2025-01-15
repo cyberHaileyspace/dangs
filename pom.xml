@@ -24,7 +24,8 @@
   		<groupId>16_Maven</groupId>
   		<artifactId>16_Maven</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
-  	</dependency><!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+  	</dependency>
+  	<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 <dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
