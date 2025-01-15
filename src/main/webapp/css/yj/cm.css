@@ -90,3 +90,48 @@ body {
         .size-cm .dog-size:hover {
             background-color: #f0f0f0;
         }
+        .post-cm{
+			flex-direction: column;
+			
+		}
+		.cm-kind{
+			display: flex;
+			
+		}
+		.cm-menu{
+			font-weight: bold;
+		}
+		.cm-title{
+			font-size: 10pt;
+			font-weight: bold;
+		}
+		.cm-title:hover{
+			color : #ffdd57
+		}
+		.cm-text{
+			  width: 100%;
+    height: auto; /* height 제한 제거 */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 표시할 줄 수 */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis; /* 생략 부호 추가 */
+    color: gray;
+			
+		}
+		
+		.cm-info{
+			display: flex;
+		}
+/*		.info-name{*/
+/*			margin-left: 10px;*/
+/*		}*/
+		.info-date{
+			margin-left: 10px;
+		}
+		.info-view{
+			margin-left: 10px;
+		}
+		.info-like{
+			margin-left: 10px;
+		}

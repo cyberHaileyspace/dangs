@@ -10,14 +10,16 @@
 .cm-back span{
 	color: #ffdd57;
 	margin: 1em;
+/*	padding: 10px 0px;*/
 }
 .post-title > span{
-	font-size:50pt;
+	font-size:30pt;
 	margin: 1em;
 }
 .post-info {
 	display: flex;
 	margin: 1em;
+    border-bottom: 1px solid #f0f0f0;
 
 }
 .post-profile > img{
@@ -29,9 +31,14 @@
 	flex-direction: column;
 	margin-left: 10px;
 }
+.post-date{
+	font-size: 10pt;
+	color:gray;
+}
 .post-items{
 	display: flex;
 	margin: 1em;
+/*	justify-content: flex-end;*/
 }
 .post-view > img, .post-like > img {
 	width: 20px;
@@ -41,14 +48,22 @@
 
 .post-content{
 	margin: 1em;
+	padding: 10% 0;
+	display: grid;
+	justify-content: center;
+	align-items: center;
 	flex-direction: column;
+	border-bottom: 1px solid #f0f0f0;
 }
 .post-img > img{
-	width: 50%;
-	height: 50%;	
-}
+	padding: 10% 0;
+	width: 70%;
+	height: 70%;	
+}	
 .post-text{
-	font-size: 17pt;	
+	font-size: 10pt;
+	padding: 5% 5%;
+	font-size: 15pt;	
 }
 .post-comment{
 	display: flex;
@@ -75,6 +90,10 @@
 .reply-string{
 	flex-direction: column;
 	margin-left: 10px;
+}
+.reply-date{
+	font-size: 10pt;
+	color:gray;
 }
 .reply-write{
 	flex-direction: column;
