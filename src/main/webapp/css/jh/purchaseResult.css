@@ -1,0 +1,13 @@
+.title {
+	font-size: 30px;
+	padding-top: 20px;
+}
+
+.title-now {
+	color: blue;
+}
+
+.process {
+	display: flex;
+	justify-content: flex-end;
+}
