@@ -60,7 +60,7 @@ pageEncoding="UTF-8"%>
         <div class="dog-size">대형견</div>
       </div>
 
-      <div><a href="jsp/yj/cm_all.jsp">전체 포스트</a></div>
+      <div><a href="CmPostC">전체 포스트</a></div>
     </div>
   </body>
 </html>
