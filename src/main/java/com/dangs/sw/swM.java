@@ -115,7 +115,7 @@ public class swM {
 		String email = request.getParameter("email");
 
 		PreparedStatement pstmt = null;
-		String sql = "insert into userDB values(?,?,?,'img/dog-nose.png',?,?,?,null,0,?)";
+		String sql = "insert into userDB values(?,?,?,'dog-nose.png',?,?,?,null,0,?)";
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
