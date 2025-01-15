@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+
+.update-form-wrapper {
+	position: relative;
+	display: block;
+	justify-content: center;
+	margin: 100px;
+	padding: 65px;
+	width: 700px;
+	border: 1px solid gray;
+	border-radius: 30px;
+}
+
+.update-logo-div {
+	position: relative;
+
+}
+
+#signupForm input {
+	width: 95%;
+	padding: 8px;
+	margin: 4px 0 12px;
+	display: block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+#signupForm button {
+	width: 48%;
+	padding: 10px;
+	margin: 8px 1%;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+
+#updateUserInfoSubmit {
+	background-color: #ff6b6b;
+	color: white;
+}
+#updateUserInfoSubmit:hover{
+	background-color: darkred;	
+}
+
+#cancelBtn {
+	background-color: #ccc;
+}
+
+.error-message {
+	color: red;
+	font-size: 12px;
+	display: none;
+	/* 기본적으로 숨김 */
+}
+
+.swInputDiv {
+	position: relative;
+}
+
+.swInputDiv span {
+	position: absolute;
+	right: 9px;
+	top: 6px;
+}
+
+#data-container {
+	display: none;
+}
+
+
+/* 사용자 정의 버튼 스타일 */
+.file-label {
+	padding: 8px 15px;
+	background-color: #F1E1D2;
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 5px;
+	position: relative;
+	left: 14px;
+	bottom: 10px;
+}
+
+.file-label:hover {
+	background-color: darkred;
+}
