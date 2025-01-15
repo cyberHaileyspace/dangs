@@ -96,9 +96,8 @@ public class AdoptionDAO {
 
 	            // SQL 쿼리 준비
 	            String sql = """
-	                MERGE INTO abandoned_animal_info target
-	                USING (SELECT ? AS desertionNo, ? AS json_data FROM dual) source
-	                ON (target.desertionNo = source.desertionNo)
+	                MERGE INTO abandoned_animal_info target 
+	                USING (SELECT ? AS desertionNo, ? AS json_data FROM dual) source ON (target.desertionNo = source.desertionNo)
 	                WHEN MATCHED THEN
 	                    UPDATE SET target.json_data = source.json_data, target.created_at = CURRENT_TIMESTAMP
 	                WHEN NOT MATCHED THEN
