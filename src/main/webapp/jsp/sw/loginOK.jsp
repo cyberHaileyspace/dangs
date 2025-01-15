@@ -8,10 +8,10 @@
     <div class="loginAA">
         <div class="profile-section">
             <div class="profile-icon">
-                <img src="img/dog-nose.png" alt="Profile Image" />
+                <img src="${sessionScope.user.photo}" alt="Profile Image" />
             </div>
             <div class="profile-name">${sessionScope.user.name}</div>
-            <div class="settings-icon">⚙️</div>
+            <div class="settings-icon" onclick="location.href='updateUserInfoC'">⚙️</div>
         </div>
         <div class="stats-section">
             <div class="stat">

@@ -48,6 +48,13 @@ public class swM {
 					user.setId(id);
 				//	user.setPw(dbPw);
 					user.setName(rs.getString(3));
+					user.setPhoto(rs.getString(4));
+					user.setAge(rs.getString(5));
+					user.setAddress(rs.getString(6));
+					user.setTel(rs.getString(7));
+					user.setNickname(rs.getString(8));
+					user.setPoint(rs.getInt(9));
+					user.setEmail(rs.getString(10));
 					HttpSession hs = request.getSession();
 					hs.setAttribute("user", user);
 					hs.setMaxInactiveInterval(1000);
@@ -102,9 +109,10 @@ public class swM {
 		String age = request.getParameter("age");
 		String address = request.getParameter("address");
 		String tel = request.getParameter("tel");
+		String email = request.getParameter("email");
 		
 		PreparedStatement pstmt = null;
-		String sql = "insert into userDB values(?,?,?,null,?,?,?)";
+		String sql = "insert into userDB values(?,?,?,'img/dog-nose.png',?,?,?,null,0,?)";
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -114,6 +122,7 @@ public class swM {
 			pstmt.setString(4, age);
 			pstmt.setString(5, address);
 			pstmt.setString(6, tel);
+			pstmt.setString(7, email);
 			if (pstmt.executeUpdate()==1) {
 				System.out.println("업데이트 성공");
 			} 
