@@ -90,11 +90,3 @@ body {
         .size-cm .dog-size:hover {
             background-color: #f0f0f0;
         }
-        .post-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .post-link a {
-            text-decoration: none;
-            color: #007bff;
-            }
