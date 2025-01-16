@@ -18,6 +18,7 @@
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
 <script type="text/javascript" src="js/jh/product.js" defer="defer"></script>
+<script type="text/javascript" src="js/jh/cld.js" defer="defer"></script>
 <style type="text/css">
 .hidden {
 	display: none;
@@ -39,11 +40,13 @@
 
 		<!-- 오른쪽에 상품 정보 -->
 		<div class="product-info">
-			<div class="product-name" style="font-size: 24px; font-weight: bold; margin-bottom: 10px;">${product_name}</div>
+			<div class="product-name"
+				style="font-size: 24px; font-weight: bold; margin-bottom: 10px;">${product_name}</div>
 			<!-- product culumn - name-->
 			<div class="p-s-wrapper">
 				<div class="p-s">
-					<div class="product-price" id="product_price" style="font-size: 20px; color: #e74c3c; margin-bottom: 20px;">${product_price}</div>
+					<div class="product-price" id="product_price"
+						style="font-size: 20px; color: #e74c3c; margin-bottom: 20px;">${product_price}</div>
 					<!-- product culumn - price -->
 				</div>
 				<img class="share-img" style="width: 25px; height: 25px"
@@ -87,7 +90,7 @@
 			</div>
 
 			<div class="item-categories">
-				<div class="item-category">구매하기</div>
+				<div class="item-category" id="purchase">주문/결제</div>
 				<div class="item-category">장바구니</div>
 				<div class="heart">♡</div>
 			</div>
@@ -97,7 +100,7 @@
 
 	<!-- 카테고리 -->
 	<div class="product">
-	<!-- product_id 숨겨놓음 -->
+		<!-- product_id 숨겨놓음 -->
 		<div class="product-id" id="product-id">${product_id}</div>
 		<!--  -->
 		<div class="categories">
@@ -166,13 +169,15 @@
 							<div class="product-img">
 								<img src="${products.product_img}" alt="product-img">
 							</div>
-							<div class="product-name">${products.product_name}</div>
-							<div class="product-price">
-								<fmt:formatNumber value="${products.product_price}"
-									pattern="#,###" />
-								원
+							<div class="pro-info">
+								<div class="product-name">${products.product_name}</div>
+								<div class="product-price">
+									<fmt:formatNumber value="${products.product_price}"
+										pattern="#,###" />
+									원
 							</div>
 							<div class="product-date">개시일 : ${products.product_date}</div>
+								</div>
 						</div>
 					</div>
 				</c:forEach>

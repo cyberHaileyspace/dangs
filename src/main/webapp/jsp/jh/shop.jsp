@@ -83,14 +83,14 @@
 		<div class="rank">
 			<div class="rank-wrapper">
 				<div class="rank-slide">
-					<c:forEach var="product" items="${products}">
+					<c:forEach var="product" items="${fixed_products}">
 						<div class="product"
 							onclick="location.href='ProductC?product_id=${product.product_id}'">
 							<div class="img-wrapper">
 								<img src="${product.product_img}" alt="product-img">
 							</div>
 							<div class="product-name">${product.product_name}</div>
-							<div class="product-price">
+							<div class="product-price" style="color: #e74c3c">
 								<fmt:formatNumber value="${product.product_price}"
 									pattern="#,###" />
 								원
@@ -145,48 +145,30 @@
 					<div class="product-img">
 						<img src="${product.product_img}" alt="product-img">
 					</div>
+					<div class="pro-info">
 					<div class="product-name">${product.product_name}</div>
-					<div class="product-price">
+					<div class="product-price" style="color: #e74c3c">
 						<fmt:formatNumber value="${product.product_price}" pattern="#,###" />
 						원
 					</div>
 					<div class="product-date">개시일 : ${product.product_date}</div>
 				</div>
+				</div>
 			</c:forEach>
 		</div>
-		
-		<!-- paging 관련 -->
-		<c:choose>
-			<c:when test="${curPageNum != 1}">
-				<button class="shop-btn pn"
-					onclick="location.href='ShopPageC?p=${curPageNum - 1}'">prev</button>
-			</c:when>
-
-			<c:otherwise>
-				<button class="shop-btn pn">prev</button>
-			</c:otherwise>
-		</c:choose>
-
-		<c:choose>
-			<c:when test="${curPageNum != pageCount}">
-				<button class="shop-btn pn"
-					onclick="location.href='ShopPageC?p=${curPageNum + 1}'">next</button>
-			</c:when>
-
-			<c:otherwise>
-				<button class="shop-btn pn">next</button>
-			</c:otherwise>
-		</c:choose>
-
+		<!-- paging -->
+		<div class="paging-container">
+			<a class="prev-btn" href="ShopPageC?p=1"
+				style="text-decoration: none;">‹</a>
+			<c:forEach begin="1" end="${pageCount}" var="i">
+				<a class="page-num" href="ShopPageC?p=${i}"
+					style="text-decoration: none;">${i}</a>
+			</c:forEach>
+			<a class="next-btn" href="ShopPageC?p=${pageCount}"
+				style="text-decoration: none;">›</a>
+		</div>
 	</div>
 
-	<div>
-		<a href="ShopPageC?p=1">[begin]</a>
-		<c:forEach begin="1" end="${pageCount}" var="i">
-			<a href="ShopPageC?p=${i}">[${i}]</a>
-		</c:forEach>
-		<a href="ShopPageC?p=${pageCount}">[last]</a>
-	</div>
 
 </body>
 </html>

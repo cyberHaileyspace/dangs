@@ -38,9 +38,13 @@ public class ShopModel {
 						rs.getString(6), rs.getString(7), rs.getDate(8), rs.getString(9));
 				products.add(product);
 			}
-
+			ArrayList<ProductDTO> fixed_products = new ArrayList<ProductDTO>();
 			System.out.println(products);
-			request.setAttribute("products", products);
+			for (int i = 0; i < 4; i++) {
+				fixed_products.add(products.get(i));
+				
+			}
+			request.setAttribute("fixed_products", fixed_products);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -211,7 +215,7 @@ public class ShopModel {
 request.setAttribute("curPageNum", pageNum);
 		
 		int total = products.size();  //총데이터수
-		System.out.println(total);
+		System.out.println("total = " + total);
 		int count = 12; // 한페이지당보여줄개수
 		System.out.println(count);
 		
