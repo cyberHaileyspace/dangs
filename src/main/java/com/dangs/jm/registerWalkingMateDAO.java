@@ -15,13 +15,17 @@ public class registerWalkingMateDAO {
 
 		// 예: "서울 중구 을지로2가 209"에서 "중구" 나 "을지로" 만 추출
 		String[] parts = address.split(" "); // 공백을 기준으로 나눔
+		
+		for (String i : parts) {
+			System.out.println(i);
+		}
 
 		// 예시로 "중구" 또는 "을지로"만 추출하려면, parts 배열에서 두 번째나 세 번째 항목을 선택하면 됨
 		String locationKeyword = null;
 
 		// 예시: "중구" 또는 "을지로"가 포함된 부분 찾기
 		for (String part : parts) {
-			if (part.equals("중구") || part.equals("을지로")) {
+			if (part.equals("중구") /* || part.equals("을지로") */) {
 				locationKeyword = part; // 해당 값 저장
 				break; // 한 번 찾으면 더 이상 검색하지 않음
 			}
@@ -45,7 +49,7 @@ public class registerWalkingMateDAO {
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "을지로"); // locationKeyword를 포함하는 주소를 찾기 위한 쿼리
+			pstmt.setString(1, "중구"); // locationKeyword를 포함하는 주소를 찾기 위한 쿼리
 			rs = pstmt.executeQuery();
 
 			ArrayList<userDTO> users = new ArrayList<userDTO>();
