@@ -39,13 +39,13 @@ public class registerWalkingMateDAO {
 		/* if (locationKeyword != null) { */ Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from userDB where user_address like ?";
+		String sql = "select * from userDB where user_address like '%'||?||'%'";
 		// LIKE를 사용하여 부분 일치 검색
 
 		try {
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "%" + locationKeyword + "%"); // locationKeyword를 포함하는 주소를 찾기 위한 쿼리
+			pstmt.setString(1, "을지로"); // locationKeyword를 포함하는 주소를 찾기 위한 쿼리
 			rs = pstmt.executeQuery();
 
 			ArrayList<userDTO> users = new ArrayList<userDTO>();
