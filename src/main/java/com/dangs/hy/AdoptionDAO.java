@@ -71,7 +71,7 @@ public class AdoptionDAO {
 			urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")
 					+ "=PaQw4uKw%2FBnvpzwGrwVLUU3OEpMspXDv0IKVJS84H5bGSaAjVx%2BJh5J9vBdQhtZTt%2F6XhgoGCXaZpq0baUFjsA%3D%3D");
 			urlBuilder.append("&" + URLEncoder.encode("upkind", "UTF-8") + "=" + URLEncoder.encode("417000", "UTF-8"));
-			urlBuilder.append("&" + URLEncoder.encode("state", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8"));
+			urlBuilder.append("&" + URLEncoder.encode("state", "UTF-8") + "=" + URLEncoder.encode("protect", "UTF-8"));
 			urlBuilder.append("&" + URLEncoder.encode("neuter_yn", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8"));
 			urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "="
 					+ URLEncoder.encode(String.valueOf(pageNo), "UTF-8"));

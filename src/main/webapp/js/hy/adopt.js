@@ -21,12 +21,13 @@ $(function () {
                 $.each(items, function (i, ob) {
                     const itemHtml = `
                         <div class="item">
-                            <div><strong>사진:</strong> <img src="${ob.filename}" alt="Animal Image"></div>
-                            <div><strong>나이:</strong> ${ob.age}</div>
-                            <div><strong>지역:</strong> ${ob.happenPlace}</div>
-                            <div><strong>품종:</strong> ${ob.kindCd}</div>
-                            <div><strong>보호소 이름:</strong> ${ob.careNm}</div>
-                            <hr>
+                            <img src="${ob.popfile}" alt="Thumbnail">
+							<div class="itme-content">                            
+                           		<p> ${ob.kindCd} </p>
+                           		<p> ${ob.age} </p>
+                            	<p> ${ob.sexCd}, ${ob.neuterYn} </p>
+                            	<p> 지역: ${ob.happenPlace}</p>
+                        	</div>
                         </div>
                     `;
 
