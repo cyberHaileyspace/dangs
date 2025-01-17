@@ -1,30 +1,25 @@
 package com.dangs.hy;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-
 import com.dangs.main.DBManager;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 public class AdoptionDAO {
-	
+
 	private static final AdoptionDAO ADAO = new AdoptionDAO();
-	
+
 	private static Connection con = null;
 
 	private AdoptionDAO() {
@@ -34,149 +29,139 @@ public class AdoptionDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}	
-	
+	}
+
 	public static AdoptionDAO getAdao() {
 		return ADAO;
 	}
-	
-	
+
+	public void fetchAndSaveAllPages() {
+		fetchAndSavePage1();
+		fetchAndSavePage2();
+		fetchAndSavePage3();
+		fetchAndSavePage4();
+	}
+
+	public void fetchAndSavePage1() {
+		getAnimalAPI(1);
+	}
+
+	public void fetchAndSavePage2() {
+		getAnimalAPI(2);
+	}
+
+	public void fetchAndSavePage3() {
+		getAnimalAPI(3);
+	}
+
+	public void fetchAndSavePage4() {
+		getAnimalAPI(4);
+	}
+
 	// API를 DB에 저장
-	
-	public void getAPI(int pageNo, int numOfRows) {
-			
-			PreparedStatement pstmt = null;
+	public void getAnimalAPI(int pageNo) {
 
-			try {
-	        
-				// API URL 설정
-	            String apiURL = "http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?";
-	            
-	            // API Key 설정
-	            String serviceKey = "PaQw4uKw%2FBnvpzwGrwVLUU3OEpMspXDv0IKVJS84H5bGSaAjVx%2BJh5J9vBdQhtZTt%2F6XhgoGCXaZpq0baUFjsA%3D%3D";
-	            
-	            String upkind = "417000";
-	            
-	            // 요청 파라미터 설정 (예시: 필요에 따라 수정)
-	            String queryParams = String.format("serviceKey=%s&_type=json&upkind=%s&numOfRows=%d&pageNo=%d", 
-	            								serviceKey, upkind , numOfRows, pageNo);
-	            		
-
-	            // URL 생성
-	            URL url = new URL(apiURL + queryParams);
-
-	            // HttpURLConnection 객체 생성
-	            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	            conn.setRequestMethod("GET"); // 요청 방식 설정
-	            conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-	            conn.setDoOutput(true);
-
-	            // 응답 코드 확인
-	            int responseCode = conn.getResponseCode();
-	            System.out.println("Response Code: " + responseCode);
-
-	            // 응답 데이터 읽기
-	            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-	            StringBuilder response = new StringBuilder();
-	            String line;
-	            while ((line = br.readLine()) != null) {
-	                response.append(line);
-	            }
-	            br.close();
-
-	            // JSON 데이터 파싱
-	            JsonObject jsonResponse = JsonParser.parseString(response.toString()).getAsJsonObject();
-	            JsonArray items = jsonResponse
-	                .getAsJsonObject("response")
-	                .getAsJsonObject("body")
-	                .getAsJsonObject("items")
-	                .getAsJsonArray("item");
-
-	            System.out.println("데이터 파싱 완료: " + items.size() + "개");
-
-	            // SQL 쿼리 준비
-	            String sql = """
-	                MERGE INTO abandoned_animal_info target 
-	                USING (SELECT ? AS desertionNo, ? AS json_data FROM dual) source ON (target.desertionNo = source.desertionNo)
-	                WHEN MATCHED THEN
-	                    UPDATE SET target.json_data = source.json_data, target.created_at = CURRENT_TIMESTAMP
-	                WHEN NOT MATCHED THEN
-	                    INSERT (desertionNo, json_data, created_at)
-	                    VALUES (source.desertionNo, source.json_data, CURRENT_TIMESTAMP);
-	            """;
-
-	            // 데이터베이스 연결 및 SQL 실행
-	            con = DBManager.connect();
-	            pstmt = con.prepareStatement(sql);
-
-	            for (int i = 0; i < items.size(); i++) {
-	                JsonObject item = items.get(i).getAsJsonObject();
-	                String desertionNo = item.get("desertionNo").getAsString();
-	                String jsonData = item.toString();
-
-	                pstmt.setString(1, desertionNo);
-	                pstmt.setString(2, jsonData);
-
-	                int result = pstmt.executeUpdate();
-	                System.out.println("데이터 삽입/업데이트 결과: " + result + "행 처리됨 (desertionNo=" + desertionNo + ")");
-	            }
-
-	            System.out.println("데이터 삽입 완료: " + items.size() + "개");
-
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } finally {
-	            DBManager.close(con, pstmt, null);
-	        }
-	    }
-	
-	
-	// 저장된 API 데이터를 호출
-	
-	@SuppressWarnings("deprecation")
-	public List<JsonObject> getAdoptionData(int pageNo, int numOfRows) {
-		List<JsonObject> dataList = new ArrayList<>(); // List<JsonObject> 생성
-		
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		   String sql = """
-			        SELECT json_data
-			        FROM abandoned_animal_info
-			        ORDER BY created_at DESC
-			        LIMIT ? OFFSET ?;
-			    """;		
-		   // String jsonData = "";
-		
+
 		try {
-			
+
+			// API 호출 URL 생성
+			StringBuilder urlBuilder = new StringBuilder(
+					"http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic");
+			urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")
+					+ "=PaQw4uKw%2FBnvpzwGrwVLUU3OEpMspXDv0IKVJS84H5bGSaAjVx%2BJh5J9vBdQhtZTt%2F6XhgoGCXaZpq0baUFjsA%3D%3D");
+			urlBuilder.append("&" + URLEncoder.encode("upkind", "UTF-8") + "=" + URLEncoder.encode("417000", "UTF-8"));
+			urlBuilder.append("&" + URLEncoder.encode("state", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8"));
+			urlBuilder.append("&" + URLEncoder.encode("neuter_yn", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8"));
+			urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "="
+					+ URLEncoder.encode(String.valueOf(pageNo), "UTF-8"));
+			urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("12", "UTF-8"));
+			urlBuilder.append("&" + URLEncoder.encode("_type", "UTF-8") + "=" + URLEncoder.encode("json", "UTF-8"));
+
+			URL url = new URL(urlBuilder.toString());
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Content-type", "application/json");
+
+			System.out.println("Response code: " + conn.getResponseCode());
+
+			StringBuilder response = new StringBuilder();
+			try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+					conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300 ? conn.getInputStream()
+							: conn.getErrorStream()))) {
+				String line;
+				while ((line = reader.readLine()) != null) {
+					response.append(line);
+				}
+			}
+
+			// 데이터베이스에 JSON 데이터 저장
+			String sql = "INSERT INTO json_data_table (id, json_content) VALUES (default, ?)";
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
-			
-			int offset = (pageNo - 1) * numOfRows;
-			
-			pstmt.setInt(1, numOfRows);
-			pstmt.setInt(2, offset);
-			
-			rs = pstmt.executeQuery();
+			pstmt.setString(1, response.toString());
+			pstmt.executeUpdate();
 
-			while (rs.next()) {
-	                String jsonData = rs.getString("json_data");
-	                JsonObject jsonObject = JsonParser.parseString(jsonData).getAsJsonObject();
-	                dataList.add(jsonObject);
-	            }
-	            
+			System.out.println("Page " + pageNo + " data saved successfully.");
 		} catch (Exception e) {
 			e.printStackTrace();
-		
 		} finally {
-			DBManager.close(con, pstmt, rs);
+			DBManager.close(con, pstmt, null);
 		}
-		return dataList;
-
 	}
+
+	public void handleJsonRequest(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            // 페이지 번호 받기 (기본값: 1)
+            int pageNo = Integer.parseInt(request.getParameter("pageNo"));
+
+            // 데이터베이스에서 JSON 데이터 가져오기
+            String jsonData = getJsonDataByPage(pageNo);
+
+            if (jsonData != null) {
+                // JSON 응답 전송
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write(jsonData);
+            } else {
+                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                response.getWriter().write("{\"message\":\"Page not found.\"}");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                response.getWriter().write("{\"message\":\"An error occurred.\"}");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+    }
+
+    private String getJsonDataByPage(int pageNo) {
+        String jsonData = null;
+        String sql = "SELECT json_content FROM json_data_table WHERE id = ?";
+
+        try (Connection con = DBManager.connect();
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setInt(1, pageNo);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    jsonData = rs.getString("json_content");
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return jsonData;
+    }
+	
+	
+	
 	
 }
-
-
-
