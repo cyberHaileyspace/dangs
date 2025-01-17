@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -139,7 +140,9 @@ public class swM {
 	public static void updateUserInfo(HttpServletRequest request) {
 
 		PreparedStatement pstmt = null;
-		String path = request.getServletContext().getRealPath("img/userProfile");
+		
+		//String path = "C:\\Users\\lastp\\OneDrive\\Desktop\\img\\userProfile"; //-로컬 절대경로
+		String path = request.getServletContext().getRealPath("img/userProfile"); //-서버 상대경로
 		System.out.println("Upload Path: " + path);
 		try {
 
@@ -211,6 +214,36 @@ public class swM {
 			DBManager.close(con, pstmt, null);
 		}
 
+	}
+
+	public static void getAllAddress(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("application/json; charset=utf-8");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			
+			String sql = "select user_address from userDB";
+			
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			ArrayList<String> addresses = new ArrayList<>();
+			while (rs.next()) {
+				JmAddress jmAddress = new JmAddress();
+				jmAddress.setAddress(rs.getString(1));
+				addresses.add(jmAddress.toJSON());
+			}
+			System.out.println(addresses);
+			response.getWriter().print(addresses);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+		
 	}
 
 }

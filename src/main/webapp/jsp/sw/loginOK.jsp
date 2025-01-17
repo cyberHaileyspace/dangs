@@ -10,7 +10,7 @@
             <div class="profile-icon">
                 <img src="img/userProfile/${sessionScope.user.photo}" alt="Profile Image" />
             </div>
-            <div class="profile-name">${sessionScope.user.name}</div>
+            <div class="profile-name">${sessionScope.user.name}님, 반가워요!</div>
             <div class="settings-icon" onclick="location.href='updateUserInfoC'">⚙️</div>
         </div>
         <div class="stats-section">

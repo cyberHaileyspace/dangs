@@ -7,18 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/logoutC")
-public class logoutC extends HttpServlet {
+@WebServlet("/loginC")
+public class LoginC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		swM.logout(request);
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.setAttribute("content", "jsp/sw/fullLogin.jsp");
+		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		swM.loginConfirm(request, response);
 
+		swM.loginCheck(request);
+
+		request.setAttribute("content", "jsp/sw/main.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 }
