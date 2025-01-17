@@ -7,14 +7,14 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/jh/purchase.css">
 <script type="text/javascript" src="js/jh/purchase.js" defer="defer">
-	
 </script>
 </head>
 <body>
+	<form action="PurchaseC" method="post">
 	<div class="title-wrapper">
 		<div class="title">주문/결제</div>
 		<div class="process">
-			<span class="title-now"> 주문결제 </span> <span class="next-stage">></span>  <span>주문완료</span>
+			<span class="title-now"> 주문/결제 </span> <span class="next-stage">></span>  <span>주문완료</span>
 		</div>
 	</div>
 
@@ -52,17 +52,17 @@
 				<tr>
 					<td class="ordered-col1" id="useage-point1">포인트 사용</td>
 					<td class="ordered-col2" id="useage-point2"><input type="text"
-						id="usage-point-input" placeholder="숫자 입력">원 / 보유: ee원</td>
+						class="point" id="usage-point-input" value="0">원 / 보유: ${sessionScope.user.point}원</td>
 				</tr>
 
 				<tr>
 					<td class="ordered-col1" id="final-price1">최종 결제 금액</td>
-					<td class="ordered-col2" id="final-price2">원</td>
+					<td name="final-price2" class="ordered-col2" id="final-price2">원</td>
 				</tr>
 
 			</tbody>
 		</table>
-		<div>
+		<div class="confirm0" id="confirm0">
 			<input type="radio" name="confirm1" value="agree" /> 상기 정보에 틀림이 없음을
 			확인하였습니다.
 		</div>
@@ -75,21 +75,19 @@
 			<tbody>
 				<tr>
 					<td class="ordered-col1" id="customer-name1">주문자명</td>
-					<td class="ordered-col2" id="customer-name2">aa원</td>
+					<td class="ordered-col2" id="customer-name2">${sessionScope.user.name}</td>
 				</tr>
 
 				<tr>
 					<td class="ordered-col1" id="customer-quentity1">전화번호</td>
-					<td class="ordered-col2" id="customer-quentity2"><input
-						type="tel" class="input-phone" value="user_tel을 디폴트로"> <!-- value에 ${user_address} -->
-						<button type="addr-check">확인</button>
-						<div class="submit-info">배송 정보를 받으실 전화번호가 다르실 경우, 수정 후 확인을
-							눌러주시기 바랍니다.</div></td>
+					<td class="ordered-col2" id="customer-quentity2">
+						<input type="tel" name="userTel" class="input-phone" value="${sessionScope.user.tel}">
+							<div class="submit-info">배송 정보를 받으실 전화번호가 다르실 경우, 해당 전화번호를 입력해주세요.</div></td>
 				</tr>
 
 				<tr>
 					<td class="ordered-col1" id="customer-email1">e-mail</td>
-					<td class="ordered-col2" id="customer-email2">bbb@naver.com</td>
+					<td class="ordered-col2" id="customer-email2">${sessionScope.user.email}</td>
 				</tr>
 
 				<tr>
@@ -97,10 +95,8 @@
 					<td class="ordered-col2" id="customer-addr2">
 						<div class="customer-address">
 							<div>
-								<input type="text" class="input-addr" value="user_address를 디폴트로">
-								<button type="addr-check">확인</button>
-								<div class="submit-info">배송받으실 주소가 기본 배송지와 다르실 경우, 주소 수정 후
-									확인을 눌러주시길 바랍니다.</div>
+								<input type="text" name="input-addr" class="input-addr" value="${sessionScope.user.address}">
+								<div class="submit-info">배송받으실 주소가 기본 배송지와 다르실 경우, 해당 주소를 입력해주세요.</div>
 							</div>
 						</div>
 					</td>
@@ -109,11 +105,11 @@
 				<tr>
 					<td class="ordered-col1" id="del-request1">배송 요청사항</td>
 					<td class="ordered-col2" id="del-request2"><input type="text"
-						class="input-request" value="요청사항을 작성해주세요."></td>
+						name="input-request" class="input-request" value="요청사항을 작성해주세요."></td>
 				</tr>
 			</tbody>
 		</table>
-		<div>
+		<div class="confirm3" id="confirm3">
 			<input type="radio" name="confirm2" value="agree" /> 상기 정보에 틀림이 없음을
 			확인하였습니다.
 		</div>
@@ -138,7 +134,7 @@
 						<div class="payment-method-option">
 							<!-- margin-top: 20px; margin-left: 28px -->
 							<div class="bank-list">
-								<select class="select-bank">
+								<select class="select-bank" name="select-bank">
 									<option>농협</option>
 									<option>국민은행</option>
 									<option>하나은행</option>
@@ -153,7 +149,7 @@
 								<!-- nice-select -->
 							</div>
 							<div class="purchase-option">
-								<select class="select-purchase">
+								<select class="select-purchase" name="installments">
 									<option>일시불</option>
 									<option>1개월 할부</option>
 									<option>3개월 할부</option>
@@ -262,10 +258,18 @@
 	<div class="last-check">위 주문 내용을 확인 하였으며, 회원 본인은 개인정보 이용 및
 		제공(해외직구의 경우 국외제공) 및 결제에 동의합니다.</div>
 
-	<form action="PurchaseC" method="post">
+
 		<button type="submit" id="paymentBtn" onclick="confirm_purchase(event)">
 			<div class="payment-Btn">결제하기</div>
 		</button>
+		
+	<!-- 데이터 숨김자리 -->
+	<input type="hidden" name="product_id" value="${product_id}">
+	<input type="hidden" name="input-addr" value="${sessionScope.user.address}">
+	<input type="hidden" name="customer-quentity2" value="${sessionScope.user.tel}">
+	<input type="hidden" name="total-price34" id="hidden-total-price34">
+	<input type="hidden" name="orderedStocks" value="${ordered_stock}">
+	<!-- ----------- -->
 	</form>
 </body>
 </html>
