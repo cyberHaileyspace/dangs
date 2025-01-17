@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 public class CmPostC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			request.setAttribute("content", "jsp/yj/cm_all.jsp");
+		
+		CmDAO.getCm(request);
+		
+		request.setAttribute("content", "jsp/yj/cm_detail.jsp");
 			request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
 	}
 

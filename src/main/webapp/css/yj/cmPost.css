@@ -19,8 +19,13 @@
 .post-info {
 	display: flex;
 	margin: 1em;
+
     border-bottom: 1px solid #f0f0f0;
 
+}
+.post-mini-wrapper{
+	display: flex;
+		justify-content: space-between;
 }
 .post-profile > img{
 	width: 50px;
@@ -57,14 +62,20 @@
 }
 .post-img > img{
 	padding: 10% 0;
-	width: 70%;
-	height: 70%;	
+/*	width: 70%;*/
+/*	height: 70%;	*/
 }	
 .post-text{
 	font-size: 10pt;
 	padding: 5% 5%;
 	font-size: 15pt;	
 }
+
+.cm-like-btn {
+	display: flex;
+}
+
+
 .post-comment{
 	display: flex;
 	margin: 1em;
