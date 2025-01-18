@@ -1,0 +1,242 @@
+/* 상단부 */
+.title {
+	font-size: 30px;
+	padding-top: 20px;
+}
+
+.title-now {
+	color: blue;
+}
+
+.process {
+	display: flex;
+	justify-content: flex-end;
+	padding-bottom: 20px;
+    border-bottom: 2px solid #888;
+}
+
+.next-stage {
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+.cr-container {
+	height: 100%;
+	margin-top: 20px;
+}
+
+.order-category {
+	display: flex;
+	border-top: 2px solid #888;
+	border-bottom: 2px solid #888;
+	padding: 3px 0;
+	color: #888;
+	font-weight: bolder;
+}
+
+.order-category div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 40px;
+}
+
+.order-category div:not(.product-img, .product-name) {
+	width: 130px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.per-order div:not(.img-wrapper, .name-wrapper, .product_name2, .buttons) {
+	width: 115px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.del-destination, .phone-num {
+	width: 190px
+}
+
+.bank, .installments {
+	width: 200px;
+}
+
+.product-img {
+	width: 110px;
+}
+
+.product-name {
+	width: 375px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.product-name2, .name-wrapper, .inquiry {
+	width: 350px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* 각 상품 */
+#orderContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+/* 주문 항목 스타일 */
+.per-order {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: 5px;
+	padding: 10px;
+	transition: all 0.3s ease; /* 애니메이션 효과 */
+}
+
+.product_img2, .space-place1 {
+	width: 110px;
+	height: auto;
+	display: block;
+}
+
+.product-name2 {
+	width: 400px;
+}
+
+.buttons {
+	height: 85px;
+	display: grid;
+	align-items: center;
+}
+
+.buttons button {
+	width: 57px;
+	height: 25px;
+	background-color: black;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	font-size: 12px;
+	cursor: pointer;
+	text-align: center;
+	line-height: 25px;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.buttons button:hover {
+	background-color: white;
+	color: black;
+}
+
+/* more-info (카테고리 한 줄) */
+.more-info {
+    display: flex;
+    border-top: 2px solid #888;
+    border-bottom: 2px solid #888;
+    padding: 10px 0;
+    font-weight: bold;
+    color: #888; /* 검정 텍스트 */
+}
+
+/* more-info-info (값 한 줄) */
+.more-info-info {
+    display: flex;
+    padding: 10px 0;
+}
+
+/* 각각의 항목 크기 설정 */
+.more-info .del-destination1,
+.more-info-info .del-destination2,
+.more-info .phone-num1,
+.more-info-info .phone-num2 {
+    width: 20%;
+    text-align: center;
+}
+
+.more-info .inquiry1,
+.more-info-info .inquiry2 {
+    width: 40%;
+    text-align: center;
+}
+
+.more-info .bank1,
+.more-info-info .bank2,
+.more-info .installments1,
+.more-info-info .installments2 {
+    width: 10%;
+    text-align: center;
+}
+
+/* 중앙 정렬 */
+.more-info-category {
+	width: 100%;
+}
+.more-info div, 
+.more-info-info div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* container */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #000;
+}
+
+section {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+textarea {
+    width: 838px;
+    padding: 10px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+input[type="text"] {
+    width: 838px;
+    padding: 10px;
+    border: 1px solid #888;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+.ref-acc {
+	padding: 5px;
+}
+
+.submit-button {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 20px;
+}

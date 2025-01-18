@@ -422,9 +422,15 @@ public class ShopModel {
 		PreparedStatement pstmt = null;
 
 		// SQL 쿼리 정의
-		String sql = "UPDATE orderDB " + "SET order_status = CASE " + "    WHEN order_date < SYSDATE - 5 THEN '배송완료' "
-				+ "    WHEN order_date < SYSDATE - 4 THEN '배송중' " + "    WHEN order_date < SYSDATE - 3 THEN '배송시작' "
-				+ "    WHEN order_date < SYSDATE - 1 THEN '상품 준비중' " + "    ELSE order_status " + "END";
+//order_status가 "주문취소"라면 업데이트 하지 않도록 수정함		
+		String sql = "UPDATE orderDB " +
+			    "SET order_status = CASE " +
+			    "    WHEN order_date < SYSDATE - 5 AND order_status != '주문취소' THEN '배송완료' " +
+			    "    WHEN order_date < SYSDATE - 4 AND order_status != '주문취소' THEN '배송중' " +
+			    "    WHEN order_date < SYSDATE - 3 AND order_status != '주문취소' THEN '배송시작' " +
+			    "    WHEN order_date < SYSDATE - 1 AND order_status != '주문취소' THEN '상품 준비중' " +
+			    "    ELSE order_status " +
+			    "END";
 
 		try {
 			// 데이터베이스 연결

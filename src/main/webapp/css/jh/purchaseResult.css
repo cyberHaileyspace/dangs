@@ -21,7 +21,8 @@
 	width: 100%;
 	height: 30%;
 	border-top: 2px solid #cecece;
-	margin-top: 20px;
+	/* margin-top: 20px; */
+	padding-top: 40px;
 	display: flex;
 	justify-content: center;
 }
@@ -50,7 +51,7 @@
 	justify-content: center;
 }
 
-.success-icon img {
+.success-icon svg {
 	width: 100px;
 	height: 100px;
 }
