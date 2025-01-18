@@ -21,8 +21,10 @@ public class MyPageC extends HttpServlet {
 		System.out.println(userID);
 		boolean hasPet = swM.isPetRegistered(userID);
 		System.out.println("ok");
+		if (hasPet) {
+			swM.getMyPetInfo(request);
+		}
 		String doYouHavePet = hasPet ? "/jsp/sw/pet/okPet.jsp" : "/jsp/sw/pet/noPet.jsp";
-		System.out.println(doYouHavePet);
 		request.setAttribute("petCheck", doYouHavePet);
 		
 		request.setAttribute("content", "jsp/sw/myPage.jsp");

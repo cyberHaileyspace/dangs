@@ -341,7 +341,7 @@ public class swM {
 			pstmt.setString(8, img);
 			
 			if (pstmt.executeUpdate()==1) {
-				System.out.println("수정 성공 !!! 진짜 개레전드 사건 발생 !!!!");
+				System.out.println("댕댕이 추가 완료");
 			}
 			
 		} catch (Exception e) {
@@ -350,6 +350,44 @@ public class swM {
 			DBManager.close(con, pstmt, null);
 		}
 
+		
+	}
+
+	public static void getMyPetInfo(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserDTO user = (UserDTO) session.getAttribute("user"); 
+		String userID = user.getId();
+		String sql = "select * from petDB where user_id = ?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			ArrayList<PetDTO> pets = new ArrayList<PetDTO>();
+			PetDTO pet = null;
+			while (rs.next()) {
+				pet = new PetDTO();
+				pet.setPetId(rs.getInt(1));
+		        pet.setUserId(rs.getString(2));
+		        pet.setPetName(rs.getString(3));
+		        pet.setPetType(rs.getString(4));
+		        pet.setPetPhoto(rs.getString(5));
+		        pet.setPetSize(rs.getString(6));
+		        pet.setPetBirth(rs.getDate(7));
+		        pet.setPetGender(rs.getString(8));
+		        pet.setPetDescription(rs.getString(9));
+		        
+		        pets.add(pet);
+			}
+			request.setAttribute("pets", pets);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, rs);
+		}
 		
 	}
 
