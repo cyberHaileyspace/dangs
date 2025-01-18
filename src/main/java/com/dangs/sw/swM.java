@@ -246,4 +246,52 @@ public class swM {
 		
 	}
 
+	public static void selectRecentPosts(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM cm_post ORDER BY cm_date DESC FETCH FIRST 5 ROWS ONLY";
+		
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			RecentPostDTO post = null;
+			ArrayList<RecentPostDTO> posts = new ArrayList<RecentPostDTO>();
+			while (rs.next()) {
+				post = new RecentPostDTO();
+				post.setCm_no(rs.getInt(1));
+				post.setCm_title(rs.getString(3));
+				posts.add(post);
+			}
+			request.setAttribute("posts", posts);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, rs);
+		}
+	}
+
+	public static boolean isPetRegistered(String userID) {
+		boolean hasPet = false;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT COUNT(*) FROM petDB WHERE user_id = ?";
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			if (rs.next() && rs.getInt(1) > 0) {
+				hasPet = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		return hasPet;
+	}
+
 }

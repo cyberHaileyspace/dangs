@@ -71,7 +71,7 @@ pageEncoding="UTF-8"%>
       <div class="cm-title">${i.cm_title }</div>
       <div class="cm-content">
       <div class="cm-text"><span>${i.cm_text }</span></div>
-      <div class="cm-img"><img alt="" src="https://cdn-icons-png.flaticon.com/512/5661/5661457.png"></div>
+      <div class="cm-img"><img alt="" src="img/dog-nose.png"></div>
       </div>
       <div class="cm-info">
       	<div class="info-name">작성자 : ${i.cm_user_id }</div>
