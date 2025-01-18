@@ -294,4 +294,63 @@ public class swM {
 		return hasPet;
 	}
 
+	public static void registerPet(HttpServletRequest request) {
+
+		PreparedStatement pstmt = null;
+		
+		//String path = "C:\\Users\\lastp\\OneDrive\\Desktop\\img\\userProfile"; //-로컬 절대경로
+		String path = request.getServletContext().getRealPath("img/petProfile"); //-서버 상대경로
+		System.out.println("Upload Path: " + path);
+		try {
+
+			MultipartRequest mr = new MultipartRequest(request, path, 1024 * 1024 * 20, "utf-8",
+					new DefaultFileRenamePolicy());
+			
+			String name = mr.getParameter("pet_name");
+			String type = mr.getParameter("pet_type");
+			String size = mr.getParameter("pet_size");
+			String birth = mr.getParameter("pet_birth");
+			String gender = mr.getParameter("pet_gender");
+			String description = mr.getParameter("pet_description");
+			
+			HttpSession hs = request.getSession();
+			UserDTO user = (UserDTO) hs.getAttribute("user");
+			String userID = user.getId();
+			String newPhoto = mr.getFilesystemName("pet_photo");
+			System.out.println("pet photo: " + newPhoto);  // 로그 확인
+			
+			String img = "dog-nose.png";
+			if (newPhoto != null) {
+				img = newPhoto;
+			}
+			// 확인 용
+			System.out.println(userID);
+			System.out.println(newPhoto);
+			
+			String sql = "INSERT INTO petDB (user_id, pet_name, pet_type, pet_size, pet_birth, pet_gender, pet_description, pet_photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			pstmt.setString(2, name);
+			pstmt.setString(3, type);
+			pstmt.setString(4, size);
+			pstmt.setString(5, birth);
+			pstmt.setString(6, gender);
+			pstmt.setString(7, description);
+			pstmt.setString(8, img);
+			
+			if (pstmt.executeUpdate()==1) {
+				System.out.println("수정 성공 !!! 진짜 개레전드 사건 발생 !!!!");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+
+		
+	}
+
 }
