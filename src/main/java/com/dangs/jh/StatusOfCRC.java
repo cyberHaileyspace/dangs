@@ -15,7 +15,8 @@ public class StatusOfCRC extends HttpServlet {
 		request.setAttribute("prev_page", prev_page);
 		
 //		날짜에 따라 진행상태 달라지는 메소드
-
+		ShopModel.cancelStatusUpdate(request, response);
+		
 //		주문취소내역 가져오는 메소드		
 		ShopModel.getAllCnR(request, response);
 		
