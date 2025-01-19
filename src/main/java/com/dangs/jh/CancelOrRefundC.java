@@ -27,9 +27,14 @@ public class CancelOrRefundC extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		request.setAttribute("order_id", request.getParameter("order_id"));
 
 //		order_status를 "주문취소"로 업데이트하는 로직
+		ShopModel.updateToCancel(request, response);
+		
+//		canceled_order에 저장하는 메소드
+		ShopModel.saveCanceledOrder(request, response);
 		
 		
 		request.setAttribute("content", "jsp/jh/corResult.jsp");

@@ -421,30 +421,25 @@ public class ShopModel {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
-		// SQL 쿼리 정의
+
 //order_status가 "주문취소"라면 업데이트 하지 않도록 수정함		
-		String sql = "UPDATE orderDB " +
-			    "SET order_status = CASE " +
-			    "    WHEN order_date < SYSDATE - 5 AND order_status != '주문취소' THEN '배송완료' " +
-			    "    WHEN order_date < SYSDATE - 4 AND order_status != '주문취소' THEN '배송중' " +
-			    "    WHEN order_date < SYSDATE - 3 AND order_status != '주문취소' THEN '배송시작' " +
-			    "    WHEN order_date < SYSDATE - 1 AND order_status != '주문취소' THEN '상품 준비중' " +
-			    "    ELSE order_status " +
-			    "END";
+		String sql = "UPDATE orderDB " + "SET order_status = CASE "
+				+ "    WHEN order_date < SYSDATE - 5 AND order_status != '주문취소' THEN '배송완료' "
+				+ "    WHEN order_date < SYSDATE - 4 AND order_status != '주문취소' THEN '배송중' "
+				+ "    WHEN order_date < SYSDATE - 3 AND order_status != '주문취소' THEN '배송시작' "
+				+ "    WHEN order_date < SYSDATE - 1 AND order_status != '주문취소' THEN '상품 준비중' "
+				+ "    ELSE order_status " + "END";
 
 		try {
-			// 데이터베이스 연결
-			con = DBManager.connect(); // DBManager는 연결을 관리하는 유틸 클래스라 가정
+			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 
-			// 업데이트 실행
 			int updatedRows = pstmt.executeUpdate();
 			System.out.println("업데이트된 행 수: " + updatedRows);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			// 리소스 정리
 			DBManager.close(con, pstmt, null);
 		}
 	}
@@ -464,10 +459,8 @@ public class ShopModel {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		
 		String sql = "select o.*, p.product_img, p.product_name, u.user_id from orderDB o, USERDB u, product p"
-				+ " where o.order_user = u.USER_ID and"
-				+ " o.order_product = p.product_id and"
+				+ " where o.order_user = u.USER_ID and" + " o.order_product = p.product_id and"
 				+ " o.order_user = ? order by o.order_date desc";
 
 		try {
@@ -475,16 +468,16 @@ public class ShopModel {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, order_user);
 			rs = pstmt.executeQuery();
-			
+
 			MyPageDTO mypage = null;
 			List<MyPageDTO> mypages = new ArrayList<MyPageDTO>(); // 각 주문의 product_id를 저장할 리스트
 
 			while (rs.next()) {
-				
+
 				mypage = new MyPageDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
 						rs.getDate(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10),
 						rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15));
-				
+
 				mypages.add(mypage);
 			}
 
@@ -507,10 +500,8 @@ public class ShopModel {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		
 		String sql = "select o.*, p.product_img, p.product_name, u.user_id from orderDB o, USERDB u, product p"
-				+ " where o.order_user = u.USER_ID and"
-				+ " o.order_product = p.product_id and"
+				+ " where o.order_user = u.USER_ID and" + " o.order_product = p.product_id and"
 				+ " o.order_id = ? order by o.order_date desc";
 
 		try {
@@ -518,16 +509,16 @@ public class ShopModel {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, order_id);
 			rs = pstmt.executeQuery();
-			
+
 			MyPageDTO mypage = null;
 			List<MyPageDTO> mypages = new ArrayList<MyPageDTO>(); // 각 주문의 product_id를 저장할 리스트
 
 			while (rs.next()) {
-				
+
 				mypage = new MyPageDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
 						rs.getDate(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10),
 						rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15));
-				
+
 				mypages.add(mypage);
 			}
 
@@ -541,5 +532,179 @@ public class ShopModel {
 			DBManager.close(con, pstmt, rs);
 		}
 	}
+
+	public static void updateToCancel(HttpServletRequest request, HttpServletResponse response) {
+		String order_id = request.getParameter("order_id");
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		String sql = "UPDATE orderDB set order_status = '주문취소' where order_id = ?";
+
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, order_id);
+
+			int updatedRows = pstmt.executeUpdate();
+			System.out.println("업데이트된 행 수: " + updatedRows);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+	}
+
+	public static void saveCanceledOrder(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession hs = request.getSession();
+		UserDTO user = (UserDTO) hs.getAttribute("user"); // Session에서 유저 정보 가져오기
+		if (user == null) {
+			System.out.println("User is not logged in.");
+			return;
+		}
+
+		String co_user = user.getId();
+		String co_order = request.getParameter("order_id");
+		String co_reason = request.getParameter("reason");
+		String co_bank = request.getParameter("select-bank");
+		String co_account = request.getParameter("refund-account");
+		String co_accountName = request.getParameter("account-name");
+		
+		System.out.println(co_user);
+		System.out.println(co_order);
+		System.out.println(co_reason);
+		System.out.println(co_bank);
+		System.out.println(co_account);
+		System.out.println(co_accountName);
+		
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "insert into canceled_order values (?, ?, ?, ?, ?, ?, sysdate, ?)";
+		
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, co_user);
+			pstmt.setString(2, co_order);
+			pstmt.setString(3, co_reason);
+			pstmt.setString(4, co_bank);
+			pstmt.setString(5, co_account);
+			pstmt.setString(6, co_accountName);
+			pstmt.setString(7, "주문취소");
+
+			int updatedRows = pstmt.executeUpdate();
+			System.out.println("업데이트된 행 수: " + updatedRows);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+		
+	}
+
+	public static void getAllCnR(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession hs = request.getSession();
+		UserDTO user = (UserDTO) hs.getAttribute("user");
+		if (user == null) {
+			System.out.println("User is not logged in.");
+			return;
+		}
+
+		String co_user = user.getId();
+		System.out.println(co_user);
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select * from canceled_order where co_user = ?";
+
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, co_user);
+			rs = pstmt.executeQuery();
+
+			CanceledDTO cancel = null;
+			List<CanceledDTO> cancels = new ArrayList<CanceledDTO>(); // 각 주문의 product_id를 저장할 리스트
+
+			while (rs.next()) {
+
+				cancel = new CanceledDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDate(7), rs.getString(8));
+
+				cancels.add(cancel);
+			}
+
+			System.out.println("cancels: " + cancels);
+
+			request.setAttribute("cancels", cancels);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+	}
+
+
+	public static void getAllByOrderIds(HttpServletRequest request, HttpServletResponse response) {
+	    List<CanceledDTO> cancels = (List<CanceledDTO>) request.getAttribute("cancels"); // cancels 리스트 가져오기
+	    if (cancels == null || cancels.isEmpty()) {
+	        System.out.println("Cancels 리스트가 비어있습니다.");
+	        return;
+	    }
+
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+
+	    String sql = "SELECT o.*, p.product_img, p.product_name, u.user_id " +
+	                 "FROM orderDB o, USERDB u, product p " +
+	                 "WHERE o.order_user = u.USER_ID " +
+	                 "AND o.order_product = p.product_id " +
+	                 "AND o.order_id = ? " +
+	                 "ORDER BY o.order_date DESC";
+
+	    try {
+	        con = DBManager.connect();
+
+	        List<MyPageDTO> mypages = new ArrayList<>(); // 결과를 저장할 리스트
+
+	        for (CanceledDTO cancel : cancels) { // cancels 리스트를 순회
+	        	String order_id = cancel.getCo_order();
+	        	
+	            pstmt = con.prepareStatement(sql);
+	            pstmt.setString(1, order_id);
+	            rs = pstmt.executeQuery();
+
+	            while (rs.next()) {
+	                MyPageDTO mypage = new MyPageDTO(
+	                    rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), 
+	                    rs.getString(5), rs.getDate(6), rs.getString(7), rs.getString(8), 
+	                    rs.getString(9), rs.getInt(10), rs.getString(11), rs.getString(12), 
+	                    rs.getString(13), rs.getString(14), rs.getString(15)
+	                );
+	                mypages.add(mypage);
+	            }
+
+	            pstmt.close(); // PreparedStatement 닫기
+	        }
+
+	        System.out.println("mypages: " + mypages);
+
+	        request.setAttribute("orders", mypages);
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        DBManager.close(con, pstmt, rs);
+	    }
+	}
+
 
 }

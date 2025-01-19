@@ -12,7 +12,7 @@
 	display: flex;
 	justify-content: flex-end;
 	padding-bottom: 20px;
-    border-bottom: 2px solid #888;
+	border-bottom: 2px solid #888;
 }
 
 .next-stage {
@@ -48,7 +48,8 @@
 	align-items: center;
 }
 
-.per-order div:not(.img-wrapper, .name-wrapper, .product_name2, .buttons) {
+.per-order div:not(.img-wrapper, .name-wrapper, .product_name2, .buttons)
+	{
 	width: 115px;
 	display: flex;
 	justify-content: center;
@@ -136,99 +137,102 @@
 
 /* more-info (카테고리 한 줄) */
 .more-info {
-    display: flex;
-    border-top: 2px solid #888;
-    border-bottom: 2px solid #888;
-    padding: 10px 0;
-    font-weight: bold;
-    color: #888; /* 검정 텍스트 */
+	display: flex;
+	border-top: 2px solid #888;
+	border-bottom: 2px solid #888; padding : 10px 0;
+	font-weight: bold;
+	padding: 10px 0; font-weight : bold;
+	color: #888; /* 검정 텍스트 */
 }
 
 /* more-info-info (값 한 줄) */
 .more-info-info {
-    display: flex;
-    padding: 10px 0;
+	display: flex;
+	padding: 10px 0;
 }
 
 /* 각각의 항목 크기 설정 */
-.more-info .del-destination1,
-.more-info-info .del-destination2,
-.more-info .phone-num1,
-.more-info-info .phone-num2 {
-    width: 20%;
-    text-align: center;
+.more-info .del-destination1, .more-info-info .del-destination2,
+	.more-info .phone-num1, .more-info-info .phone-num2 {
+	width: 20%;
+	text-align: center;
 }
 
-.more-info .inquiry1,
-.more-info-info .inquiry2 {
-    width: 40%;
-    text-align: center;
+.more-info .inquiry1, .more-info-info .inquiry2 {
+	width: 40%;
+	text-align: center;
 }
 
-.more-info .bank1,
-.more-info-info .bank2,
-.more-info .installments1,
-.more-info-info .installments2 {
-    width: 10%;
-    text-align: center;
+.more-info .bank1, .more-info-info .bank2, .more-info .installments1,
+	.more-info-info .installments2 {
+	width: 10%;
+	text-align: center;
 }
 
 /* 중앙 정렬 */
 .more-info-category {
 	width: 100%;
 }
-.more-info div, 
-.more-info-info div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+.more-info div, .more-info-info div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 /* container */
 .container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
+	width: 80%;
+	margin: 0 auto;
+	padding: 20px;
 }
 
 h1, h2 {
-    color: #000;
+	color: #000;
 }
 
 section {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #888;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+	margin-bottom: 20px;
+	padding: 10px;
+	border: 1px solid #888;
+	border-radius: 5px;
+	background-color: #f9f9f9;
 }
 
 textarea {
-    width: 838px;
-    padding: 10px;
-    border: 1px solid #888;
-    border-radius: 5px;
-    resize: vertical;
+	width: 838px;
+	padding: 10px;
+	border: 1px solid #888;
+	border-radius: 5px;
+	resize: vertical;
+}
+
+.select-bank {
+	width: 860px;
+	padding: 10px;
+	border: 1px solid #888;
+	border-radius: 5px;
+	resize: vertical;
 }
 
 input[type="text"] {
-    width: 838px;
-    padding: 10px;
-    border: 1px solid #888;
-    border-radius: 5px;
+	width: 838px;
+	padding: 10px;
+	border: 1px solid #888;
+	border-radius: 5px;
 }
 
 button {
-    background-color: #000;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+	background-color: #000;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 button:hover {
-    background-color: #444;
+	background-color: #444;
 }
 
 .ref-acc {

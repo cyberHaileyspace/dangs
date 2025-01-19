@@ -9,5 +9,6 @@
 <body>
 <!-- 임시 주문내역 버튼 -->
 	<div onclick="location.href='MOCfMP?page-check=mypage'">주문내역</div>
+	<div onclick="location.href='StatusOfCRC?page-check=mypage'">주문취소/환불 현황</div>
 </body>
 </html>

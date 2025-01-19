@@ -98,8 +98,18 @@
 				<div class="ref-acc">
 					<label for="refund-account">은행명:</label>
 				</div>
-				<input type="text" id="refund-account" name="refund-account"
-					placeholder="은행명">
+				<select class="select-bank" name="select-bank">
+					<option>농협</option>
+					<option>국민은행</option>
+					<option>하나은행</option>
+					<option>우리은행</option>
+					<option>롯데</option>
+					<option>삼성</option>
+					<option>현대</option>
+					<option>BC</option>
+					<option>토스뱅크</option>
+					<option>카카오뱅크</option>
+				</select>
 				<div class="ref-acc">
 					<label for="refund-account">계좌번호:</label>
 				</div>
@@ -108,7 +118,7 @@
 				<div class="ref-acc">
 					<label for="refund-account">예금주:</label>
 				</div>
-				<input type="text" id="refund-account" name="refund-account"
+				<input type="text" id="refund-account" name="account-name"
 					placeholder="예금주">
 			</section>
 
