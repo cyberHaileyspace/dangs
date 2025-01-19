@@ -19,11 +19,13 @@ public class LoginC extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		swM.loginConfirm(request, response);
-
-		swM.loginCheck(request);
-
-		request.setAttribute("content", "jsp/sw/main.jsp");
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		response.sendRedirect("HC");
+		/*
+		 * swM.loginCheck(request);
+		 * 
+		 * request.setAttribute("content", "jsp/sw/main.jsp");
+		 * request.getRequestDispatcher("index.jsp").forward(request, response);
+		 */
 	}
 
 }
