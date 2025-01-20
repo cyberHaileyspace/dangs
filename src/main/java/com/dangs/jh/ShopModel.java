@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import com.dangs.main.DBManager;
 import com.dangs.sw.UserDTO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class ShopModel {
 
@@ -48,6 +50,7 @@ public class ShopModel {
 				fixed_products.add(products.get(i));
 
 			}
+			System.out.println(products);
 			request.setAttribute("fixed_products", fixed_products);
 
 		} catch (Exception e) {
@@ -84,6 +87,7 @@ public class ShopModel {
 				request.setAttribute("product_category", rs.getString(6));
 				request.setAttribute("product_img", rs.getString(7));
 				request.setAttribute("product_date", rs.getDate(8));
+				request.setAttribute("sub_category", rs.getString(9));
 				request.setAttribute("product_point", rs.getInt(4) / 100);
 			}
 
@@ -704,14 +708,11 @@ public class ShopModel {
 		PreparedStatement pstmt = null;
 
 //co_status가 "주문취소"라면 업데이트 하지 않도록 수정함		
-		String sql = "UPDATE canceled_order\n"
-				+ "SET co_status = CASE\n"
+		String sql = "UPDATE canceled_order\n" + "SET co_status = CASE\n"
 				+ "    WHEN co_date = TRUNC(SYSDATE) - 1 THEN '검토중'\n"
 				+ "    WHEN co_date = TRUNC(SYSDATE) - 2 THEN '취소완료'\n"
 				+ "    WHEN co_date = TRUNC(SYSDATE) - 3 THEN '환불 진행중'\n"
-				+ "    WHEN co_date <= TRUNC(SYSDATE) - 4 THEN '환불완료'\n"
-				+ "    ELSE co_status\n"
-				+ "END";
+				+ "    WHEN co_date <= TRUNC(SYSDATE) - 4 THEN '환불완료'\n" + "    ELSE co_status\n" + "END";
 
 		try {
 			con = DBManager.connect();
@@ -719,6 +720,173 @@ public class ShopModel {
 
 			int updatedRows = pstmt.executeUpdate();
 			System.out.println("canceled_order 업데이트된 행 수: " + updatedRows);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+	}
+
+	public static void insertProduct(HttpServletRequest request, HttpServletResponse response) {
+		String path = request.getServletContext().getRealPath("img/productImages"); // 서버 상대 경로
+		System.out.println("Upload Path: " + path);
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+		    // MultipartRequest 객체 생성
+		    MultipartRequest mr = new MultipartRequest(
+		        request, 
+		        path, 
+		        1024 * 1024 * 20, // 20MB 제한
+		        "utf-8", 
+		        new DefaultFileRenamePolicy() // 동일 파일명 처리 정책
+		    );
+
+		    
+		    // Form 파라미터 가져오기
+		    String product_name = mr.getParameter("product-name");
+		    int product_price = Integer.parseInt(mr.getParameter("price"));
+		    int product_stock = Integer.parseInt(mr.getParameter("quantity"));
+		    String product_category = mr.getParameter("main-cate");
+		    String sub_category = mr.getParameter("sub-cate");
+
+		    // 세션에서 유저 정보 가져오기
+		    HttpSession hs = request.getSession();
+		    UserDTO user = (UserDTO) hs.getAttribute("user");
+		    if (user == null) {
+		        System.out.println("User is not logged in.");
+		        return;
+		    }
+		    String product_seller = user.getId();
+
+		    // 업로드된 파일 정보 가져오기
+		    String uploadedFile = mr.getFilesystemName("main-img");
+		    String product_img = (uploadedFile != null) ? uploadedFile : "default-product.png"; // 기본 이미지 처리
+
+		    System.out.println("Uploaded Image: " + product_img);
+
+		    // SQL 처리
+		    String sql = "insert into product values (product_seq.nextval, ?, ?, ?, ?, ?, ?, SYSDATE, ?)";
+
+		    con = DBManager.connect();
+		    pstmt = con.prepareStatement(sql);
+		    pstmt.setString(1, product_seller);
+		    pstmt.setString(2, product_name);
+		    pstmt.setInt(3, product_price);
+		    pstmt.setInt(4, product_stock);
+		    pstmt.setString(5, product_category);
+		    pstmt.setString(6, "img/productImages/" + product_img);
+		    pstmt.setString(7, sub_category);
+
+		    // SQL 실행
+		    if (pstmt.executeUpdate() == 1) {
+		        System.out.println("***상품 등록 성공***");
+		    } else {
+		        System.out.println("상품 등록 실패.");
+		    }
+		    
+		} catch (Exception e) {
+		    e.printStackTrace();
+		} finally {
+		    DBManager.close(con, pstmt, null);
+		}
+	}
+
+	public static void getMyProduct(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession hs = request.getSession();
+		UserDTO user = (UserDTO) hs.getAttribute("user");
+		if (user == null) {
+			System.out.println("User is not logged in.");
+			return;
+		}
+
+		String product_seller = user.getId();
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select * from product where product_seller = ?";
+
+		try {
+			if (con == null) {
+				con = DBManager.connect();
+			}
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, product_seller);
+			rs = pstmt.executeQuery();
+
+			ProductDTO product = null;
+			products = new ArrayList<ProductDTO>();
+
+			while (rs.next()) {
+				product = new ProductDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5),
+						rs.getString(6), rs.getString(7), rs.getDate(8), rs.getString(9));
+				products.add(product);
+			}
+			
+			System.out.println(products);
+			
+			request.setAttribute("products", products);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+	}
+
+	public static void updateProduct(HttpServletRequest request, HttpServletResponse response) {
+		String path = request.getServletContext().getRealPath("img/productImages"); // 서버 상대 경로
+		System.out.println("Upload Path: " + path);
+		
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			// MultipartRequest 객체 생성
+		    MultipartRequest mr = new MultipartRequest(
+		        request, 
+		        path, 
+		        1024 * 1024 * 20, // 20MB 제한
+		        "utf-8", 
+		        new DefaultFileRenamePolicy() // 동일 파일명 처리 정책
+		    );
+			
+		    String product_id = mr.getParameter("product_id");
+		    String product_name = mr.getParameter("product-name");
+		    int product_price = Integer.parseInt(mr.getParameter("price"));
+		    int product_stock = Integer.parseInt(mr.getParameter("quantity"));
+		    String uploadedFile = mr.getFilesystemName("main-img");
+		    String product_category = mr.getParameter("main-cate");
+		    String sub_category = mr.getParameter("sub-cate");
+		    
+		 // 업로드된 파일 정보 가져오기
+		    String product_img = (uploadedFile != null) ? uploadedFile : "dog-nose.png"; // 기본 이미지 처리
+
+		    System.out.println("Uploaded Image: " + product_img);
+
+			String sql = "update product set product_name = ?, product_price = ?, product_stock = ?, product_category = ?, product_img = ?, product_date = sysdate, sub_category = ? where product_id = ?";
+
+			
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, product_name);
+			pstmt.setInt(2, product_price);
+			pstmt.setInt(3, product_stock);
+			pstmt.setString(4, product_category);			
+			pstmt.setString(5, product_img);
+			pstmt.setString(6, sub_category);
+			pstmt.setString(7, product_id);
+
+			int updatedRows = pstmt.executeUpdate();
+			System.out.println("업데이트된 행 수: " + updatedRows);
 
 		} catch (Exception e) {
 			e.printStackTrace();

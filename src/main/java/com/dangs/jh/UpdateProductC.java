@@ -7,21 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dangs.sw.swM;
+@WebServlet("/UpdateProductC")
+public class UpdateProductC extends HttpServlet {
 
-@WebServlet("/InsertProductC")
-public class InsertProductC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setAttribute("content", "jsp/jh/insertProduct.jsp");
+		ShopModel.getProduct(request, response);
+		
+		request.setAttribute("content", "jsp/jh/updateProduct.jsp");
 		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		ShopModel.insertProduct(request, response);
-
-		request.setAttribute("content", "jsp/jh/iPResult.jsp");
+		
+		ShopModel.updateProduct(request, response);
+		
+		request.setAttribute("content", "jsp/jh/uPResult.jsp");
 		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
 	}
 
