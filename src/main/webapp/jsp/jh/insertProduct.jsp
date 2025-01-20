@@ -15,13 +15,13 @@
 			<div class="title">상품등록</div>
 			<div class="process">
 				<span class="prevPage">
-					${prev_page} </span> <span class="next-stage">&gt;</span> <span
+					마이페이지</span> <span class="next-stage">&gt;</span> <span
 					class="title-now">상품등록</span>
 			</div>
 		</div>
 
 		<div class="container">
-			<h1>취소/환불 요청</h1>
+			<h1>상품 정보 입력</h1>
 
 			<!-- 취소/환불 정책 안내 -->
 			<section class="policy">
@@ -43,45 +43,6 @@
 					<div class="order-quantity">주문수량</div>
 					<div class="order-price">결제금액</div>
 					<div class="order-status">주문상태</div>
-				</div>
-				<div class="cr-container">
-					<%-- <c:forEach var="orders" items="${orders}">
-						<div class="per-order" data-title="${orders.product_name}">
-							<div>${orders.order_date}</div>
-							<div>${orders.order_id}</div>
-							<div class="img-wrapper">
-								<img class="product_img2" alt="product_img"
-									src="${orders.product_img}"></img>
-							</div>
-							<div class="name-wrapper">
-								<div class="product_name2">${orders.product_name}</div>
-							</div>
-							<div>${orders.order_stock}</div>
-							<div>
-								<fmt:formatNumber value="${orders.order_price}" type="number"
-									groupingUsed="true" />
-							</div>
-							<div>${orders.order_status}</div>
-						</div>
-						<!-- 주문상세 -->
-						<div class="more-info">
-							<div class="more-info-category">
-								<div class="del-destination1">배송지</div>
-								<div class="phone-num1">전화번호</div>
-								<div class="inquiry1">배송문의</div>
-								<div class="bank1">결제은행</div>
-								<div class="installments1">할부</div>
-							</div>
-						</div>
-						<div class="more-info-info">
-							<div class="del-destination2">${orders.order_address}</div>
-							<div class="phone-num2">${orders.order_tel}</div>
-							<div class="inquiry2">${orders.order_request}</div>
-							<div class="bank2">${orders.order_bank}</div>
-							<div class="installments2">${orders.order_installments}</div>
-						</div>
-						<input type="hidden" name="order_id" value="${orders.order_id}">
-					</c:forEach> --%>
 				</div>
 			</section>
 
