@@ -12,6 +12,10 @@ public class CmMainC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		// communiy select all
+		CmDAO.selectAll(request);
+		
 		request.setAttribute("content", "jsp/yj/cm_main.jsp");
 		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
 	}
