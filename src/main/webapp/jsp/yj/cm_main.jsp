@@ -7,6 +7,8 @@ pageEncoding="UTF-8"%>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
     <link rel="stylesheet" href="css/yj/cm.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/yj/cm.js"></script>
   </head>
   <body>
     <div class="container-cm">
@@ -56,6 +58,7 @@ pageEncoding="UTF-8"%>
       </div>
       
       <div class="add-size">
+		 <input type="radio" id="all" name="cm-dog"><label for="all">전체</label>
 		 <input type="radio" id="s" name="cm-dog"><label for="s">소형견</label>
      	 <input type="radio" id="m" name="cm-dog"><label for="m">중형견</label>
      	 <input type="radio" id="l" name="cm-dog"><label for="l">대형견</label>
@@ -71,7 +74,7 @@ pageEncoding="UTF-8"%>
       <div class="cm-title">${i.cm_title }</div>
       <div class="cm-content">
       <div class="cm-text"><span>${i.cm_text }</span></div>
-      <div class="cm-img"><img alt="" src="https://cdn-icons-png.flaticon.com/512/5661/5661457.png"></div>
+      <div class="cm-img"><img alt="" src="img/dog-nose.png"></div>
       </div>
       <div class="cm-info">
       	<div class="info-name">작성자 : ${i.cm_user_id }</div>
@@ -85,8 +88,16 @@ pageEncoding="UTF-8"%>
       </c:forEach>
       
       
+      	<div>
+			<a href="CmPageC?p=1"> [begin] </a>
+			<c:forEach begin="1" end="${pageCount }" var="j">
+			<a href="CmPageC?p=${j }"> [ ${j } ] </a>
+			</c:forEach>
+			<a href="CmPageC?p=${pageCount }"> [end] </a>
+		</div>
       
-      
+<%--       <c:out value="${cm_posts}" /> --%>
+<c:out value="${pageCount}" />
       
       
     </div>
