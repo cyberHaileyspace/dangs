@@ -113,7 +113,7 @@
 .reply-ta > textarea{
 	width: 100%;
 	height: 120px;
-/*	resize: none; text-area 크기 조절 비활성화*/
+	resize: none;
 }
 .reply-btn {
 	align-items: center;
