@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/adopt.css">
+<link rel="stylesheet" href="css/hy/adopt.css">
 <script src="https://code.jquery.com/jquery-3.7.1.js"
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
@@ -18,7 +18,7 @@
 		<nav class="navigation-bar">
 			<ul class="nav-links">
 				<li><a href="AdoptionController?action=shelter">보호소 입양 공고</a></li>
-				<li><a id="favorites">관심있는 공고</a></li>
+				<li><a href="AdoptionController?action=favorites">관심있는 공고</a></li>
 			</ul>
 		</nav>
 

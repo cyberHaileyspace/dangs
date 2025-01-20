@@ -10,11 +10,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dangs.main.DBManager;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class AdoptionDAO {
 
@@ -161,7 +166,7 @@ public class AdoptionDAO {
         return jsonData;
     }
 
-	public void getAnimalDetail(String desertionNo) {
+	public String getAnimalDetail(String desertionNo) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -170,8 +175,23 @@ public class AdoptionDAO {
 		
 		try {
 			
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
 			
-			
+			while (rs.next()) {
+				String jsonContent = rs.getString("json_content");
+				
+				JsonObject jsonObject = JsonParser.parseString(jsonContent).getAsJsonObject();
+				JsonArray items = jsonObject.getAsJsonObject("response").getAsJsonObject("body").getAsJsonObject("items").getAsJsonArray("item");
+				
+				for (JsonElement item : items) {
+					JsonObject obj = item.getAsJsonObject();
+					if (obj.get("desertionNo").getAsString().equals(desertionNo)) {
+						return obj.toString();
+					}
+				}
+			}
 			
 			
 		} catch (Exception e) {
@@ -179,6 +199,7 @@ public class AdoptionDAO {
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
+		return null;
 		
 		
 		
