@@ -39,9 +39,12 @@
 				src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.namu.wiki%2Fi%2FNqAfQ710Z4IejlTwoibjuP5A3BZhfOtVvosO0OXV2qp6_9oONtnW9Hzf04Oo6fyPKyONMT11UMwZuNVinu6NhQ.webp&type=a340">
 		</div>
 		<div class="post-text">${getPost.cm_text }</div>
-      <div class="cm-like-btn"><input type="checkbox" id="like-btn" name="cm-like-btn"><label for="like-btn">좋아요</label></div>
+    <div id="post-${getPost.cm_no}">
+    <button class="like-button" data-post-id="${getPost.cm_no}">♡</button>
+    <span class="like-count" id="like-count-${getPost.cm_no}">0</span>
+</div>
+</div>
       </div>
-	</div>
 	
 	<div class="post-comment">
 		<div class="reply">
@@ -59,11 +62,44 @@
 			<button class="reply-btn">등록</button>
 		</div>
 		
-		
-		
-		
-	</div>
 	
-	
+	<script type="text/javascript">
+	$(document).ready(function() {
+	    $('.like-button').click(function() {
+	        var postId = $(this).data('post-id');
+
+	        // 로그인 여부 확인
+	        var xhr = new XMLHttpRequest();
+	        xhr.open('GET', 'checkLogin', true);
+	        xhr.onreadystatechange = function() {
+	            if (xhr.readyState === 4 && xhr.status === 200) {
+	                if (xhr.responseText === 'loggedIn') {
+	                    // 로그인된 경우 좋아요 처리
+	                    $.ajax({
+	                        url: '/dangs/likePostC',
+	                        method: 'POST',
+	                        data: { postId: postId },
+	                        success: function(response) {
+	                            if (response.success) {
+	                                $('#like-count-' + postId).text(response.newLikeCount);
+	                                $('.like-button[data-post-id="' + postId + '"]').text('♥');
+	                            } else {
+	                                alert(response.message);
+	                            }
+	                        },
+	                        error: function() {
+	                            alert('좋아요 요청에 실패했습니다.');
+	                        }
+	                    });
+	                } else if (xhr.responseText === 'notLoggedIn') {
+	                    // 로그인되지 않은 경우 로그인 페이지로 이동
+	                    window.location.href = 'loginC';
+	                }
+	            }
+	        };
+	        xhr.send();
+	    });
+	});
+	</script>
 </body>
 </html>

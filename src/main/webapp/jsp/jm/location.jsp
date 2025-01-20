@@ -12,7 +12,11 @@
 <body>
 	<div id="map" class="map"></div>
 	<div class="locationButton">우리 동네 찾기</div>
+	<button id="loadAddressesButton"> 우리 동네 근처 사람 찾기</button>
+	
+	<div id="userAddressJM" hidden>${sessionScope.user.address}</div>
 	<script>
+	$(function() {
 		var container = document.getElementById('map');
 		var options = {
 			center : new kakao.maps.LatLng(33.450701, 126.570667),
@@ -24,6 +28,7 @@
 		/* 	function btn(sample) {
 				alert(sample);
 			} */
+			
 		$('.locationButton').click(function() {
 			var xhr = new XMLHttpRequest();
 			xhr.open('GET', 'checkLogin', true);
@@ -39,81 +44,70 @@
 			xhr.send();
 		});
 
-		function myLocation() {
+			function myLocation() {
+			    let userAddress = document.getElementById('userAddressJM').textContent.trim();
+			    var mapContainer = document.getElementById('map'),
+			        mapOption = { 
+			            center: new kakao.maps.LatLng(33.450701, 126.570667), 
+			            level: 3 
+			        };
 
-			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(
-						function(position) {
-							var latitude = position.coords.latitude;
-							var longitude = position.coords.longitude;
-							// 현재 위치를 지도에 중심으로 설정
-							var locPosition = new kakao.maps.LatLng(latitude,
-									longitude);
-							map.setCenter(locPosition);
-							// 마커를 현재 위치에 추가
-							var marker = new kakao.maps.Marker({
-								position : locPosition
-							});
-							marker.setMap(map);
-							// 주소를 얻기 위한 geocoder 객체 생성
-							var geocoder = new kakao.maps.services.Geocoder();
-							// 좌표로 주소를 변환하는 함수
-				            geocoder.coord2Address(longitude, latitude, function(result, status) {
-				                if (status === kakao.maps.services.Status.OK) {
-				                    // 첫 번째 응답을 사용 (result[0]은 가장 근접한 주소)
-				                    var address = result[0].address.address_name;
-				                    // 인포윈도우 생성 (위치에 표시될 텍스트)
-				                    var infowindow = new kakao.maps.InfoWindow({
-				                        content: '<div style="padding:5px;">' + address + '</div>',
-				                        position: locPosition,
-				                        removable: true
-				                    });
-				                    infowindow.open(map, marker);
-				                    
-				                    /* console.log(address);
-				                    window.location.href="registerWalkMateC?location="+address; */
-				                    
-				                } else {
-				                	console.log("주소 반환에 실패했습니다.");
-				                }
-				            });
-						}, function(error) {
-							console.log(error);
-							alert('위치 정보를 가져올 수 없습니다.');
-						});
-			} else {
-				alert('이 브라우저는 위치 정보 서비스를 지원하지 않습니다.');
+			    var map = new kakao.maps.Map(mapContainer, mapOption);
+			    var geocoder = new kakao.maps.services.Geocoder();
+			    var baseCoords;
+
+			    geocoder.addressSearch(userAddress, function(result, status) {
+			        if (status === kakao.maps.services.Status.OK) {
+			            baseCoords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+			            var marker = new kakao.maps.Marker({
+			                map: map,
+			                position: baseCoords
+			            });
+
+			            map.setCenter(baseCoords);
+			            console.log("기준 위치 설정 완료");
+
+
+			        } 
+			    });    
+			}  
+			function plotAddressesOnMap(addresses, baseCoords, map) {
+			    var geocoder = new kakao.maps.services.Geocoder();
+
+			    addresses.forEach(function(address) {
+			        geocoder.addressSearch(address, function(result, status) {
+			            if (status === kakao.maps.services.Status.OK) {
+			                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			                var distance = kakao.maps.geometry.spherical.computeDistanceBetween(baseCoords, coords);
+			                
+			                if (distance <= 2000) { // 2km 반경 내에 있는지 확인
+			                    var marker = new kakao.maps.Marker({
+			                        map: map,
+			                        position: coords
+			                    });
+			                }
+			            }
+			        });
+			    });
 			}
-		}
-		// document.getElementById('locationButton').addEventListener('click', getLocation);
-		/* $(function () {
-			$("button").click(function () {
 
-				$.ajax({
-					
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(function(position) {
-				var latitude = position.coords.latitude;
-				var longitude = position.coords.longitude;
-				// 현재 위치를 지도에 중심으로 설정
-				var locPosition = new kakao.maps.LatLng(latitude, longitude);
-				map.setCenter(locPosition);
-				// 마커를 현재 위치에 추가
-				var marker = new kakao.maps.Marker({
-					position : locPosition
-				});
-				marker.setMap(map);
-			}, function(error) {
-				console.log(error);
-				alert('위치 정보를 가져올 수 없습니다.');
-			});
-		} else {
-			alert('이 브라우저는 위치 정보 서비스를 지원하지 않습니다.');
-		}					
-					
-				});
-			});
-		}); */
+	 $('#loadAddressesButton').click(function() {
+    // AJAX 호출로 서버에서 주소 목록 가져오기
+    $.ajax({
+        url: '/getAddressesC', // 서버 API 엔드포인트
+        method: 'GET',
+        success: function(response) {
+            // response는 주소 목록 배열이라고 가정
+            var addresses = response;
+            plotAddressesOnMap(addresses, baseCoords, map);
+        },
+        error: function() {
+            console.error("주소 목록 가져오기 실패");
+        }
+    });
+	 });
+	});
 	</script>
 </body>
 </html>
