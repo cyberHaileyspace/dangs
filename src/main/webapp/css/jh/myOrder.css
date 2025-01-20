@@ -1,0 +1,205 @@
+/* 상단부 */
+.title {
+	font-size: 30px;
+	padding-top: 20px;
+}
+
+.title-now {
+	color: blue;
+}
+
+.process {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.next-stage {
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+/* 검색 */
+.mainBody {
+	height: 100%;
+	border-top: 2px solid #888;
+	margin-top: 20px;
+}
+
+.search-order {
+	width: 100%;
+	display: block;
+	justify-content: center;
+}
+
+.search-order-title {
+	display: flex;
+	justify-content: flex-start;
+	font-size: 25px;
+	padding: 8px 0 8px;
+}
+
+.under-search-order {
+	display: flex;
+	justify-content: flex-start;
+	padding-bottom: 20px;
+}
+
+.search-order-input {
+	width: 30%;
+	height: 25px;
+	border-radius: 5px;
+}
+
+/* 주문 카테고리 */
+.order-category {
+	display: flex;
+	border-top: 2px solid #888;
+	border-bottom: 2px solid #888;
+	color: #888;
+	font-weight: bolder;
+}
+
+.order-category div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 40px;
+}
+
+.order-category div:not(.product-img, .product-name), .per-order div:not(.img-wrapper,
+	.name-wrapper, .product_name2, .buttons) {
+	width: 115px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.product-img {
+	width: 110px;
+}
+
+.product-name, .product-name2, .name-wrapper {
+	width: 350px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* 각 상품 */
+#orderContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+/* 주문 항목 스타일 */
+.per-order {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid #888;
+	border-radius: 5px;
+	padding: 10px;
+	transition: all 0.3s ease; /* 애니메이션 효과 */
+}
+
+/* 검색어와 맞지 않을 때 숨김 */
+.per-order.hidden {
+	visibility: hidden;
+	height: 0;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+.product_img2, .space-place1 {
+	width: 110px;
+	height: auto;
+	display: block;
+}
+
+.product-name2 {
+	width: 400px;
+}
+
+.buttons {
+	height: 85px;
+	display: grid;
+	align-items: center;
+}
+
+.buttons button {
+	width: 57px;
+	height: 25px;
+	background-color: black;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	font-size: 12px;
+	cursor: pointer;
+	text-align: center;
+	line-height: 25px;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.buttons button:hover {
+	background-color: white;
+	color: black;
+}
+
+/* 숨겨진 상세정보 */
+.more-info {
+	display: none;
+	padding: 10px;
+	background-color: #f9f9f9;
+	border-top: 1px solid #ddd;
+}
+
+.more-info.active {
+	display: block;
+}
+
+.more-info-category {
+	font-weight: bolder; display : grid;
+	justify-content: center;
+	width: 115px;
+	display: grid;
+}
+
+.more-info-info {
+	display: grid;
+	justify-content: center;
+	width: 540px;
+}
+
+/* 배송조회 관련 */
+.status-imgs, .status-imgs div, .step-info {
+	display: flex;
+	justify-content: center;
+}
+
+.status-imgs div, .space {
+	width: 100px;
+}
+
+.step-info div {
+	display: flex;
+	justify-content: center;
+	width: 100px;
+}
+
+.status-imgs div.active {
+	display: flex;
+	justify-content: center;
+	width: 100px;
+	fill: blue;
+}
+
+.step-info div.active {
+	display: flex;
+	justify-content: center;
+	width: 100px;
+    color: blue;
+    font-weight: bold;
+}

@@ -11,3 +11,107 @@
 	display: flex;
 	justify-content: flex-end;
 }
+
+.next-stage {
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+.result-title {
+	width: 100%;
+	height: 30%;
+	border-top: 2px solid #cecece;
+	/* margin-top: 20px; */
+	padding-top: 40px;
+	display: flex;
+	justify-content: center;
+}
+
+.success-order {
+	display: block;
+	align-content: center;
+}
+
+.order-result {
+	font-size: 40px;
+	display: flex;
+	justify-content: center;
+}
+
+.order-number {
+	padding-top: 10px;
+	padding-bottom: 15px;
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+}
+
+.success-icon {
+	display: flex;
+	justify-content: center;
+}
+
+.success-icon svg {
+	width: 100px;
+	height: 100px;
+}
+
+.result-info {
+	display: flex;
+	justify-content: center;
+}
+
+.cong {
+	align-content: center;
+}
+
+.congg {
+	width: 40px;
+	height: 40px;
+	object-fit: contain;
+}
+
+.goto {
+	display: flex;
+	justify-content: center;
+}
+
+.goto button {
+	margin: 10px;
+	font-size: 15px;
+}
+
+/* 버튼 컨테이너: 버튼 간 간격 조정 */
+.button-container {
+    display: flex;
+    gap: 10px; /* 버튼 사이 간격 */
+    justify-content: center;
+    margin-top: 20px; /* 버튼 위쪽 여백 */
+}
+
+/* 심플한 버튼 스타일 */
+.simple-button {
+    background-color: #000; /* 버튼 배경색: 검정 */
+    color: #fff; /* 텍스트 색상: 흰색 */
+    border: 1px solid #000; /* 테두리: 검정 */
+    border-radius: 5px; /* 살짝 둥근 모서리 */
+    padding: 10px 20px; /* 버튼 안 여백 */
+    font-size: 16px; /* 텍스트 크기 */
+    cursor: pointer; /* 마우스 오버 시 포인터 */
+    transition: background-color 0.3s ease, color 0.3s ease; /* 호버 효과 */
+}
+
+/* 호버 시 스타일 */
+.simple-button:hover {
+    background-color: #fff; /* 배경색: 흰색 */
+    color: #000; /* 텍스트 색상: 검정 */
+    border: 1px solid #000; /* 테두리 유지 */
+}
+
+/* 버튼 비활성화 상태 */
+.simple-button:disabled {
+    background-color: #ccc; /* 배경색: 회색 */
+    color: #666; /* 텍스트 색상: 어두운 회색 */
+    border: 1px solid #ccc; /* 테두리: 회색 */
+    cursor: not-allowed; /* 클릭 불가 표시 */
+}

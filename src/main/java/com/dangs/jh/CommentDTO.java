@@ -12,13 +12,16 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CommentDTO {
 	private String pc_user;
 	private String pc_product;
 	private String pc_comment;
 	private Date pc_date;
 	
-	
-	
-	
+	public String toJSON() {
+		Gson gson = new Gson();
+		return gson.toJson(this);
+	}
 }
