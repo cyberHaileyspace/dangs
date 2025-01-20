@@ -31,7 +31,8 @@
                 <label>현재 대표이미지</label> <br>
                 <img alt="current-main-img" src="${product_img}" style="width : 100px; padding : 10px"> <br>
                 <label for="main-img">수정할 대표이미지</label> <br>
-                <input type="file" class="main-img" name="main-img" value="${product_img}"> <br> 
+                <input type="file" class="main-img" name="main-img-new"> <br> 
+                <input hidden class="main-img" name="main-img-old" value="${product_img}"> <br> 
                 
                 <label for="seller">판매자</label>
                 <label style="color : red">(판매자는 수정이 불가능합니다.)</label>
@@ -64,6 +65,7 @@
         </div>
     </div>
     <input type="hidden" name="product_id" value="${product_id}">
+    <input type="hidden" name="current-img" value="${product_img}">
 </form>
 </body>
 </html>

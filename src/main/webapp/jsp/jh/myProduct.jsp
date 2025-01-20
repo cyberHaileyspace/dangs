@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/jh/myOrder.css">
-<script type="text/javascript" src="js/jh/myOrder.js" defer="defer"></script>
+<script type="text/javascript" src="js/jh/myProduct.js" defer="defer"></script>
 </head>
 <body>
 	<body>
@@ -59,7 +59,7 @@
 					<div>${product.sub_category}</div>
 					<div class="buttons">
 						<button class="updateBtn" onclick="location.href='UpdateProductC?product_id=${product.product_id}'">수정</button>
-						<button class="deleteBtn">삭제</button>
+						<button class="deleteBtn" onclick="confirm('해당 상품을 삭제하시겠습니까?') ? location.href='DeleteProductC?product_id=${product.product_id}' : void(0)">삭제</button>
 					</div>
 				</div>
 				</c:forEach>

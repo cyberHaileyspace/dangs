@@ -863,14 +863,15 @@ public class ShopModel {
 		    String product_name = mr.getParameter("product-name");
 		    int product_price = Integer.parseInt(mr.getParameter("price"));
 		    int product_stock = Integer.parseInt(mr.getParameter("quantity"));
-		    String uploadedFile = mr.getFilesystemName("main-img");
 		    String product_category = mr.getParameter("main-cate");
 		    String sub_category = mr.getParameter("sub-cate");
 		    
-		 // 업로드된 파일 정보 가져오기
-		    String product_img = (uploadedFile != null) ? uploadedFile : "dog-nose.png"; // 기본 이미지 처리
-
-		    System.out.println("Uploaded Image: " + product_img);
+		    String new_img = mr.getFilesystemName("main-img-new");
+		    String old_img = mr.getParameter("main-img-old");
+		    String file = new_img;
+		    if (new_img == null) {
+				file = old_img;
+			}
 
 			String sql = "update product set product_name = ?, product_price = ?, product_stock = ?, product_category = ?, product_img = ?, product_date = sysdate, sub_category = ? where product_id = ?";
 
@@ -881,9 +882,32 @@ public class ShopModel {
 			pstmt.setInt(2, product_price);
 			pstmt.setInt(3, product_stock);
 			pstmt.setString(4, product_category);			
-			pstmt.setString(5, product_img);
+			pstmt.setString(5, file);
 			pstmt.setString(6, sub_category);
 			pstmt.setString(7, product_id);
+
+			int updatedRows = pstmt.executeUpdate();
+			System.out.println("업데이트된 행 수: " + updatedRows);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+	}
+
+	public static void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
+		String product_id = request.getParameter("product_id");
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		String sql = "DELETE FROM product WHERE product_id = ?";
+
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, product_id);
 
 			int updatedRows = pstmt.executeUpdate();
 			System.out.println("업데이트된 행 수: " + updatedRows);
