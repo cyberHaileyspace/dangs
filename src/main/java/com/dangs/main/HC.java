@@ -14,6 +14,7 @@ public class HC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		swM.selectRecentPosts(request);
 		request.setAttribute("content", "jsp/sw/main.jsp");
 		swM.loginCheck(request);
 		request.getRequestDispatcher("index.jsp").forward(request, response);

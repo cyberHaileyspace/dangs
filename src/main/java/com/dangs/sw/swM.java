@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.dangs.main.DBManager;
+import com.google.gson.JsonObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -139,27 +141,30 @@ public class swM {
 	public static void updateUserInfo(HttpServletRequest request) {
 
 		PreparedStatement pstmt = null;
-		String path = request.getServletContext().getRealPath("img/userProfile");
+
+		// String path = "C:\\Users\\lastp\\OneDrive\\Desktop\\img\\userProfile"; //-로컬
+		// 절대경로
+		String path = request.getServletContext().getRealPath("img/userProfile"); // -서버 상대경로
 		System.out.println("Upload Path: " + path);
 		try {
 
 			MultipartRequest mr = new MultipartRequest(request, path, 1024 * 1024 * 20, "utf-8",
 					new DefaultFileRenamePolicy());
-			
+
 			String name = mr.getParameter("updateName");
 			String nickname = mr.getParameter("updateNickname");
 			String age = mr.getParameter("updateAge");
 			String email = mr.getParameter("updateEmail");
 			String tel = mr.getParameter("updateTel");
 			String address = mr.getParameter("updateAddress");
-			
+
 			HttpSession hs = request.getSession();
 			UserDTO user = (UserDTO) hs.getAttribute("user");
 			String newPhoto = mr.getFilesystemName("newPhoto");
-			System.out.println("New Photo: " + newPhoto);  // 로그 확인
+			System.out.println("New Photo: " + newPhoto); // 로그 확인
 			String oldPhoto = user.getPhoto();
 			String userID = user.getId();
-			
+
 			String img = oldPhoto;
 			if (newPhoto != null) {
 				img = newPhoto;
@@ -168,9 +173,9 @@ public class swM {
 			System.out.println(userID);
 			System.out.println(newPhoto);
 			System.out.println(oldPhoto);
-			
+
 			String sql = "update userDB set user_name=?,user_nickname=?,user_age=?,user_email=?,user_tel=?,user_address=?,user_photo=? where user_id=?";
-			
+
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, name);
@@ -181,16 +186,14 @@ public class swM {
 			pstmt.setString(6, address);
 			pstmt.setString(7, img);
 			pstmt.setString(8, userID);
-			
-			if (pstmt.executeUpdate()==1) {
+
+			if (pstmt.executeUpdate() == 1) {
 				System.out.println("수정 성공 !!! 레전드 사건 발생 !!!!");
 				if (newPhoto != null) {
 					File f = new File(path + "/" + oldPhoto);
 					f.delete();
 				}
 			}
-			
-
 
 			// 수정된 값들로 UserDTO 객체 업데이트
 			user.setName(name);
@@ -199,11 +202,10 @@ public class swM {
 			user.setEmail(email);
 			user.setTel(tel);
 			user.setAddress(address);
-			user.setPhoto(img);  // 사진 경로 업데이트
+			user.setPhoto(img); // 사진 경로 업데이트
 
 			// 수정된 객체를 다시 세션에 저장
 			hs.setAttribute("user", user);
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -213,4 +215,248 @@ public class swM {
 
 	}
 
-}
+	public static void getAllAddress(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("application/json; charset=utf-8");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+
+			String sql = "select user_address from userDB";
+
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			ArrayList<String> addresses = new ArrayList<>();
+			while (rs.next()) {
+				JmAddress jmAddress = new JmAddress();
+				jmAddress.setAddress(rs.getString(1));
+				addresses.add(jmAddress.toJSON());
+			}
+			System.out.println(addresses);
+			response.getWriter().print(addresses);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+
+	}
+
+	public static void selectRecentPosts(HttpServletRequest request) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM cm_post ORDER BY cm_date DESC FETCH FIRST 5 ROWS ONLY";
+
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			RecentPostDTO post = null;
+			ArrayList<RecentPostDTO> posts = new ArrayList<RecentPostDTO>();
+			while (rs.next()) {
+				post = new RecentPostDTO();
+				post.setCm_no(rs.getInt(1));
+				post.setCm_title(rs.getString(3));
+				posts.add(post);
+			}
+			request.setAttribute("posts", posts);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+	}
+
+	public static boolean isPetRegistered(String userID) {
+		boolean hasPet = false;
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT COUNT(*) FROM petDB WHERE user_id = ?";
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			if (rs.next() && rs.getInt(1) > 0) {
+				hasPet = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		return hasPet;
+	}
+
+	public static void registerPet(HttpServletRequest request) {
+
+		PreparedStatement pstmt = null;
+
+		// String path = "C:\\Users\\lastp\\OneDrive\\Desktop\\img\\userProfile"; //-로컬
+		// 절대경로
+		String path = request.getServletContext().getRealPath("img/petProfile"); // -서버 상대경로
+		System.out.println("Upload Path: " + path);
+		try {
+
+			MultipartRequest mr = new MultipartRequest(request, path, 1024 * 1024 * 20, "utf-8",
+					new DefaultFileRenamePolicy());
+
+			String name = mr.getParameter("pet_name");
+			String type = mr.getParameter("pet_type");
+			String size = mr.getParameter("pet_size");
+			String birth = mr.getParameter("pet_birth");
+			String gender = mr.getParameter("pet_gender");
+			String description = mr.getParameter("pet_description");
+
+			HttpSession hs = request.getSession();
+			UserDTO user = (UserDTO) hs.getAttribute("user");
+			String userID = user.getId();
+			String newPhoto = mr.getFilesystemName("pet_photo");
+			System.out.println("pet photo: " + newPhoto); // 로그 확인
+
+			String img = "dog-nose.png";
+			if (newPhoto != null) {
+				img = newPhoto;
+			}
+			// 확인 용
+			System.out.println(userID);
+			System.out.println(newPhoto);
+
+			String sql = "INSERT INTO petDB (user_id, pet_name, pet_type, pet_size, pet_birth, pet_gender, pet_description, pet_photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			pstmt.setString(2, name);
+			pstmt.setString(3, type);
+			pstmt.setString(4, size);
+			pstmt.setString(5, birth);
+			pstmt.setString(6, gender);
+			pstmt.setString(7, description);
+			pstmt.setString(8, img);
+
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("댕댕이 추가 완료");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+
+	}
+
+	public static void getMyPetInfo(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserDTO user = (UserDTO) session.getAttribute("user");
+		String userID = user.getId();
+		String sql = "select * from petDB where user_id = ?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			ArrayList<PetDTO> pets = new ArrayList<PetDTO>();
+			PetDTO pet = null;
+			while (rs.next()) {
+				pet = new PetDTO();
+				pet.setPetId(rs.getInt(1));
+				pet.setUserId(rs.getString(2));
+				pet.setPetName(rs.getString(3));
+				pet.setPetType(rs.getString(4));
+				pet.setPetPhoto(rs.getString(5));
+				pet.setPetSize(rs.getString(6));
+				pet.setPetBirth(rs.getDate(7));
+				pet.setPetGender(rs.getString(8));
+				pet.setPetDescription(rs.getString(9));
+
+				pets.add(pet);
+			}
+			request.setAttribute("pets", pets);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+
+	}
+
+	public static void postLike(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("application/json;charset=utf-8");
+		String postId = request.getParameter("postId");
+		HttpSession hs = request.getSession();
+		UserDTO user = (UserDTO) hs.getAttribute("user");
+		String userId = user.getId();
+		System.out.println(postId + "/" + userId);
+		JsonObject jo = new JsonObject();
+
+		if (userId != null && postId != null) {
+			try {
+				con = DBManager.connect();
+
+				// Check if like already exists
+				String checkLikeSql = "SELECT COUNT(*) FROM post_likes WHERE post_id = ? AND user_id = ?";
+				try (PreparedStatement checkLikeStmt = con.prepareStatement(checkLikeSql)) {
+					checkLikeStmt.setInt(1, Integer.parseInt(postId));
+					checkLikeStmt.setString(2, userId);
+					try (ResultSet rs = checkLikeStmt.executeQuery()) {
+						if (rs.next() && rs.getInt(1) == 0) {
+							// Insert like
+							String insertLikeSql = "INSERT INTO post_likes (post_id, user_id) VALUES (?, ?)";
+							try (PreparedStatement insertLikeStmt = con.prepareStatement(insertLikeSql)) {
+								insertLikeStmt.setInt(1, Integer.parseInt(postId));
+								insertLikeStmt.setString(2, userId);
+								insertLikeStmt.executeUpdate();
+							}
+
+							// Increment like count in cm_post
+							String updateLikeCountSql = "UPDATE cm_post SET cm_like = cm_like + 1 WHERE cm_no = ?";
+							try (PreparedStatement updateLikeCountStmt = con.prepareStatement(updateLikeCountSql)) {
+								updateLikeCountStmt.setInt(1, Integer.parseInt(postId));
+								updateLikeCountStmt.executeUpdate();
+							}
+
+							// Get updated like count
+							String getLikeCountSql = "SELECT cm_like FROM cm_post WHERE cm_no = ?";
+							try (PreparedStatement getLikeCountStmt = con.prepareStatement(getLikeCountSql)) {
+								getLikeCountStmt.setInt(1, Integer.parseInt(postId));
+								try (ResultSet rsLikeCount = getLikeCountStmt.executeQuery()) {
+									if (rsLikeCount.next()) {
+										int newLikeCount = rsLikeCount.getInt("cm_like");
+										jo.addProperty("success", true);
+										jo.addProperty("newLikeCount", newLikeCount);
+									}
+								}
+							}
+						} else {
+							jo.addProperty("success", false);
+							jo.addProperty("message", "이미 좋아요를 눌렀습니다.");
+						}
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				jo.addProperty("success", false);
+				jo.addProperty("message", "서버 오류 발생.");
+			} finally {
+				DBManager.close(con, null, null);
+			}
+		} else {
+			jo.addProperty("success", false);
+			jo.addProperty("message", "유효하지 않은 요청입니다.");
+		}
+
+		try {
+			response.getWriter().write(jo.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+} // swM 끝
