@@ -703,7 +703,7 @@ public class ShopModel {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
-//order_status가 "주문취소"라면 업데이트 하지 않도록 수정함		
+//co_status가 "주문취소"라면 업데이트 하지 않도록 수정함		
 		String sql = "UPDATE canceled_order\n"
 				+ "SET co_status = CASE\n"
 				+ "    WHEN co_date = TRUNC(SYSDATE) - 1 THEN '검토중'\n"
