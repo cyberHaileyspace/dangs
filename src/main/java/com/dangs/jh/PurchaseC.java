@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/PurchaseC")
 public class PurchaseC extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 //		결제 관련 로직
 		String ordered_stock = request.getParameter("ordered_stock");
 		String total_price = request.getParameter("total_price");
@@ -20,22 +21,31 @@ public class PurchaseC extends HttpServlet {
 		request.setAttribute("del_price", del_price);
 
 		ShopModel.getProduct(request, response);
-		
+
 		request.setAttribute("content", "jsp/jh/purchase.jsp");
 		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		String pi = request.getParameter("product_id");
+//		String select_bank = request.getParameter("select-bank");
+//		String installments = request.getParameter("installments");
 		
-/*		1. 주문정보를 orderDB에 담는 메소드
- * 			   	  ↓
- * 		2. orderDB에서 order_id를 가져오는 메소드 (order_id를 주문번호로 활용)
- * 				  ↓
- * 		3. order_id를 attribute로 받아서 purchaseResult에 주문번호로 띄우기
-*/
+//		주문내역 페이지에서 주문수량 필요해서 추가
+		String order_stock = request.getParameter("orderedStocks");
+		request.setAttribute("order_stock", order_stock);
 		
-//		주문번호 만드는 로직 필요
-		
+		/* 1. 주문정보를 orderDB에 담고 order_id를 추출해 보내는 메소드 */
+		ShopModel.saveOrder(request, response);
+
+//		필요하면 order_id를 랜덤 주문번호로 바꾸는 로직
+
+		request.setAttribute("pi", pi);
+		System.out.println("pi는~~~~~~~" + pi + "~~~~~~~");
+//		request.setAttribute("select_bank", select_bank);
+//		request.setAttribute("installments", installments);
 		request.setAttribute("content", "jsp/jh/purchaseResult.jsp");
 		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
 	}

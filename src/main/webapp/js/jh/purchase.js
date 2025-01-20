@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const totalPriceElement = document.querySelector("#total-price2");
 	const usagePointInput = document.querySelector("#usage-point-input");
 	const finalPriceElement = document.querySelector("#final-price2");
+	const hiddenTotalPriceInput = document.querySelector("#hidden-total-price34");
 
 	// 총 금액 가져오기 (숫자로 변환)
 	const totalPrice = parseInt(totalPriceElement.dataset.totalPrice, 10);
@@ -59,6 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		// 최종 결제 금액 업데이트
 		finalPriceElement.textContent = `${finalPrice}원`;
+
+		// 숨겨진 입력 필드 업데이트
+		hiddenTotalPriceInput.value = finalPrice;
 	};
 
 	// 페이지 로드 시 초기 최종 금액 계산
@@ -71,19 +75,26 @@ document.addEventListener("DOMContentLoaded", () => {
 // 동의 안하면 결제 못넘어가게
 function confirm_purchase(event) {
 	// 두 개의 라디오 버튼 요소 가져오기
-	const confirm1 = document.querySelector('input[name="confirm1"]:checked');
-	const confirm2 = document.querySelector('input[name="confirm2"]:checked');
+	const uncheckedRadio1 = document.querySelector('input[name="confirm1"]:not(:checked)');
+	const uncheckedRadio2 = document.querySelector('input[name="confirm2"]:not(:checked)');
 
+	const confirm0 = document.getElementById('confirm0');
+	const confirm3 = document.getElementById('confirm3');
+	
 	// 두 라디오 버튼이 모두 체크되지 않았을 경우
-	if (!confirm1 || !confirm2) {
+	if (uncheckedRadio1 || uncheckedRadio2) {
 		event.preventDefault(); // 버튼 클릭 기본 동작 막기
 		alert("모든 확인 사항에 동의해야 결제가 가능합니다.");
 
 		// 체크되지 않은 input으로 포커스를 이동
-		if (!confirm1) {
-			confirm1.focus(); // confirm1이 체크되지 않은 경우, 해당 input으로 포커스를 이동
-		} else if (!confirm2) {
-			confirm2.focus(); // confirm2가 체크되지 않은 경우, 해당 input으로 포커스를 이동
+		if (uncheckedRadio1) {
+			uncheckedRadio1.focus();
+			confirm0.style.color = "red"; 
+		//return;
+		} else if (uncheckedRadio2) {
+			uncheckedRadio2.focus();
+			confirm3.style.color = "red"; 
+		//return;
 		}
 		return false;
 	}
