@@ -1,5 +1,7 @@
 package com.dangs.jm;
 
+import com.google.gson.Gson;
+
 public class userDTO {
 	private String user_name;
 	private String user_address;
@@ -33,6 +35,11 @@ public class userDTO {
 	@Override
 	public String toString() {
 		return "userDTO [user_name=" + user_name + ", user_address=" + user_address + "]";
+	}
+	
+	public String toJSON() {
+		Gson gson = new Gson();
+		return gson.toJson(this);
 	}
 
 }
