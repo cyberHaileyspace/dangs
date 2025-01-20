@@ -25,7 +25,7 @@
 		<!-- 페이지 헤더 -->
 		<header class="page-header">
 			<h1>보호소 입양 공고</h1>
-			<p>구조 공고 기간이 종료되어 입양이 가능한 동물들입니다.</p>
+			<p>구조 공고 기간이 종료되어 입양이 가능한 아이들입니다.</p>
 		</header>
 
 		<!-- 관리자 버튼 -->
@@ -48,8 +48,9 @@
 
 		<!-- 페이지네이션 -->
 		<div class="pagination">
-			<button id="prevPage" class="pagination-button">이전</button>
-			<button id="nextPage" class="pagination-button">다음</button>
+    		<button id="prevPage" class="pagination-button">이전</button>
+    		<div id="pagination" class="pagination-numbers"></div> <!-- 페이지 번호 컨테이너 -->
+    		<button id="nextPage" class="pagination-button">다음</button>
 		</div>
 	</div>
 </body>

@@ -13,6 +13,10 @@ public class AdoptDetailController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		String desertionNo = request.getParameter("desertionNo");
+		
+		AdoptionDAO.getAdao().getAnimalDetail(desertionNo);
+		
 		request.setAttribute("content", "jsp/hy/adoptDetail.jsp");
 		
 		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);

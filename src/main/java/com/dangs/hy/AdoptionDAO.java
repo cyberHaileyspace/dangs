@@ -160,6 +160,30 @@ public class AdoptionDAO {
 
         return jsonData;
     }
+
+	public void getAnimalDetail(String desertionNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select json_content from json_data_table";
+		
+		try {
+			
+			
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+		
+		
+		
+	}
 	
 	
 	
