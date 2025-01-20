@@ -71,30 +71,97 @@ body {
             height: 20px;
             margin-right: 10px;
         }
-        .size-cm {
-            display: flex;
-/*            flex-direction: column;*/
-            justify-content: flex-start;
-            margin-bottom: 20px;
-            width: 600px;
-        }
-        .size-cm .dog-size {
-			width: 70px;
-            height: 30px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
-            text-align: center;
-        }
-        .size-cm .dog-size:hover {
-            background-color: #f0f0f0;
-        }
-        .post-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .post-link a {
-            text-decoration: none;
-            color: #007bff;
-            }
+        .add-size {
+	display: flex;
+	margin-bottom: 15px;
+	
+}
+.add-size input[type=radio]{
+    display: none;
+}
+.add-size input[type=radio]+label{
+	padding: 10px 15px;
+     border-radius: 10px;
+    display: inline-block;
+    cursor: pointer;
+    width: 50px;
+	height: 15px;
+    border: 1px solid #333;
+    line-height: 24px;
+    text-align: center;
+    font-weight:bold;
+    font-size:13px;
+    
+    margin-right: 5px;
+}
+.add-size input[type=radio]+label{
+    background-color: bisque;
+    color: #333;
+}
+.add-size input[type=radio]:checked+label{
+    background-color: #333;
+    color: bisque;
+}
+
+        .post-cm{
+			flex-direction: column;
+			border-bottom: 1px solid gray;
+			margin-bottom: 15px;
+			
+		}
+		.cm-kind{
+			display: flex;
+			
+		}
+		.cm-menu{
+			font-weight: bold;
+			font-size: 20px;
+		}
+		.cm-cate{
+			margin-left: 10px;
+		}
+		.cm-title{
+			font-size: 15pt;
+			font-weight: bold;
+			margin: 10px 0;
+		}
+		.cm-title:hover{
+			color : #ffdd57
+		}
+		.cm-content{
+			display: flex;
+			height: 55px;
+		}
+		.cm-img img{
+			width: 80px;
+			height: 80px;
+		}
+		.cm-text{
+			padding: 10px 0;
+			  width: 100%;
+   		height: auto; /* height 제한 제거 */
+    	overflow: hidden;
+    	display: -webkit-box;
+    	-webkit-line-clamp: 2; /* 표시할 줄 수 */
+    	-webkit-box-orient: vertical;
+    	text-overflow: ellipsis; /* 생략 부호 추가 */
+    	color: gray;
+			
+		}
+		
+		.cm-info{
+			display: flex;
+			margin: 10px 0;
+		}
+/*		.info-name{*/
+/*			margin-left: 10px;*/
+/*		}*/
+		.info-date{
+			margin-left: 10px;
+		}
+		.info-view{
+			margin-left: 10px;
+		}
+		.info-like{
+			margin-left: 10px;
+		}

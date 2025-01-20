@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -53,14 +54,41 @@ pageEncoding="UTF-8"%>
           </button>
         </div>
       </div>
-
-      <div class="size-cm">
-        <div class="dog-size">소형견</div>
-        <div class="dog-size">중형견</div>
-        <div class="dog-size">대형견</div>
+      
+      <div class="add-size">
+		 <input type="radio" id="s" name="cm-dog"><label for="s">소형견</label>
+     	 <input type="radio" id="m" name="cm-dog"><label for="m">중형견</label>
+     	 <input type="radio" id="l" name="cm-dog"><label for="l">대형견</label>
+ 		</div>
+      
+      
+      <c:forEach var="i" items="${cm_posts }">
+      <div class="post-cm" onclick="location.href='CmPostC?no=${i.cm_no }'">
+      	<div class="cm-kind">
+      		<div class="cm-menu">${i.cm_cate }</div>
+      		<div class="cm-cate">${i.cm_size }</div>
+      	</div>
+      <div class="cm-title">${i.cm_title }</div>
+      <div class="cm-content">
+      <div class="cm-text"><span>${i.cm_text }</span></div>
+      <div class="cm-img"><img alt="" src="img/dog-nose.png"></div>
       </div>
-
-      <div><a href="jsp/yj/cm_all.jsp">전체 포스트</a></div>
+      <div class="cm-info">
+      	<div class="info-name">작성자 : ${i.cm_user_id }</div>
+      	<div class="info-date">작성일 : ${i.cm_date }</div>
+      	<div class="info-view">조회수 : ${i.cm_view }</div>
+      	<div class="info-like">좋아요 : ${i.cm_like }</div>
+      	<%-- <div hidden>${i_cm_no }</div> --%>
+      </div>
+<!--       <hr> -->
+      </div>
+      </c:forEach>
+      
+      
+      
+      
+      
+      
     </div>
   </body>
 </html>
