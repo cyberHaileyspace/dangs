@@ -2,6 +2,8 @@ package com.dangs.yj;
 
 import java.util.Date;
 
+import com.google.gson.Gson;
+
 import lombok.Data;
 
 
@@ -18,6 +20,13 @@ public class CmDTO {
 	private int cm_view;
 	private Date cm_date;
 //	private String cm_img;
+	
+	
+	public String toJSONbyMe() {
+		Gson gson = new Gson();
+		return gson.toJson(this);
+		
+	}
 	
 	
 }
