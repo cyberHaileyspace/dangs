@@ -74,10 +74,10 @@ $(function() {
 					}
 
 					const itemHtml = `
-                        <div class="item">
-                            <img src="${ob.popfile}" alt="Thumbnail" class="detail-image" data-id="${ob.desertionNo}">
+                        <div class="item" data-id="${ob.desertionNo}">
+                            <img src="${ob.popfile}" alt="Thumbnail" class="detail-image">
 							<div class="itme-content">                            
-                           		<p class="detail-kindCd" data-id="${ob.desertionNo}"><strong> ${kindCd}</strong> </p>
+                           		<p class="detail-kindCd"><strong> ${kindCd}</strong> </p>
                            		<p> ${age} </p>
                             	<p> ${gender} / ${neuterStatus} </p>
                             	<p> 지역: ${ob.happenPlace}</p>
@@ -106,18 +106,10 @@ $(function() {
 	loadPageData(currentPage);
 
 	// 이미지 클릭 이벤트
-	$(document).on('click', '.detail-image', function() {
+	$(document).on('click', '.item', function() {
 		const desertionNo = $(this).data('id');
 		window.location.href = `AdoptDetailController?desertionNo=${desertionNo}`;
 	});
-
-	// 품종 클릭 이벤트
-	$(document).on('click', '.detail-kindCd', function() {
-		const desertionNo = $(this).data('id');
-		window.location.href = `AdoptDetailController?desertionNo=${desertionNo}`;
-	});
-
-
 
 	// 이전 페이지 버튼 클릭
 	$('#prevPage').click(function() {

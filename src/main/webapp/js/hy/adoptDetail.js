@@ -39,13 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
 			const contentHtml = `
             	<div class="animalInfo">
             		<div class="animalDetailImg">
-                		<img src="${animal.popfile}" alt="Animal Image" width="300">
+                		<img src="${animal.popfile}" alt="Animal Image" >
                 	</div>
                 	<div class="animalBasicInfo">
-                		<p>${kindCd}</p>
-                		<p>${age}</p>
+                		<div><strong>${kindCd}</strong></div>
+                		<div><p>${age}</p></div>
+                		<div class="like-button" onclick="checklog()" data-id="${animal.desertionNo}">
+                			<i id="heart-icon" class="fa-regular fa-heart" aria-hidden="true"></i>
+                		</div>
                 	</div>
-                	<div>
+                	<div>	
                 		<p>${animal.sexCd === 'F' ? '여아' : '남아'}</p>
                 		<p>${animal.neuterYn === 'Y' ? '중성화 완료' : '중성화 미완료'}</p>
                 		<p>${animal.colorCd}</p>
@@ -57,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	                	<p>발견 장소: ${animal.happenPlace}</p>
                 	</div>
                 <div class="shelterInfo">
-                	<h1> 보호소 </h1>
+                	<strong> 보호소 </strong>
                 	<p>보호소 이름: ${animal.careNm}</p>
                 	<p>보호소 주소: ${animal.careAddr}</p>
                 	<p>보호소 전화번호: ${animal.careTel}</p>

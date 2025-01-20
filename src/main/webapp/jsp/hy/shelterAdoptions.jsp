@@ -29,15 +29,15 @@
 		</header>
 
 		<!-- 관리자 버튼 -->
-		<div class="admin-actions">
+<!-- 		<div class="admin-actions">
 			<button onclick="location.href='AdoptAPI'" class="admin-button">데이터셋
 				저장</button>
-		</div>
+		</div> -->
 
 		<!-- 필터링 섹션 -->
-		<div class="filter-section">
+<!-- 		<div class="filter-section">
 			<p>필터링 기능 준비 중...</p>
-		</div>
+		</div> -->
 
 		<!-- 게시글 섹션 -->
 		<div class="posts-section">

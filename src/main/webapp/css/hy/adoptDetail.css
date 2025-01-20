@@ -68,3 +68,19 @@ a {
     margin: 5px 0; /* 단락 간 여백 */
 }
 
+.like-button {
+    display: inline-block;
+    font-size: 24px; /* 하트 크기 */
+    cursor: pointer;
+    color: #333; /* 하트 색상 */
+    transition: transform 0.2s, color 0.2s;
+}
+
+.like-button:hover {
+    transform: scale(1.2); /* 마우스를 올릴 때 확대 */
+}
+
+.like-button.liked #heart-icon {
+    color: #ff0000; /* 좋아요 클릭 시 빨간색 */
+}
+

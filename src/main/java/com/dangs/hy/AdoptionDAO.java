@@ -14,8 +14,10 @@ import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dangs.main.DBManager;
+import com.dangs.sw.UserDTO;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -116,75 +118,75 @@ public class AdoptionDAO {
 	}
 
 	public void handleJsonRequest(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            // 페이지 번호 받기 (기본값: 1)
-            int pageNo = Integer.parseInt(request.getParameter("pageNo"));
+		try {
+			// 페이지 번호 받기 (기본값: 1)
+			int pageNo = Integer.parseInt(request.getParameter("pageNo"));
 
-            // 데이터베이스에서 JSON 데이터 가져오기
-            String jsonData = getJsonDataByPage(pageNo);
+			// 데이터베이스에서 JSON 데이터 가져오기
+			String jsonData = getJsonDataByPage(pageNo);
 
-            if (jsonData != null) {
-                // JSON 응답 전송
-                response.setContentType("application/json");
-                response.setCharacterEncoding("UTF-8");
-                response.getWriter().write(jsonData);
-            } else {
-                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-                response.getWriter().write("{\"message\":\"Page not found.\"}");
-            }
+			if (jsonData != null) {
+				// JSON 응답 전송
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().write(jsonData);
+			} else {
+				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+				response.getWriter().write("{\"message\":\"Page not found.\"}");
+			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                response.getWriter().write("{\"message\":\"An error occurred.\"}");
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        }
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+				response.getWriter().write("{\"message\":\"An error occurred.\"}");
+			} catch (IOException ioException) {
+				ioException.printStackTrace();
+			}
+		}
+	}
 
-    private String getJsonDataByPage(int pageNo) {
-        String jsonData = null;
-        String sql = "SELECT json_content FROM json_data_table WHERE id = ?";
+	private String getJsonDataByPage(int pageNo) {
+		String jsonData = null;
+		String sql = "SELECT json_content FROM json_data_table WHERE id = ?";
 
-        try (Connection con = DBManager.connect();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+		try (Connection con = DBManager.connect(); PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-            pstmt.setInt(1, pageNo);
+			pstmt.setInt(1, pageNo);
 
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    jsonData = rs.getString("json_content");
-                }
-            }
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					jsonData = rs.getString("json_content");
+				}
+			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        return jsonData;
-    }
+		return jsonData;
+	}
 
 	public String getAnimalDetail(String desertionNo) {
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		String sql = "select json_content from json_data_table";
-		
+
 		try {
-			
+
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
+
 			while (rs.next()) {
 				String jsonContent = rs.getString("json_content");
-				
+
 				JsonObject jsonObject = JsonParser.parseString(jsonContent).getAsJsonObject();
-				JsonArray items = jsonObject.getAsJsonObject("response").getAsJsonObject("body").getAsJsonObject("items").getAsJsonArray("item");
-				
+				JsonArray items = jsonObject.getAsJsonObject("response").getAsJsonObject("body")
+						.getAsJsonObject("items").getAsJsonArray("item");
+
 				for (JsonElement item : items) {
 					JsonObject obj = item.getAsJsonObject();
 					if (obj.get("desertionNo").getAsString().equals(desertionNo)) {
@@ -192,21 +194,69 @@ public class AdoptionDAO {
 					}
 				}
 			}
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
 		return null;
-		
-		
-		
-		
+
 	}
-	
-	
-	
-	
+
+	 @SuppressWarnings("resource") 
+	 public void getDetailTwo(String desertionNo, HttpServletRequest request, HttpServletResponse response) {
+		 
+		 response.setContentType("application/json;charset=utf-8"); 
+		 HttpSession hs = request.getSession(); 
+		 UserDTO user = (UserDTO) hs.getAttribute("user");
+		 String userId = user.getId(); 
+		 System.out.println(desertionNo + "/" + userId);
+	 
+		 PreparedStatement pstmt = null; 
+		 ResultSet rs = null; 
+		 
+		 String checkSql = "SELECT COUNT(*) FROM adoption_likes WHERE desertionNo = ? AND user_id = ?";
+		 String insertSql = "INSERT INTO adoption_likes (desertionNo, user_id) VALUES (?, ?)";
+		 
+		 try { 
+			 
+			 con = DBManager.connect();
+			 pstmt = con.prepareStatement(checkSql); 
+			 pstmt.setString(1, desertionNo);
+			 pstmt.setString(2, userId); 
+			 rs = pstmt.executeQuery();
+ 
+			 JsonObject jo = new JsonObject();
+			 
+			 if (rs.next() && rs.getInt(1) > 0) { 
+				 
+				 jo.addProperty("status", "fail");
+				 jo.addProperty("message", "이미 관심 등록된 게시물입니다.");
+				 response.getWriter().write(jo.toString()); 
+				 return; } 
+			 
+			 pstmt = con.prepareStatement(insertSql); 
+			 pstmt.setString(1, desertionNo);
+			 pstmt.setString(2, userId);
+	  
+			 if (pstmt.executeUpdate()>0) { 
+				jo.addProperty("status", "success");
+			 	jo.addProperty("message", "관심 등록이 완료되었습니다."); 
+			 } else {
+			 	jo.addProperty("status", "fail"); 
+			 	jo.addProperty("message", "관심 등록에 실패하였습니다."); 
+			 } 
+			 response.getWriter().write(jo.toString()); 
+		} catch(Exception e) { 
+			e.printStackTrace();
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+	 } finally {
+		 DBManager.close(con, pstmt, rs); 
+		 
+	 } 
+		 
+	 }
+	 
+
 }
