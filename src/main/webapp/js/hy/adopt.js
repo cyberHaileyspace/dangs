@@ -105,7 +105,7 @@ $(function() {
 	// 초기 데이터 로드
 	loadPageData(currentPage);
 
-	// 이미지 클릭 이벤트
+	
 	$(document).on('click', '.item', function() {
 		const desertionNo = $(this).data('id');
 		window.location.href = `AdoptDetailController?desertionNo=${desertionNo}`;

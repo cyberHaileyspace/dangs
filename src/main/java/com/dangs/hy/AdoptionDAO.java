@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -204,59 +205,236 @@ public class AdoptionDAO {
 
 	}
 
-	 @SuppressWarnings("resource") 
-	 public void getDetailTwo(String desertionNo, HttpServletRequest request, HttpServletResponse response) {
-		 
-		 response.setContentType("application/json;charset=utf-8"); 
-		 HttpSession hs = request.getSession(); 
-		 UserDTO user = (UserDTO) hs.getAttribute("user");
-		 String userId = user.getId(); 
-		 System.out.println(desertionNo + "/" + userId);
-	 
-		 PreparedStatement pstmt = null; 
-		 ResultSet rs = null; 
-		 
-		 String checkSql = "SELECT COUNT(*) FROM adoption_likes WHERE desertionNo = ? AND user_id = ?";
-		 String insertSql = "INSERT INTO adoption_likes (desertionNo, user_id) VALUES (?, ?)";
-		 
-		 try { 
-			 
-			 con = DBManager.connect();
-			 pstmt = con.prepareStatement(checkSql); 
-			 pstmt.setString(1, desertionNo);
-			 pstmt.setString(2, userId); 
-			 rs = pstmt.executeQuery();
- 
-			 JsonObject jo = new JsonObject();
-			 
-			 if (rs.next() && rs.getInt(1) > 0) { 
-				 
-				 jo.addProperty("status", "fail");
-				 jo.addProperty("message", "이미 관심 등록된 게시물입니다.");
-				 response.getWriter().write(jo.toString()); 
-				 return; } 
-			 
-			 pstmt = con.prepareStatement(insertSql); 
-			 pstmt.setString(1, desertionNo);
-			 pstmt.setString(2, userId);
-	  
-			 if (pstmt.executeUpdate()>0) { 
+	@SuppressWarnings("resource")
+	public void getPostDetail(String desertionNo, HttpServletRequest request, HttpServletResponse response) {
+
+		response.setContentType("application/json;charset=utf-8");
+		HttpSession hs = request.getSession();
+		UserDTO user = (UserDTO) hs.getAttribute("user");
+		String userId = user.getId();
+		System.out.println(desertionNo + "/" + userId);
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String checkSql = "SELECT COUNT(*) FROM adoption_likes WHERE desertionNo = ? AND user_id = ?";
+
+		try {
+
+			con = DBManager.connect();
+
+			pstmt = con.prepareStatement(checkSql);
+			pstmt.setString(1, desertionNo);
+			pstmt.setString(2, userId);
+			rs = pstmt.executeQuery();
+
+			JsonObject jo = new JsonObject();
+
+			if (rs.next() && rs.getInt(1) > 0) {
+
+				jo.addProperty("status", "fail");
+				jo.addProperty("message", "이미 관심 등록된 게시물입니다.");
+				response.getWriter().write(jo.toString());
+				return;
+
+			}
+
+			String insertSql = "INSERT INTO adoption_likes (desertionNo, user_id) VALUES (?, ?)";
+
+			pstmt = con.prepareStatement(insertSql);
+			pstmt.setString(1, desertionNo);
+			pstmt.setString(2, userId);
+
+			if (pstmt.executeUpdate() > 0) {
 				jo.addProperty("status", "success");
-			 	jo.addProperty("message", "관심 등록이 완료되었습니다."); 
-			 } else {
-			 	jo.addProperty("status", "fail"); 
-			 	jo.addProperty("message", "관심 등록에 실패하였습니다."); 
-			 } 
-			 response.getWriter().write(jo.toString()); 
-		} catch(Exception e) { 
+				jo.addProperty("message", "관심 등록이 완료되었습니다.");
+			} else {
+				jo.addProperty("status", "fail");
+				jo.addProperty("message", "관심 등록에 실패하였습니다.");
+			}
+			response.getWriter().write(jo.toString());
+		} catch (Exception e) {
 			e.printStackTrace();
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-	 } finally {
-		 DBManager.close(con, pstmt, rs); 
-		 
-	 } 
-		 
-	 }
-	 
+		} finally {
+			DBManager.close(con, pstmt, rs);
 
+		}
+
+	}
+
+
+	public static void likeCheck(HttpServletRequest request, HttpServletResponse response) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		UserDTO user = (UserDTO) request.getSession().getAttribute("user");
+		String adoptLikesVal = request.getParameter("adoptLikesVal");
+		String chk = request.getParameter("chk"); // -1 : detail load / 1 : 하트가 눌려진 상태 / 0 : 빈 하트 상태
+
+		System.out.println(adoptLikesVal);
+		System.out.println(user.getId());
+		System.out.println(chk);
+		
+		int val = -1;
+		String sql = "select count(*) from adoption_likes where user_id = ? and desertionno = ?"; // 1이면 있는거 0이면 insert해야되는거.
+		if(chk.equals("1")) {
+			sql = "delete adoption_likes where user_id=? and desertionno = ?";
+			val = 0;
+		}else if (chk.equals("0")) {
+			sql = "insert into adoption_likes(user_id, desertionno, created_at) values (?,?,sysdate)";
+		    val = 1;
+		}
+		
+		try {
+			response.setContentType("application/json;charset=utf-8");
+			con = DBManager.connect();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, user.getId());
+			ps.setString(2, adoptLikesVal);
+			
+			if (chk.equals("-1")) {
+				rs = ps.executeQuery();
+				rs.next(); // 1,0
+				int check = rs.getInt(1);
+				System.out.println(check);
+				response.getWriter().print(check);
+			}else {
+				ps.executeUpdate();
+				response.getWriter().print(val);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, null, null);
+		}
+		
+		
+	}
+
+	public void getUserFavorites(String userId) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT" +
+			    "    l.desertionno," +
+			    "    jt.desertion_no," +
+			    "    jt.filename," +
+			    "    jt.happen_dt," +
+			    "    jt.happen_place," +
+			    "    jt.kind_cd," +
+			    "    jt.color_cd," +
+			    "    jt.age," +
+			    "    jt.weight," +
+			    "    jt.notice_no," +
+			    "    jt.notice_sdt," +
+			    "    jt.notice_edt," +
+			    "    jt.process_state," +
+			    "    jt.sex_cd," +
+			    "    jt.neuter_yn," +
+			    "    jt.special_mark," +
+			    "    jt.care_nm," +
+			    "    jt.care_tel," +
+			    "    jt.care_addr," +
+			    "    jt.org_nm," +
+			    "    jt.charge_nm," +
+			    "    jt.officetel" +
+			    "    jt.popfile" +
+			    " FROM" +
+			    "    adoption_likes l" +
+			    " JOIN (" +
+			    "    SELECT" +
+			    "        jt.desertion_no," +
+			    "        jt.filename," +
+			    "        jt.happen_dt," +
+			    "        jt.happen_place," +
+			    "        jt.kind_cd," +
+			    "        jt.color_cd," +
+			    "        jt.age," +
+			    "        jt.weight," +
+			    "        jt.notice_no," +
+			    "        jt.notice_sdt," +
+			    "        jt.notice_edt," +
+			    "        jt.process_state," +
+			    "        jt.sex_cd," +
+			    "        jt.neuter_yn," +
+			    "        jt.special_mark," +
+			    "        jt.care_nm," +
+			    "        jt.care_tel," +
+			    "        jt.care_addr," +
+			    "        jt.org_nm," +
+			    "        jt.charge_nm," +
+			    "        jt.officetel" +
+			    "        jt.popfile" +
+			    "    FROM" +
+			    "        json_data_table d," +
+			    "        JSON_TABLE(" +
+			    "            d.json_content," +
+			    "            '$.response.body.items.item[*]'" +
+			    "            COLUMNS (" +
+			    "                desertion_no VARCHAR2(4000) PATH '$.desertionNo'," +
+			    "                filename VARCHAR2(4000) PATH '$.filename'," +
+			    "                happen_dt VARCHAR2(10) PATH '$.happenDt'," +
+			    "                happen_place VARCHAR2(4000) PATH '$.happenPlace'," +
+			    "                kind_cd VARCHAR2(4000) PATH '$.kindCd'," +
+			    "                color_cd VARCHAR2(4000) PATH '$.colorCd'," +
+			    "                age VARCHAR2(10) PATH '$.age'," +
+			    "                weight VARCHAR2(10) PATH '$.weight'," +
+			    "                notice_no VARCHAR2(4000) PATH '$.noticeNo'," +
+			    "                notice_sdt VARCHAR2(10) PATH '$.noticeSdt'," +
+			    "                notice_edt VARCHAR2(10) PATH '$.noticeEdt'," +
+			    "                process_state VARCHAR2(4000) PATH '$.processState'," +
+			    "                sex_cd VARCHAR2(1) PATH '$.sexCd'," +
+			    "                neuter_yn VARCHAR2(1) PATH '$.neuterYn'," +
+			    "                special_mark VARCHAR2(4000) PATH '$.specialMark'," +
+			    "                care_nm VARCHAR2(4000) PATH '$.careNm'," +
+			    "                care_tel VARCHAR2(20) PATH '$.careTel'," +
+			    "                care_addr VARCHAR2(4000) PATH '$.careAddr'," +
+			    "                org_nm VARCHAR2(4000) PATH '$.orgNm'," +
+			    "                charge_nm VARCHAR2(4000) PATH '$.chargeNm'," +
+			    "                officetel VARCHAR2(20) PATH '$.officetel'" +
+			    "                popfile VARCHAR2(4000) PATH '$.popfile'" +
+			    "            )" +
+			    "        ) jt" +
+			    " ) jt" +
+			    " ON" +
+			    "    l.desertionno = jt.desertion_no" +
+			    " WHERE" +
+			    "    l.user_id = ?;";
+		
+		JsonArray resultArray = new JsonArray();
+
+		try {
+			
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				JsonObject jsonObj = new JsonObject();
+				jsonObj.addProperty("desertionNo", rs.getString("desertionno"));
+				jsonObj.addProperty("kindCd", rs.getString("kind_cd"));
+				jsonObj.addProperty("age", rs.getString("age"));
+				jsonObj.addProperty("happenPlace", rs.getString("happen_place"));
+				jsonObj.addProperty("sexCd", rs.getString("sex_cd"));
+				jsonObj.addProperty("neuterYn", rs.getString("neuter_yn"));
+				jsonObj.addProperty("popfile", rs.getString("popfile"));
+
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+	
+	
+
+		
+
+	}
+	
 }

@@ -45,42 +45,67 @@ a {
 	background-color: #ff7f50;
 }
 
+#detail-container {
+    justify-content: center;
+    margin: 20px auto;
+    font-family: 'Arial', sans-serif;
+}
+
 .animalInfo {
-    background-color: #f9f9f9; /* 배경 색상 */
-    padding: 20px; /* 내부 여백 */
-    margin: 10px 0; /* 외부 여백 */
-    border: 1px solid #ddd; /* 테두리 */
-    border-radius: 10px; /* 모서리 둥글게 */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-    font-family: Arial, sans-serif; /* 글꼴 */
+   display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 20px; /* 사진과 정보 간격 */
 }
 
-.animalInfo img {
-    display: block;
-    margin: 0 auto; /* 이미지 가운데 정렬 */
-    border-radius: 10px; /* 이미지 둥글게 */
+.animalDetailImg img {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
-.animalInfo p {
-    font-size: 16px; /* 글자 크기 */
-    color: #333; /* 글자 색상 */
-    line-height: 1.5; /* 줄 간격 */
-    margin: 5px 0; /* 단락 간 여백 */
+.animalBasicInfo {
+    display: flex;
+    justify-content: space-between; /* 양쪽 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    margin-bottom: 20px;
+}
+
+.animalBasicInfo .ap-title {
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    gap: 5px; /* 제목과 나이 간격 조정 */
+}
+
+.animalBasicInfo .ap-title strong {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.animalBasicInfo .ap-title p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
 }
 
 .like-button {
-    display: inline-block;
-    font-size: 24px; /* 하트 크기 */
+    font-size: 20px;
     cursor: pointer;
-    color: #333; /* 하트 색상 */
-    transition: transform 0.2s, color 0.2s;
+    color: #777;
+    transition: color 0.3s;
+    gap: 20px;
 }
 
-.like-button:hover {
-    transform: scale(1.2); /* 마우스를 올릴 때 확대 */
+.like-button i:hover {
+    color: #ff6b6b;
 }
 
-.like-button.liked #heart-icon {
-    color: #ff0000; /* 좋아요 클릭 시 빨간색 */
+.red {
+    color: red;
 }
-
