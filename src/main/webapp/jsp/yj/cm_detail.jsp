@@ -8,9 +8,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/yj/cmPost.css"/>
+<script type="text/javascript" src="js/yj/cm.js" defer></script>
 </head>
 <body>
-
 
 	<div class="container-cm-post">
 	
@@ -20,49 +20,52 @@
 		<div class="post-title"><span> ${getPost.cm_title } </span></div>
 	
 		<div class="post-info">
-			<div class="post-profile"><img alt="" src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.namu.wiki%2Fi%2FNqAfQ710Z4IejlTwoibjuP5A3BZhfOtVvosO0OXV2qp6_9oONtnW9Hzf04Oo6fyPKyONMT11UMwZuNVinu6NhQ.webp&type=a340"></div>
+			<div class="post-profile"><img alt="" src="img/userProfile/${getPost.user_profile }"></div>
 			<div class="post-mini-wrapper">
 			<div class="post-string">
 				<div class="post-name">${getPost.cm_user_id }</div>
 				<div class="post-date">${getPost.cm_date }</div>
 			</div>
 			<div class="post-items">
-				<div class="post-view"><img alt="" src="https://cdn-icons-png.flaticon.com/512/7835/7835667.png">${getPost.cm_view }</div>
+<%-- 				<div class="post-view"><img alt="" src="https://cdn-icons-png.flaticon.com/512/7835/7835667.png">${getPost.cm_view }</div> --%>
 				<div class="post-like"><img alt="" src="https://cdn-icons-png.flaticon.com/512/833/833234.png">${getPost.cm_like }</div>
 			</div>
 			</div>
 		</div>
-		
 	<div class="post-content">
 		<div class="post-img">
-			<img alt=""
-				src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.namu.wiki%2Fi%2FNqAfQ710Z4IejlTwoibjuP5A3BZhfOtVvosO0OXV2qp6_9oONtnW9Hzf04Oo6fyPKyONMT11UMwZuNVinu6NhQ.webp&type=a340">
+			<img alt="" style="width:300px"
+				src="img/post/${getPost.cm_img }">
 		</div>
 		<div class="post-text">${getPost.cm_text }</div>
     <div id="post-${getPost.cm_no}">
     <button class="like-button" data-post-id="${getPost.cm_no}">♡</button>
     <span class="like-count" id="like-count-${getPost.cm_no}">0</span>
 </div>
+	<div class="cm-asd-btn">
+		<button class="cm-up-btn" style="display: ${asd}" onclick="location.href='CmUpdateC?no=${getPost.cm_no}'">수정</button>
+		<button class="cm-del-btn" style="display: ${asd}" onclick="deleteCm('${getPost.cm_no}')">삭제</button>
+		</div>
 </div>
       </div>
-	
+      <c:forEach var="re" items="${cm_reply }">
 	<div class="post-comment">
 		<div class="reply">
-			<div class="reply-img"><img alt="" src="https://image.zeta-ai.io/profile-image/e04ebe5c-180e-40e7-b498-4ad395fb9c91/1976a741-62c0-4e5a-b29e-04cfbc601217.png?w=750&q=75&f=webp"></div>
+			<div class="reply-img"><img alt="" src="img/userProfile/${getRpPro.user_profile }"></div>
 			<div class="reply-string">
-				<div class="reply-name">멍냥</div>
-				<div class="reply-text">캉캉캉캉캉캉캉캉</div>
-				<div class="reply-date">2025-01-14 12:21</div>
+				<div class="reply-name">${re.cmr_user_id}</div>
+				<div class="reply-text">${re.cmr_text}</div>
+				<div class="reply-date">${re.cmr_date}</div>
 			</div>
 		</div>
 	</div>
-		
+		</c:forEach>
+
 		<div class="reply-write">
-			<div class="reply-ta"><textarea rows="" cols="" placeholder="댓글을 입력하세요."></textarea></div>
+			<div class="reply-ta"><textarea rows="" cols="" placeholder="댓글을 입력하세요." id="cmReply" name="cm-reply"></textarea></div>
 			<button class="reply-btn">등록</button>
 		</div>
-		
-	
+	<input id="replyPostNo" value="${getPost.cm_no}" hidden>
 	<script type="text/javascript">
 	$(document).ready(function() {
 	    $('.like-button').click(function() {
@@ -100,6 +103,29 @@
 	        xhr.send();
 	    });
 	});
-	</script>
+	
+	
+    $(function (){
+    	$('.reply-btn').click(function() {
+    		let cmReply = document.getElementById('cmReply').value;
+    		let postNum = document.getElementById('replyPostNo').value;
+    		console.log(cmReply);
+    		console.log(postNum);
+    	    var xhr = new XMLHttpRequest();
+    	    xhr.open('GET', 'checkLogin', true);
+    	    xhr.onreadystatechange = function() {
+    	        if (xhr.readyState === 4 && xhr.status === 200) {
+    	            if (xhr.responseText === 'loggedIn') {
+    	                window.location.href = 'CmAddReplyC?cmReply='+cmReply+'&no='+ postNum;
+    	            } else if (xhr.responseText === 'notLoggedIn') {
+    	                window.location.href = 'loginC';
+    	            }
+    	        }
+    	    };
+    	    xhr.send();
+    	});
+    })
+    </script>
+	
 </body>
 </html>
