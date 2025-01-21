@@ -12,28 +12,61 @@
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
 </head>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <body>
+<div class="littleBody">
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide"><img src="img/112233.jpg" alt="Dog 1"></div>
+    <div class="swiper-slide"><img src="img/112234.jpg" alt="Dog 2"></div>
+    <div class="swiper-slide"><img src="img/112235.jpg" alt="Dog 3"></div>
+    <div class="swiper-slide"><img src="img/112236.jpg" alt="Dog 4"></div>
+    <div class="swiper-slide"><img src="img/112237.jpg" alt="Dog 5"></div>
+    <div class="swiper-slide"><img src="img/112238.jpg" alt="Dog 6"></div>
+    <div class="swiper-slide"><img src="img/112239.jpg" alt="Dog 7"></div>
+  </div>
+  <!-- Add Pagination -->
+  <div class="swiper-pagination"></div>
+</div>
+
 	<div class="sw-post-wrapper">
 	<div class="sw-post-header">
-	<div>새 글 </div>
-	<div>더보기</div>
+	<div style="cursor: default;">새 글 </div>
+	<div style="cursor: pointer" onclick="location.href='CmMainC'">더보기</div>
 	</div>
-	<c:forEach var="i" items="${posts }">
-	<div style="cursor: pointer" onclick="location.href='CmPostC?no=${i.cm_no }'">${i.cm_title }</div>
-	</c:forEach>
+	<br>
+<c:forEach var="i" items="${posts }">
+  <div class="sw-post-title" onclick="location.href='CmPostC?no=${i.cm_no }'">
+   <div>● ${i.cm_title }</div>
+    </div>
+</c:forEach>
 	</div>
+<div style="position: relative; top: -360px"><img alt="" src="img/jirol.png" style="width:100%;"></div>
 
-
-
-	<button id="wishlist-button" data-product-id="123"
+<!-- 	<button id="wishlist-button" data-product-id="123"
 		class="wishlist-button">
 		<i class="heart-icon">♡</i>
-	</button>
+	</button> -->
 	
+	<h1>오늘의 미친 핫딜</h1>
 	
+	</div>
+<script type="text/javascript">
+$(function() { 
+	const swiper = new Swiper('.swiper-container', {
+		  loop: true,
+		  autoplay: {
+		    delay: 3000,
+		  },
+		  pagination: {
+		    el: '.swiper-pagination',
+		    clickable: true,
+		  },
+		});
+
 	
-	
-	<script type="text/javascript">
+
 document.getElementById('wishlist-button').addEventListener('click', function() {
 	  const productId = this.getAttribute('data-product-id');
 
@@ -70,7 +103,7 @@ document.getElementById('wishlist-button').addEventListener('click', function() 
 	    console.error('에러 발생:', error);
 	  });
 	});
+});
 </script>
-
 </body>
 </html>

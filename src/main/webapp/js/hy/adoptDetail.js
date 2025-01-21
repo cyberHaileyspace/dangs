@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 		<p>${kindCd}</p>
                 		<p>${age}</p>
                 	</div>
+                	<div onclick="checklog()">♡좋아요</div>
                 	<div>
                 		<p>${animal.sexCd === 'F' ? '여아' : '남아'}</p>
                 		<p>${animal.neuterYn === 'Y' ? '중성화 완료' : '중성화 미완료'}</p>
