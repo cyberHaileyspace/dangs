@@ -46,7 +46,14 @@
 	justify-content: center;
 }
 
+.success-icon-wrwapper {
+	display: flex;
+	justify-content: center;
+}
+
 .success-icon {
+	width: 100px;
+	height: 100px;
 	display: flex;
 	justify-content: center;
 }

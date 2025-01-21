@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/jh/purchaseResult.css">
 </head>
 <body>
-	<form action="">
+	<form action="StatusOfCRC">
 		<div class="title-wrapper">
 			<div class="title">주문취소 요청 완료</div>
 			<div class="process">

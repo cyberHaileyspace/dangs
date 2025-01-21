@@ -18,10 +18,12 @@
 		</div>
 		<div class="result-title">
 			<div class="success-order">
+			<div class="success-icon-wrwapper">
 				<div class="success-icon">
 					<img alt="success-icon"
 						src="https://cdn.icon-icons.com/icons2/3478/PNG/512/ordercomplete_icon_220012.png">
 				</div>
+			</div>
 				<div class="result-info">
 					<div class="cong">
 						<img class="congg" alt="cong"

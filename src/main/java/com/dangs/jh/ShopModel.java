@@ -19,6 +19,7 @@ public class ShopModel {
 
 	private static ArrayList<ProductDTO> products;
 	private static ArrayList<OrderDTO> orders;
+	private static ArrayList<MyPageDTO> mypages;
 
 //	develop 필요
 	public static void showAllProduct(HttpServletRequest request, HttpServletResponse response) {
@@ -218,9 +219,20 @@ public class ShopModel {
 	public static void paging(int pageNum, HttpServletRequest request) {
 		request.setAttribute("curPageNum", pageNum);
 
-		int total = products.size(); // 총데이터수
-		System.out.println("total = " + total);
+		String orderpaging = (String)request.getAttribute("orderpaging");
 		int count = 12; // 한페이지당보여줄개수
+		
+		int total = 0; // 총데이터수
+		if(orderpaging != null) {
+			total = mypages.size();
+			count = 10;
+		} else {
+			total = products.size();
+		}
+			
+		
+		
+		System.out.println("total = " + total);
 		System.out.println(count);
 
 //		페이지 수
@@ -232,14 +244,25 @@ public class ShopModel {
 
 		int end = (pageNum == pageCount) ? -1 : start - (count + 1);
 
-		ArrayList<ProductDTO> items = new ArrayList<ProductDTO>();
-
-		for (int i = start - 1; i > end; i--) {
-			items.add(products.get(i));
+		if(orderpaging != null) {
+			ArrayList<MyPageDTO> items = new ArrayList<MyPageDTO>();
+			
+			for (int i = start - 1; i > end; i--) {
+				items.add(mypages.get(i));
+			}
+			request.setAttribute("orders", items);
+			
+		}else {
+			ArrayList<ProductDTO> items = new ArrayList<ProductDTO>();
+			for (int i = start - 1; i > end; i--) {
+				items.add(products.get(i));
+			}
+			request.setAttribute("products", items);
 		}
 
+
 		request.setAttribute("pageCount", pageCount);
-		request.setAttribute("products", items);
+
 	}
 
 	public static void saveOrder(HttpServletRequest request, HttpServletResponse response) {
@@ -473,7 +496,7 @@ public class ShopModel {
 			rs = pstmt.executeQuery();
 
 			MyPageDTO mypage = null;
-			List<MyPageDTO> mypages = new ArrayList<MyPageDTO>(); // 각 주문의 product_id를 저장할 리스트
+			mypages = new ArrayList<MyPageDTO>(); // 각 주문의 product_id를 저장할 리스트
 
 			while (rs.next()) {
 
@@ -485,8 +508,8 @@ public class ShopModel {
 			}
 
 			System.out.println("mypages: " + mypages);
-
 			request.setAttribute("orders", mypages);
+			request.setAttribute("orderpaging", "orderpaging");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -708,11 +731,12 @@ public class ShopModel {
 		PreparedStatement pstmt = null;
 
 //co_status가 "주문취소"라면 업데이트 하지 않도록 수정함		
-		String sql = "UPDATE canceled_order\n" + "SET co_status = CASE\n"
-				+ "    WHEN co_date = TRUNC(SYSDATE) - 1 THEN '검토중'\n"
-				+ "    WHEN co_date = TRUNC(SYSDATE) - 2 THEN '취소완료'\n"
-				+ "    WHEN co_date = TRUNC(SYSDATE) - 3 THEN '환불 진행중'\n"
-				+ "    WHEN co_date <= TRUNC(SYSDATE) - 4 THEN '환불완료'\n" + "    ELSE co_status\n" + "END";
+		String sql = "UPDATE orderDB " + "SET order_status = CASE "
+				+ "    WHEN order_date < SYSDATE - 5 THEN '환불완료' "
+				+ "    WHEN order_date < SYSDATE - 4 THEN '환불 진행중' "
+				+ "    WHEN order_date < SYSDATE - 3 THEN '취소완료' "
+				+ "    WHEN order_date < SYSDATE - 1 THEN '검토중' "
+				+ "    ELSE order_status " + "END";
 
 		try {
 			con = DBManager.connect();
@@ -912,6 +936,30 @@ public class ShopModel {
 			int updatedRows = pstmt.executeUpdate();
 			System.out.println("업데이트된 행 수: " + updatedRows);
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+	}
+
+	public static void updateProductStock(HttpServletRequest request, HttpServletResponse response) {
+		String product_id = request.getParameter("product_id");
+		String ordered_stock = request.getParameter("orderedStocks");
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "update product set product_stock = product_stock - ? where product_id = ?";
+		
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ordered_stock);
+			pstmt.setString(2, product_id);
+
+			int updatedRows = pstmt.executeUpdate();
+			System.out.println("~!@업데이트된 행 수: " + updatedRows);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

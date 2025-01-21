@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/jh/myOrder.css">
+<link rel="stylesheet" href="css/jh/myProduct.css">
 <script type="text/javascript" src="js/jh/myProduct.js" defer="defer"></script>
 </head>
 <body>
@@ -51,7 +51,7 @@
 						<div class="product_name2">${product.product_name}</div>
 					</div>
 					<div>
-						<fmt:formatNumber value="${orders.order_price}" type="number"
+						<fmt:formatNumber value="${product.product_price}" type="number"
 							groupingUsed="true" />
 					</div>
 					<div>${product.product_stock}</div>
