@@ -13,7 +13,7 @@
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script></head>
 <body>
-<form id="cm-form" action="CmAddC" method="post" enctype="multipart/form-data">
+<form id="cm-form" action="CmUpdateC" method="post" enctype="multipart/form-data">
 	<div class="container-add">
 		
 		<div class="add-menu2">
@@ -38,20 +38,20 @@
 		
 		<div class="add-title">
 			<div>제목</div>
-		 	<div class="add-ta"><textarea name="title" rows="" cols="" placeholder="제목을 입력하세요."></textarea></div>
+		 	<div class="add-ta"><textarea name="title" rows="" cols="" placeholder="제목을 입력하세요.">${getPost.cm_title }</textarea></div>
 		 </div>
 		
 		
 		<div class="add-write">
 			<div>내용</div>
 			<div>
-			<textarea name="ir1" id="ir1" rows="10" cols="100" placeholder="텍스트를 꾸며보세요 ㅎ 3ㅎ/"></textarea>	
+			<textarea name="ir1" id="ir1" rows="10" cols="100" placeholder="텍스트를 꾸며보세요 ㅎ 3ㅎ/">${getPost.cm_text }</textarea>	
 			</div>
 		</div>
 		<div class="add-file">
 		
 		 <div id='image_preview'>
-    <input type='file' id='btnAtt' name="file"/>
+    <input type='file' id='btnAtt' name="file" value="img/post/${getPost.cm_img }"/>
     <div id='att_zone'
       data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'></div>
   </div>
@@ -59,13 +59,13 @@
 <!-- 			<div> <span>사진 업로드</span> <input type="file"> </div> -->
 		</div>
 		<div class="add-check">
-			<button class="add-cancel" type="button">취소</button>
 			<button class="add-post" type="button">등록</button>
 		</div>
-		
+		<input class="updateCmNo" name="updateCmNo" value="${getPost.cm_no }">
 	</div>
 	
 	</form>
+			<button class="add-cancel" type="button">취소</button>
 </body>
  <script type="text/javascript" id="smartEditor">
 	var oEditors = [];

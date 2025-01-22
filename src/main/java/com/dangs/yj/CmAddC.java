@@ -8,17 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/cmAddC")
-public class cmAddC extends HttpServlet {
+@WebServlet("/CmAddC")
+public class CmAddC extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		request.setAttribute("content", "jsp/yj/cm_add.jsp");
 		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		CmDAO.addCm(request);
 		
+		response.sendRedirect("CmMainC");
 	}
 
 }

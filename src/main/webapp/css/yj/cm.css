@@ -1,127 +1,60 @@
-@font-face {
-	font-family: "GowunDodum-Regular";
-	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff") format("woff");
-	font-weight: normal;
-	font-style: normal;
-}
-
 body {
-	font-family: "GowunDodum-Regular";
-	margin: 0;
-	padding: 0;
-}
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container-cm {
+            width: 90%;
+            margin: 20px auto;
+        }
+        .menu-cm {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .menu-cm div a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+        .menu-cm div a:last-child {
+            margin-right: 0;
+        }
+        .search-cm {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .search-cm input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .search-cm button {
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-left: -40px;
+        }
+        .search-cm img {
+			width: 20px;
+            height: 20px;
+		}
+        .list-cm {
+            display: flex;
 
-.container-cm {
-	width: 90%;
-	margin: 20px auto;
-}
+        }
+        .list-cm input {
+            margin-right: 10px;
+        }
+        .write-cm {
+            display: flex;
+            justify-content: flex-end;
 
-.menu-cm {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background-color: #fff;
-	padding: 10px 20px;
-	border-bottom: 1px solid #ddd;
-}
-
-.menu-cm div a {
-	margin-right: 20px;
-	text-decoration: none;
-	color: #333;
-}
-
-.menu-cm div a:last-child {
-	margin-right: 0;
-}
-
-.search-cm {
-	display: flex;
-	align-items: center;
-	margin: 20px 0;
-}
-
-.search-cm input {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ddd;
-	border-radius: 4px;
-}
-
-.search-cm button {
-	background-color: #fff;
-	border: none;
-	cursor: pointer;
-	margin-left: -40px;
-}
-
-.search-cm img {
-	width: 20px;
-	height: 20px;
-}
-
-.list-cm {
-	display: flex;
-
-}
-
-.list-cm input {
-	margin-right: 10px;
-}
-
-.write-cm {
-	display: flex;
-	justify-content: flex-end;
-
-}
-
-.write-cm button {
-	display: flex;
-	align-items: center;
-	background-color: #ffdd57;
-	border: none;
-	padding: 10px 20px;
-	border-radius: 4px;
-	cursor: pointer;
-}
-
-.write-cm img {
-	width: 20px;
-	height: 20px;
-	margin-right: 10px;
-}
-
-.size-cm {
-	display: flex;
-	/*            flex-direction: column;*/
-	justify-content: flex-start;
-	margin-bottom: 20px;
-	width: 600px;
-}
-
-.size-cm .dog-size {
-	width: 70px;
-	height: 30px;
-	background-color: #fff;
-	border: 1px solid #ddd;
-	border-radius: 4px;
-	cursor: pointer;
-	text-align: center;
-}
-
-.size-cm .dog-size:hover {
-	background-color: #f0f0f0;
-}
-
-.post-link {
-	text-align: center;
-	margin-top: 20px;
-}
-
-.post-link a {
-	text-decoration: none;
-	color: #007bff;
-}
         }
         .write-cm button {
             display: flex;
@@ -196,14 +129,14 @@ body {
 		}
 		.cm-content{
 			display: flex;
-			height: 55px;
+			height: 56px;
 		}
 		.cm-img img{
 			width: 80px;
 			height: 80px;
 		}
 		.cm-text{
-			padding: 10px 0;
+/*			padding: 10px 0;*/
 			  width: 100%;
    		height: auto; /* height 제한 제거 */
     	overflow: hidden;
