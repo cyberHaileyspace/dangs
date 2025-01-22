@@ -14,8 +14,7 @@ public class MiddleC extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("content", "jsp/jm/search.jsp");
-		swM.loginCheck(request);
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,0 +1,171 @@
+@charset "UTF-8";
+
+.map {
+	margin: auto;
+	margin-top: 50px;
+	border: 1px solid lightgray;
+	border-radius: 8px;
+	width: 80%;
+	height: 25%;
+}
+
+.locationButton {
+	margin: auto;
+	color: white;
+	top: 50px;
+	border: 1px solid lightgray;
+	border-radius: 8px;
+	display: flex;
+	width: 20%;
+	height: 100px;
+	background-color: #249D8C;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.searchButton {
+	margin: auto;
+	color: white;
+	top: 50px;
+	border: 1px solid lightgray;
+	border-radius: 8px;
+	display: flex;
+	width: 20%;
+	height: 100px;
+	background-color: #249D8C;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.post-list {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	margin: 20px;
+	padding: 0;
+	list-style: none;
+}
+
+.post-item {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	/* 항목들을 가로로 분배 */
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	padding: 10px;
+	background-color: #f9f9f9;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	position: relative;
+}
+
+.post-item:not(:last-child) {
+	margin-bottom: 5px;
+	/* 항목들 간 간격을 주기 위한 여백 */
+}
+
+.post-header {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.post-info {
+	display: flex;
+	gap: 5px;
+	/* 항목들 간의 간격을 설정 */
+	font-size: 14px;
+	color: #666;
+	margin-bottom: 10px;
+}
+
+.post-info span {
+	padding-right: 10px;
+	border-right: 1px solid #ccc;
+	/* 각 항목들 사이에 구분선 추가 */
+}
+
+.post-info span:last-child {
+	border-right: none;
+	/* 마지막 항목에는 구분선 제거 */
+}
+
+.post-actions {
+	text-align: right;
+}
+
+.post-actions button {
+	padding: 10px 15px;
+	border: none;
+	border-radius: 5px;
+	background-color: #007BFF;
+	color: white;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.post-actions button:hover {
+	background-color: #0056b3;
+}
+
+.search-detail {
+	display: flex;
+	/* 내용이 많으면 자동으로 줄바꿈을 하도록 설정 */
+	gap: 20px;
+	/* 각 항목 간의 간격을 설정 */
+}
+
+.search-reg {
+	width: 500px;
+}
+
+.search-reg>div {
+	display: flex;
+}
+
+.search-reg>div>div:nth-child(1) {
+	width: 150px;
+}
+
+.search-reg>div:nth-last-child(1) {
+	display: flex;
+	justify-content: center;
+}
+
+.btn-16 {
+	border: none;
+	color: #000;
+}
+
+.btn-16:after {
+	position: absolute;
+	content: "";
+	width: 0;
+	height: 100%;
+	top: 0;
+	left: 0;
+	direction: rtl;
+	z-index: -1;
+	box-shadow:
+		-7px -7px 20px 0px #fff9,
+		-4px -4px 5px 0px #fff9,
+		7px 7px 20px 0px #0002,
+		4px 4px 5px 0px #0001;
+	transition: all 0.3s ease;
+}
+
+.btn-16:hover {
+	color: #000;
+}
+
+.btn-16:hover:after {
+	left: auto;
+	right: 0;
+	width: 100%;
+}
+
+.btn-16:active {
+	top: 2px;
+}

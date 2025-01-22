@@ -115,43 +115,8 @@ body {
 
 .index-content {
 	margin-left: 150px;
-	border: 9px solid #E77D67;
 	width: 50%;
 	height: 2000px;
-}
-
-.map {
-	margin: auto;
-	margin-top: 50px;
-	border: 5px solid black;
-	width: 80%;
-	height: 25%;
-}
-
-.locationButton {
-	margin: auto;
-	top: 50px;
-	border: 5px solid black;
-	display: flex;
-	width: 20%;
-	height: 100px;
-	background-color: #ffcf9d;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-}
-
-.searchButton {
-	margin: auto;
-	top: 50px;
-	border: 5px solid black;
-	display: flex;
-	width: 20%;
-	height: 100px;
-	background-color: #ffcf9d;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
 }
 
 /*modal*/

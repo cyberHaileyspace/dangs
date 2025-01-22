@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8" />
 <title>카카오 지도 시작하기</title>
-<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/jm/search.css">
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=afd7b38172ac4306c02c60ef10383c6c&libraries=services"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js"
@@ -15,6 +15,7 @@
 </head>
 <body>
 	<div id="map" class="map"></div>
+	<div style="height: 40px;"></div>
 	<div style="display: flex;">
 		<div class="locationButton">우리 동네 찾기</div>
 		<div class="searchButton">우리 동네 검색</div>
@@ -49,9 +50,20 @@
 				xhr.send();
 			});
 			   
-			$('.searchButton').click(function() {
-				location.href = 'MiddleC';
-			})
+			   $('.searchButton').click(function() {
+					var xhr = new XMLHttpRequest();
+					xhr.open('GET', 'checkLogin', true);
+					xhr.onreadystatechange = function() {
+						if (xhr.readyState === 4 && xhr.status === 200) {
+							if (xhr.responseText === 'loggedIn') {
+								window.location.href = 'MiddleC';
+							} else if (xhr.responseText === 'notLoggedIn') {
+								window.location.href = 'loginC';
+							}
+						}
+					};
+					xhr.send();
+				});
 
 			function myLocation() {
 				let userAddress = document.getElementById('userAddressjm').textContent

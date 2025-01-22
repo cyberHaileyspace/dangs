@@ -7,15 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dangs.sw.swM;
-
-@WebServlet("/SearchC")
-public class SearchC extends HttpServlet {
+@WebServlet("/Middle02C")
+public class Middle02C extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		searchDAO.selectAllSearch(request);
-		request.setAttribute("result", "/jsp/jm/result.jsp");
-		request.setAttribute("content", "jsp/jm/search.jsp");
+		request.setAttribute("content", "jsp/jm/write.jsp");
 		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
 	}
 
