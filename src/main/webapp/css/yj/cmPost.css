@@ -122,4 +122,18 @@
 	padding: 10px 20px;
 	border-radius: 4px;
 	cursor: pointer;
+}
+.cm-asd-btn{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+		
+.cm-up-btn, .cm-del-btn {
+	margin-right: 10px;
+	background-color: #ffdd57;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 4px;
+	cursor: pointer;
         }

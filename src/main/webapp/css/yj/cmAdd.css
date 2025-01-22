@@ -104,13 +104,16 @@ body{
 }
 .add-check{
 	display: flex;
-	margin-bottom: 10px;
+	justify-content: center;
+	align-items: center;
 }
-.add-cancle, add-post{
-	width: 80px;
-	height: 40px;
-	background-color:bisque;
-	text-align: center;
+.add-cancel, .add-post{
+	margin-right: 10px;
+	background-color: #ffdd57;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 4px;
+	cursor: pointer;
 }
 #att_zone {
   width: 660px;

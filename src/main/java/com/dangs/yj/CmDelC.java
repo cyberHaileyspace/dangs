@@ -8,18 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/CmQnAC")
-public class CmQnAC extends HttpServlet {
+@WebServlet("/CmDelC")
+public class CmDelC extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("content", "jsp/yj/cm_qna.jsp");
-
-		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
+		CmDAO.removeCm(request);
+		
+		response.sendRedirect("CmMainC");
+	
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+	
 	}
 
 }

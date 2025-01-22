@@ -15,6 +15,7 @@ public class CmMainC extends HttpServlet {
 		
 		// communiy select all
 		CmDAO.selectAll(request);
+		CmDAO.paging(1, request);
 		
 		request.setAttribute("content", "jsp/yj/cm_main.jsp");
 		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
