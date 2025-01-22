@@ -38,7 +38,7 @@
 	<br>
 <c:forEach var="i" items="${posts }">
   <div class="sw-post-title" onclick="location.href='CmPostC?no=${i.cm_no }'">
-   <div>● ${i.cm_title }</div>
+   <div>● ${i.cm_title }</div>	
     </div>
 </c:forEach>
 	</div>
