@@ -13,6 +13,8 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
+  z-index: 2;
 }
 
 .logo {
@@ -112,7 +114,6 @@ body {
 }
 
 /* 폼 스타일 */
-
 #signupForm input {
   width: 95%;
   padding: 8px;

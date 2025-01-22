@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/loginC")
-public class loginC extends HttpServlet {
+public class LoginC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -19,11 +19,16 @@ public class loginC extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		swM.loginConfirm(request, response);
-
-		swM.loginCheck(request);
-
+		swM.selectRecentPosts(request);
 		request.setAttribute("content", "jsp/sw/main.jsp");
+		swM.loginCheck(request);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
+		/*
+		 * swM.loginCheck(request);
+		 * 
+		 * request.setAttribute("content", "jsp/sw/main.jsp");
+		 * request.getRequestDispatcher("index.jsp").forward(request, response);
+		 */
 	}
 
 }

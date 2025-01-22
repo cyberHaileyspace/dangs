@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+.littleBody {
+	height: 100%;
+	background-color: ivory;
+}
+
+.heart-icon {
+	font-size: 24px;
+	color: gray;
+}
+
+.heart-icon.active {
+	color: red;
+}
+
+
+.sw-post-title{
+		gap: 30px;
+}
+
+.sw-post-title div{
+	cursor: pointer;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 18px;
+}
+
+
+.sw-post-wrapper {
+	width: 358px;
+	border: 3px solid #F1E1D2;
+	border-radius: 12px;
+	position: relative;
+	margin: 30px;
+	top: -389px;
+	left: 366px;
+	z-index: 1;
+	background-color: #F1E1D2;
+	height: 309px;
+}
+
+.sw-post-header {
+	display: flex;
+	justify-content: space-between;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+
+.swiper-slide img {
+	width: 50%;
+	/* 가로 100%로 설정 */
+	height: 300px;
+	/* 원하는 높이로 설정 */
+	border-radius: 12px;
+	background-color: #F1E1D2;
+	border: 7px solid #F1E1D2;
+	object-fit: cover;
+	/* 이미지가 영역에 맞게 잘림 */
+}
+
+.swiper-container {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	/* 넘치는 부분을 숨기기 위해 overflow 설정 */
+	padding-bottom: 40px;
+	/* pagination 공간을 확보 */
+}
+
+.swiper-pagination {
+	position: sticky;
+	/* 스크롤 시 헤더 안쪽으로 고정 */
+	top: 30px;
+	/* 헤더 아래쪽에 30px 간격 두기 */
+	left: 50%;
+	/* 화면 중앙 배치 */
+	transform: translateX(-50%);
+	z-index: 9999;
+	/* 다른 요소 위에 표시되도록 설정 */
+}
+
+.swiper-pagination-bullet {
+	background-color: #F1E1D2 !important;
+	/* 기본 색상 */
+	position: relative;
+}
+
+.swiper-pagination-bullet-active {
+	background-color: darkred !important;
+	/* 활성화된 페이지의 색상 */
+	position: relative;
+}

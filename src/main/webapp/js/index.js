@@ -21,7 +21,7 @@ $('#myPage').click(function() {
 
 	$('.adopt').click(function() {
 
-		location.href = "AdoptionController"
+		location.href = "AdoptionController";
 
 	})
 

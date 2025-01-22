@@ -14,7 +14,6 @@ body {
 }
 
 .login-container {
-	background-color: #ffffff;
 	margin: auto;
 	padding: 20px;
 	border-radius: 8px;
@@ -23,17 +22,17 @@ body {
 }
 
 .login-input {
-	width: 100%;
+	width: 93%;
 	padding: 10px;
 	margin: 10px 0;
-	border: 1px solid #a5d6a7;
+	border: 1px solid #E77D67;
 	border-radius: 4px;
 }
 
 .login-button {
 	width: 100%;
 	padding: 10px;
-	background-color: #249D8C;
+	background-color: #E77D67;
 	color: white;
 	border: none;
 	border-radius: 4px;
@@ -41,13 +40,13 @@ body {
 }
 
 .login-button:hover {
-	background-color: #4caf50;
+	background-color: darkred;
 }
 
 #openModalBtn {
 	width: 100%;
 	padding: 10px;
-	background-color: #249D8C;
+	background-color: #E77D67;
 	color: white;
 	border: none;
 	border-radius: 4px;
@@ -55,7 +54,7 @@ body {
 }
 
 #openModalBtn:hover {
-	background-color: #4caf50;
+	background-color: darkred;
 }
 
 .signup-link {

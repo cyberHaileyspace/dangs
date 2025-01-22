@@ -1,6 +1,21 @@
 @charset "UTF-8";
 
 @font-face {
+	font-family: "RixInooAriDuriR";
+	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+@font-face {
 	font-family: "nanumsquare";
 	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-3@1.0/Batang_Regular.woff") format("woff");
 	font-weight: 400;
@@ -54,7 +69,11 @@ body {
 	font-family: "GowunDodum-Regular";
 	margin: 0;
 	padding: 0;
+<<<<<<< HEAD
 	font-weight: 100;
+=======
+	background-color: darkred;
+>>>>>>> 2184d514ac57c147051bcb6c373cfee9fc552e05
 }
 
 .logo {
@@ -91,6 +110,7 @@ body {
 }
 
 .main-wrapper {
+	color: ivory;
 	font-size: 20pt;
 	width: 100%;
 	display: flex;
@@ -99,22 +119,27 @@ body {
 	position: sticky;
 	top: 0px;
 	z-index: 2;
-	background-color: #fefefe;
+	background-color: darkgreen;
 	border-bottom: 1px solid lightgrey;
 }
 
 .login {
-	width: 30%;
-	height: 400px;
-	position: sticky;
-	top: 125px;
-	border: 3px solid #F1E1D2;
-	border-radius: 10px;
-	right: -30px;
+    width: 25%;
+    height: 330px;
+    position: sticky;
+    top: 60px;
+    border: 5px solid #F1E1D2;
+    border-radius: 10px;
+    right: -30px;
+    background-color: ivory;
 }
 
 .index-content {
 	margin-left: 150px;
+<<<<<<< HEAD
+=======
+	/*border: 9px solid #E77D67;*/
+>>>>>>> 2184d514ac57c147051bcb6c373cfee9fc552e05
 	width: 50%;
 	height: 2000px;
 }
