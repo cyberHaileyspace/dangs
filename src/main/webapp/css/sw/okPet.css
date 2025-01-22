@@ -15,7 +15,7 @@
 	/* 상자 외곽선 */
 	background-color: ivory;
 	/* 배경 색상 */
-	border-radius: 20px;
+	border-radius: 7px;
 	padding: 20px;
 	position: relative;
 	box-sizing: border-box;
@@ -101,18 +101,19 @@
 }
 
 /* 펫 정보 영역 스타일 */
-.okPet-info {
-	width: 400px;
-	height: 330px;
-	background-color: #F9F4E5;
-	padding: 20px;
-	display: none;
-	position: absolute;
-	top: 0;
-	right: 0;
-	transition: width 0.5s ease;
-	box-sizing: border-box;
-	overflow-y: auto;
+.okPet-info  {
+    width: 1100px;
+    height: 330px;
+    background-color: #F9F4E5;
+    padding: 20px;
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 270px;
+    transition: width 0.5s ease;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    border-radius: 7px;
 }
 
 /* 클릭된 펫을 기준으로 슬라이드가 변경되었을 때의 컨테이너 스타일 */
@@ -125,4 +126,22 @@
 .okPet-container.expanded .okPet-content {
 	width: 45%;
 	transition: width 0.5s ease;
+}
+#closeDetailInfo{
+	height: 50px;
+	cursor: pointer;
+}
+
+
+.detailInfoWrapper{
+	display: flex;
+	gap: 20px;
+}
+.detailInfoAll{
+	width: 650px;
+}
+.detailInfoImg img{
+	width: 300px;
+	height: 300px;
+	object-fit: cover;
 }

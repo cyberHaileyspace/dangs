@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.myPageBody{
+	background-color: ivory;
+	height: 1120px;
+}
+
+.myPage-product{
+	padding-top: 30px;
+	background-color: ivory;
+	border-radius: 7px;
+}
+.productButtonWrapper{
+	display: flex;
+	width: 500px;
+	height: 70px;
+	gap: 10px;
+	}
+	
+.productButtonWrapper > div{
+	height: 35px;
+	background-color: #F1E1D2;
+	color: #E77D67;
+	border-radius: 4px;
+}
