@@ -1,4 +1,4 @@
-package com.dangs.jm;
+package com.dangs.hy;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,18 +7,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dangs.sw.swM;
-
-@WebServlet("/locationC")
-public class LocationC extends HttpServlet {
+@WebServlet("/AdoptionLikeC")
+public class AdoptionLikeC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		LocationDAO.location(request);
-		request.setAttribute("content", "jsp/jm/location.jsp");
-//		request.setAttribute("loginCheck", "jsp/sw/login.jsp");
-//		swM.loginCheck(request);
-		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
+		
+			AdoptionDAO.likeCheck(request,response);
+	
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

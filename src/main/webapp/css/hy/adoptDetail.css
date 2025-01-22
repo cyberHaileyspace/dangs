@@ -1,70 +1,112 @@
 @charset "UTF-8";
 
 @font-face {
-	font-family: "GowunDodum-Regular";
-	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff") format("woff");
-	font-weight: normal;
-	font-style: normal;
+  font-family: "GowunDodum-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 /* 전체 페이지 스타일 */
 body {
-	font-family: "GowunDodum-Regular";
-	font-size: 30pt;
-	margin: 0;
-	padding: 0;
-	color: #333;
-	text-align: center;
+  font-family: "GowunDodum-Regular";
+  font-size: 30pt;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  text-align: center;
 }
 
 /* 상단 네비게이션 바 */
 .tap {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	background-color: #fff;
-	padding: 10px 0;
-	border-bottom: 2px solid #f1f1f1;
-	margin: 0;
-	list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px 0;
+  border-bottom: 2px solid #f1f1f1;
+  margin: 0;
+  list-style-type: none;
 }
 
 a {
-	text-decoration: none;
-	color: #333;
-	font-size: 16px;
-	font-weight: bold;
-	padding: 10px 20px;
-	transition: color 0.3s ease, background-color 0.3s ease;
-	border-radius: 8px;
-	cursor: pointer;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .tap a:hover {
-	color: #fff;
-	background-color: #ff7f50;
+  color: #fff;
+  background-color: #ff7f50;
+}
+
+#detail-container {
+  justify-content: center;
+  margin: 20px auto;
+  font-family: "Arial", sans-serif;
 }
 
 .animalInfo {
-    background-color: #f9f9f9; /* 배경 색상 */
-    padding: 20px; /* 내부 여백 */
-    margin: 10px 0; /* 외부 여백 */
-    border: 1px solid #ddd; /* 테두리 */
-    border-radius: 10px; /* 모서리 둥글게 */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-    font-family: Arial, sans-serif; /* 글꼴 */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  gap: 20px; /* 사진과 정보 간격 */
 }
 
-.animalInfo img {
-    display: block;
-    margin: 0 auto; /* 이미지 가운데 정렬 */
-    border-radius: 10px; /* 이미지 둥글게 */
+.animalDetailImg img {
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
-.animalInfo p {
-    font-size: 16px; /* 글자 크기 */
-    color: #333; /* 글자 색상 */
-    line-height: 1.5; /* 줄 간격 */
-    margin: 5px 0; /* 단락 간 여백 */
+.animalBasicInfo {
+  display: flex;
+  justify-content: space-between; /* 양쪽 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  margin-bottom: 20px;
 }
 
+.animalBasicInfo .ap-title {
+  display: flex;
+  align-items: center; /* 수직 중앙 정렬 */
+  gap: 5px; /* 제목과 나이 간격 조정 */
+}
+
+.animalBasicInfo .ap-title strong {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.animalBasicInfo .ap-title p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.like-button {
+  font-size: 20px;
+  cursor: pointer;
+  color: #777;
+  transition: color 0.3s;
+  gap: 20px;
+}
+
+.like-button i:hover {
+  color: #ff6b6b;
+}
+
+.red {
+  color: red;
+}

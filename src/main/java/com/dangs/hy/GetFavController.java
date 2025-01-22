@@ -7,28 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet("/AdoptDetailController")
-public class AdoptDetailController extends HttpServlet {
+/**
+ * Servlet implementation class FavoritesController
+ */
+@WebServlet("/GetFavController")
+public class GetFavController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		String desertionNo = request.getParameter("desertionNo");
 		
-		String animalDetail = AdoptionDAO.getAdao().getAnimalDetail(desertionNo);
+		String userId = request.getParameter("userId");
 		
-		request.setAttribute("adoptLikes", desertionNo);
-		request.setAttribute("animalDetail", animalDetail);
-		
-		request.setAttribute("content", "jsp/hy/adoptDetail.jsp");
-		
-		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
+		AdoptionDAO.getAdao().getUserFavorites(userId);
 		
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 	}
 
 }

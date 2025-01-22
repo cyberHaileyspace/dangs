@@ -48,19 +48,20 @@
 	align-items: center;
 }
 
-.per-order div:not(.img-wrapper, .name-wrapper, .product_name2, .buttons)
-	{
+.per-order div:not(.img-wrapper, .name-wrapper, .product_name2, .buttons) {
 	width: 115px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.del-destination, .phone-num {
+.del-destination,
+.phone-num {
 	width: 190px
 }
 
-.bank, .installments {
+.bank,
+.installments {
 	width: 200px;
 }
 
@@ -75,7 +76,9 @@
 	align-items: center;
 }
 
-.product-name2, .name-wrapper, .inquiry {
+.product-name2,
+.name-wrapper,
+.inquiry {
 	width: 350px;
 	display: flex;
 	justify-content: center;
@@ -97,10 +100,12 @@
 	justify-content: space-between;
 	border-radius: 5px;
 	padding: 10px;
-	transition: all 0.3s ease; /* 애니메이션 효과 */
+	transition: all 0.3s ease;
+	/* 애니메이션 효과 */
 }
 
-.product_img2, .space-place1 {
+.product_img2,
+.space-place1 {
 	width: 110px;
 	height: auto;
 	display: block;
@@ -139,10 +144,13 @@
 .more-info {
 	display: flex;
 	border-top: 2px solid #888;
-	border-bottom: 2px solid #888; padding : 10px 0;
+	border-bottom: 2px solid #888;
+	padding: 10px 0;
 	font-weight: bold;
-	padding: 10px 0; font-weight : bold;
-	color: #888; /* 검정 텍스트 */
+	padding: 10px 0;
+	font-weight: bold;
+	color: #888;
+	/* 검정 텍스트 */
 }
 
 /* more-info-info (값 한 줄) */
@@ -152,19 +160,24 @@
 }
 
 /* 각각의 항목 크기 설정 */
-.more-info .del-destination1, .more-info-info .del-destination2,
-	.more-info .phone-num1, .more-info-info .phone-num2 {
+.more-info .del-destination1,
+.more-info-info .del-destination2,
+.more-info .phone-num1,
+.more-info-info .phone-num2 {
 	width: 20%;
 	text-align: center;
 }
 
-.more-info .inquiry1, .more-info-info .inquiry2 {
+.more-info .inquiry1,
+.more-info-info .inquiry2 {
 	width: 40%;
 	text-align: center;
 }
 
-.more-info .bank1, .more-info-info .bank2, .more-info .installments1,
-	.more-info-info .installments2 {
+.more-info .bank1,
+.more-info-info .bank2,
+.more-info .installments1,
+.more-info-info .installments2 {
 	width: 10%;
 	text-align: center;
 }
@@ -174,7 +187,8 @@
 	width: 100%;
 }
 
-.more-info div, .more-info-info div {
+.more-info div,
+.more-info-info div {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -187,7 +201,8 @@
 	padding: 20px;
 }
 
-h1, h2 {
+h1,
+h2 {
 	color: #000;
 }
 

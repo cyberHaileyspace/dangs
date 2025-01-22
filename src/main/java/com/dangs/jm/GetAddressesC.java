@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dangs.sw.swM;
 
-
 @WebServlet("/getAddressesC")
 public class GetAddressesC extends HttpServlet {
 

@@ -1,4 +1,4 @@
-package com.dangs.hy;
+package com.dangs.jm;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,28 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dangs.sw.swM;
 
-@WebServlet("/AdoptDetailController")
-public class AdoptDetailController extends HttpServlet {
+@WebServlet("/MiddleC")
+public class MiddleC extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		String desertionNo = request.getParameter("desertionNo");
-		
-		String animalDetail = AdoptionDAO.getAdao().getAnimalDetail(desertionNo);
-		
-		request.setAttribute("adoptLikes", desertionNo);
-		request.setAttribute("animalDetail", animalDetail);
-		
-		request.setAttribute("content", "jsp/hy/adoptDetail.jsp");
-		
+		request.setAttribute("content", "jsp/jm/search.jsp");
 		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
-		
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 	}
 
 }

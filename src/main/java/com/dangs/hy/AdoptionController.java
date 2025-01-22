@@ -20,7 +20,9 @@ public class AdoptionController extends HttpServlet {
 		String action = request.getParameter("action"); 
 		String contentPage = "jsp/hy/shelterAdoptions.jsp"; // 기본값
 			
-		if ("favorites".equals(action)) { 
+		
+		if ("favoritesTab".equals(action)) { 
+			
 			contentPage = "jsp/hy/myFavoritesAdopt.jsp";
 		}
 			
