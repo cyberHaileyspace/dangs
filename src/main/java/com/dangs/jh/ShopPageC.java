@@ -12,18 +12,23 @@ import com.dangs.sw.swM;
 @WebServlet("/ShopPageC")
 public class ShopPageC extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		int p = Integer.parseInt(request.getParameter("p"));
 		ShopModel.showAllProduct(request, response);
 		ShopModel.paging(p, request);
-		
-		request.setAttribute("content", "jsp/jh/shop.jsp");
+
+//		최근 본 상품
+		ShopModel.getRecentProduct(request, response);
+
 		swM.loginCheck(request);
-		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
+		request.setAttribute("content", "jsp/jh/shop.jsp");
+		request.setAttribute("content2", "jsp/jh/recentProduct.jsp");
+		request.getRequestDispatcher("noLoginIndexJh.jsp").forward(request, response);
 	}
 
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 	}
 

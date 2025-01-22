@@ -1,198 +1,229 @@
 body {
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 0;
+  font-family: 'Cafe24Oneprettynight', Arial, sans-serif; /* 아기자기한 글꼴 추가 */
+  margin: 0;
+  padding: 0;
+  background-color: #fef9f3; /* 따뜻한 크림색 배경 */
+  color: #333;
 }
 
 .container-cm {
-	width: 90%;
-	margin: 20px auto;
+  width: 90%;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .menu-cm {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background-color: #fff;
-	padding: 10px 20px;
-	border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }
 
-.menu-cm div a {
-	margin-right: 20px;
-	text-decoration: none;
-	color: #333;
+.menu-cm div span {
+  padding: 10px 15px;
+  background-color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.menu-cm div a:last-child {
-	margin-right: 0;
+.menu-cm div span:hover {
+  background-color: #ffe4c4;
 }
 
 .search-cm {
-	display: flex;
-	align-items: center;
-	margin: 20px 0;
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .search-cm input {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ddd;
-	border-radius: 4px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
 }
 
 .search-cm button {
-	background-color: #fff;
-	border: none;
-	cursor: pointer;
-	margin-left: -40px;
+  background-color: #ffdd57;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: -45px;
 }
 
 .search-cm img {
-	width: 20px;
-	height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .list-cm {
-	display: flex;
-
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
 }
 
 .list-cm input {
-	margin-right: 10px;
+  margin-right: 10px;
 }
 
 .write-cm {
-	display: flex;
-	justify-content: flex-end;
-
+  display: flex;
+  justify-content: flex-end;
 }
 
 .write-cm button {
-	display: flex;
-	align-items: center;
-	background-color: #ffdd57;
-	border: none;
-	padding: 10px 20px;
-	border-radius: 4px;
-	cursor: pointer;
+  display: flex;
+  align-items: center;
+  background-color: #ffa07a;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.write-cm button:hover {
+  background-color: #ff7f50;
 }
 
 .write-cm img {
-	width: 20px;
-	height: 20px;
-	margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 .add-size {
-	display: flex;
-	margin-bottom: 15px;
-
+  display: flex;
+  margin-bottom: 15px;
+  justify-content: flex-start;
 }
 
-.add-size input[type=radio] {
-	display: none;
+.add-size input[type="radio"] {
+  display: none;
 }
 
-.add-size input[type=radio]+label {
-	padding: 10px 15px;
-	border-radius: 10px;
-	display: inline-block;
-	cursor: pointer;
-	width: 50px;
-	height: 15px;
-	border: 1px solid #333;
-	line-height: 24px;
-	text-align: center;
-	font-weight: bold;
-	font-size: 13px;
-
-	margin-right: 5px;
+.add-size label {
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid #333;
+  font-weight: bold;
+  font-size: 13px;
+  margin-right: 5px;
+  background-color: #fff0db;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.add-size input[type=radio]+label {
-	background-color: bisque;
-	color: #333;
-}
-
-.add-size input[type=radio]:checked+label {
-	background-color: #333;
-	color: bisque;
+.add-size input[type="radio"]:checked + label {
+  background-color: #ffa07a;
+  color: #fff;
 }
 
 .post-cm {
-	flex-direction: column;
-	border-bottom: 1px solid gray;
-	margin-bottom: 15px;
-
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cm-kind {
-	display: flex;
-
+  display: flex;
 }
 
 .cm-menu {
-	font-weight: bold;
-	font-size: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #ff7f50;
 }
 
 .cm-cate {
-	margin-left: 10px;
+  margin-left: 10px;
+  font-size: 14px;
+  color: #aaa;
 }
 
 .cm-title {
-	font-size: 15pt;
-	font-weight: bold;
-	margin: 10px 0;
+  font-size: 16pt;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #333;
+  transition: color 0.3s ease;
 }
 
 .cm-title:hover {
-	color: #ffdd57
+  color: #ff7f50;
 }
 
 .cm-content {
-	display: flex;
-	height: 56px;
+  display: flex;
+  margin-top: 10px;
 }
 
 .cm-img img {
-	width: 80px;
-	height: 80px;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
 }
 
 .cm-text {
-	/*			padding: 10px 0;*/
-	width: 100%;
-	height: auto;
-	/* height 제한 제거 */
-	overflow: hidden;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	/* 표시할 줄 수 */
-	-webkit-box-orient: vertical;
-	text-overflow: ellipsis;
-	/* 생략 부호 추가 */
-	color: gray;
-
+  width: 100%;
+  margin-left: 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  color: gray;
 }
 
 .cm-info {
-	display: flex;
-	margin: 10px 0;
+  display: flex;
+  margin-top: 10px;
 }
 
-/*		.info-name{*/
-/*			margin-left: 10px;*/
-/*		}*/
-.info-date {
-	margin-left: 10px;
+.info-name, .info-date, .info-view, .info-like {
+	margin-right: 10px;
+  font-size: 12px;
+  color: #aaa;
 }
 
-.info-view {
-	margin-left: 10px;
+.cm-page-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.info-like {
-	margin-left: 10px;
+.cm-page-div div {
+  padding: 5px 10px;
+  margin: 0 2px;
+  background-color: #ffe4c4;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.cm-page-div div:hover {
+  background-color: #ff7f50;
+  color: #fff;
 }

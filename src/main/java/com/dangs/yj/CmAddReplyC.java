@@ -15,17 +15,9 @@ public class CmAddReplyC extends HttpServlet {
 	
 		CmDAO.addReply(request, response);
 		
-		CmDAO.getCm(request);
-		CmDAO.checkWriter(request);
-		CmDAO.GetReply(request);
 		
-		request.setAttribute("content", "jsp/yj/cm_detail.jsp");
-			request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
-		//response.sendRedirect("CmPostC");
-		/*
-		 * request.setAttribute("content", "jsp/yj/cm_detail.jsp");
-		 * request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
-		 */
+		response.sendRedirect("CmPostC?no="+request.getParameter("no"));
+		
 		
 	}
 

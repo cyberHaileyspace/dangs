@@ -10,21 +10,31 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/UpdateProductC")
 public class UpdateProductC extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		ShopModel.getProduct(request, response);
-		
+
+//		최근 본 상품
+		ShopModel.getRecentProduct(request, response);
+
 		request.setAttribute("content", "jsp/jh/updateProduct.jsp");
-		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
+		request.setAttribute("content2", "jsp/jh/recentProduct.jsp");
+		request.getRequestDispatcher("noLoginIndexJh.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		
+
 		ShopModel.updateProduct(request, response);
-		
+
+//		최근 본 상품
+		ShopModel.getRecentProduct(request, response);
+
 		request.setAttribute("content", "jsp/jh/uPResult.jsp");
-		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
+		request.setAttribute("content2", "jsp/jh/recentProduct.jsp");
+		request.getRequestDispatcher("noLoginIndexJh.jsp").forward(request, response);
 	}
 
 }
