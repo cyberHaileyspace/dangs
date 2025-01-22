@@ -119,7 +119,7 @@
 				</div>
 				</c:forEach>
 				
-				<!-- 배송조회 토글 -->
+				<!-- 주문취소 진행상태 토글 -->
 				<div class="delivery-status" style="display: none;">
 					<div class="status-imgs">
 						<div
@@ -135,7 +135,7 @@
 								<path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" /></svg>
 						</div>
 						<div
-							class="step2 ${orders.order_status == '상품 준비중' ? 'active' : ''}">
+							class="step2 ${orders.order_status == '검토중' ? 'active' : ''}">
 							<svg xmlns="http://www.w3.org/2000/svg" height="24px"
 								viewBox="0 -960 960 960" width="24px">
 								<path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" /></svg>
@@ -146,7 +146,7 @@
 								<path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" /></svg>
 						</div>
 						<div
-							class="step3 ${orders.order_status == '배송시작' ? 'active' : ''}">
+							class="step3 ${orders.order_status == '취소완료' ? 'active' : ''}">
 							<svg xmlns="http://www.w3.org/2000/svg" height="24px"
 								viewBox="0 -960 960 960" width="24px">
 								<path
@@ -157,7 +157,7 @@
 								viewBox="0 -960 960 960" width="24px">
 								<path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" /></svg>
 						</div>
-						<div class="step4 ${orders.order_status == '배송중' ? 'active' : ''}">
+						<div class="step4 ${orders.order_status == '환불 진행중' ? 'active' : ''}">
 							<svg xmlns="http://www.w3.org/2000/svg" height="24px"
 								viewBox="0 -960 960 960" width="24px">
 								<path
@@ -169,7 +169,7 @@
 								<path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" /></svg>
 						</div>
 						<div
-							class="step5 ${orders.order_status == '배송완료' ? 'active' : ''}">
+							class="step5 ${orders.order_status == '환불완료' ? 'active' : ''}">
 							<svg xmlns="http://www.w3.org/2000/svg" height="24px"
 								viewBox="0 -960 960 960" width="24px">
 								<path
@@ -181,16 +181,16 @@
 							class="step1 ${orders.order_status == '주문취소' ? 'active' : ''}">취소요청</div>
 						<div class="space"></div>
 						<div
-							class="step2 ${orders.order_status == '상품 준비중' ? 'active' : ''}">검토중</div>
+							class="step2 ${orders.order_status == '검토중' ? 'active' : ''}">검토중</div>
 						<div class="space"></div>
 						<div
-							class="step3 ${orders.order_status == '배송시작' ? 'active' : ''}">취소완료</div>
+							class="step3 ${orders.order_status == '취소완료' ? 'active' : ''}">취소완료</div>
 						<div class="space"></div>
-						<div class="step4 ${orders.order_status == '배송중' ? 'active' : ''}">환불
+						<div class="step4 ${orders.order_status == '환불 진행중' ? 'active' : ''}">환불
 							진행중</div>
 						<div class="space"></div>
 						<div
-							class="step5 ${orders.order_status == '배송완료' ? 'active' : ''}">환불완료</div>
+							class="step5 ${orders.order_status == '환불완료' ? 'active' : ''}">환불완료</div>
 					</div>
 				</div>
 			</c:forEach>

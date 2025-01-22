@@ -29,24 +29,24 @@
 			<div class="swiper-wrapper">
 				<!-- 시간 되면 promotion db하나 만들어서 foreach로 교체 -->
 				<div class="swiper-slide">
+					<img alt="promotion3"
+						src="https://png.pngtree.com/background/20230612/original/pngtree-two-black-pomeranian-dogs-close-up-with-a-black-background-picture-image_3181748.jpg">
+				</div>
+				<div class="swiper-slide">
 					<img alt="promotion4"
-						src="https://www.tooli.co.kr/files/attach/images/571585/680/575/%EC%8A%A4%EB%A7%88%EC%9D%BC%20%EA%B0%95%EC%95%84%EC%A7%80.jpg">
+						src="https://png.pngtree.com/thumb_back/fw800/background/20230523/pngtree-black-and-white-cat-s-profile-against-a-black-background-image_2694158.jpg">
 				</div>
 				<div class="swiper-slide">
 					<img alt="promotion1"
-						src="https://mblogthumb-phinf.pstatic.net/MjAxNzExMDZfMjQx/MDAxNTA5OTQyNTM0NTQ3.LqsKFuUrwBbNZlNtSfmqG7T9bevPZvA_tPUODeqHiQIg.qat-OVwY8jRgX-oeN7B_jitX-dFmWFbS0SNThkI1N_Qg.JPEG.heeyoung9302/Golden-Retriever-puppy-cute-paws-2560x1600.jpg?type=w800">
+						src="https://cdn.pixabay.com/photo/2017/11/19/15/36/cat-2963057_960_720.jpg">
 				</div>
 				<div class="swiper-slide">
 					<img alt="promotion2"
-						src="https://p4.wallpaperbetter.com/wallpaper/480/886/364/puppies-backgrounds-desktop-wallpaper-preview.jpg">
-				</div>
-				<div class="swiper-slide">
-					<img alt="promotion3"
-						src="https://lh6.googleusercontent.com/proxy/Lj5knjyjCyulaWqsUfPCSvq_45lpyP_s9Q2-6QwDf3_G55QjBH0v3whbhs2oVrziKnoItL1rSlRT7rlLoLgpBmazgfslnUYaZlvumoghE9_whWZXfG5i">
+						src="https://png.pngtree.com/background/20230523/original/pngtree-zebra-face-against-a-black-background-picture-image_2699799.jpg">
 				</div>
 				<div class="swiper-slide">
 					<img alt="promotion5"
-						src="https://png.pngtree.com/thumb_back/fh260/background/20230421/pngtree-little-poodle-dog-smiling-image_2484721.jpg">
+						src="https://images.pexels.com/photos/6162265/pexels-photo-6162265.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
 				</div>
 			</div>
 			<!-- <div class="swiper-button-next" style="color: black"></div>
@@ -154,6 +154,7 @@
 					<div class="product-date">개시일 : ${product.product_date}</div>
 				</div>
 				</div>
+				<input type="hidden" name="product_id" value="${product.product_id}">
 			</c:forEach>
 		</div>
 		<!-- paging -->
@@ -168,7 +169,6 @@
 				style="text-decoration: none;">›</a>
 		</div>
 	</div>
-
-
 </body>
+<div class="fake-back"></div>
 </html>

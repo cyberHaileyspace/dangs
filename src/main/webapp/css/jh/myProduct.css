@@ -65,11 +65,9 @@
 	justify-content: center;
 	align-items: center;
 	height: 40px;
-	min-width: 80px;
-	max-width: 300px;
 }
 
-.order-category div:not(.product-img, .product-name, .order-id, .order-price, .order-status), .per-order div:not(.img-wrapper,
+.order-category div:not(.product-img, .product-name), .per-order div:not(.img-wrapper,
 	.name-wrapper, .product_name2, .buttons) {
 	width: 115px;
 	display: flex;
@@ -88,14 +86,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.order-price {
-	width: 94px;
-}
-
-.order-status {
-	width: 110px;
 }
 
 .product-img {

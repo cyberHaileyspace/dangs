@@ -46,19 +46,13 @@
 	justify-content: center;
 }
 
-.success-icon-wrwapper {
-	display: flex;
-	justify-content: center;
-}
-
 .success-icon {
-	width: 100px;
-	height: 100px;
+	padding-bottom: 10px;
 	display: flex;
 	justify-content: center;
 }
 
-.success-icon svg {
+.success-icon img {
 	width: 100px;
 	height: 100px;
 }

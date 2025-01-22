@@ -30,8 +30,6 @@ public class PurchaseC extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String pi = request.getParameter("product_id");
-//		String select_bank = request.getParameter("select-bank");
-//		String installments = request.getParameter("installments");
 		
 //		주문내역 페이지에서 주문수량 필요해서 추가
 		String order_stock = request.getParameter("orderedStocks");
@@ -40,8 +38,9 @@ public class PurchaseC extends HttpServlet {
 		/* 1. 주문정보를 orderDB에 담고 order_id를 추출해 보내는 메소드 */
 		ShopModel.saveOrder(request, response);
 
-//		필요하면 order_id를 랜덤 주문번호로 바꾸는 로직
-
+//		주문한 갯수만큼 상품수량 빼는 로직
+		ShopModel.updateProductStock(request, response);
+		
 		request.setAttribute("pi", pi);
 		System.out.println("pi는~~~~~~~" + pi + "~~~~~~~");
 //		request.setAttribute("select_bank", select_bank);

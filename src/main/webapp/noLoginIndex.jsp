@@ -15,8 +15,8 @@ pageEncoding="UTF-8"%>
     <script type="text/javascript" src="js/index.js"></script>
   </head>
   <body>
-    <div class="main-wrapper">
-      <div class="logo-div" onclick="location.href='HC'">
+    <div class="main-wrapper">  <!-- 로고색상을 화이트로 변경했습니다. 다른 분들은 기존 것(current change) 사용하시면 됩니다. -->
+      <div class="logo-div" onclick="location.href='HC'" style="filter: invert(100%) brightness(200%);">
         <img
           class="logo"
           alt=""
