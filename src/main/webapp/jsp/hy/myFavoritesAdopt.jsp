@@ -17,15 +17,16 @@
 		<nav class="navigation-bar">
 			<ul class="nav-links">
 				<li><a href="AdoptionController?action=shelter">보호소 입양 공고</a></li>
-				<li><a href="AdoptionController?action=favorites">관심있는 공고</a></li>
-
+				<li><a href="#" id="favoritesTab">관심있는 공고</a></li>
 			</ul>
 		</nav>
-	</div>
 
-
-	<div id="favoritesList">
-		<!-- 관심 등록 데이터가 여기에 표시됩니다 -->
+		<!-- 게시글 섹션 -->
+		<div class="posts-section">
+			<div id="favoritesList" class="posts-grid">
+				<!-- API 데이터 표시 -->
+			</div>
+		</div>
 	</div>
 </body>
 </html>

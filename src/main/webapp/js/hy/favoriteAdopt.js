@@ -22,8 +22,8 @@ $(document).ready(function() {
 
 				// 데이터 순회 및 HTML 생성
 				data.forEach(item => {
-					
-				// 성별 변환
+
+					// 성별 변환
 					let gender = (item.sexCd === 'F') ? '여아' : (item.sexCd === 'M') ? '남아' : '알 수 없음';
 
 					// 중성화 여부 변환
@@ -54,13 +54,14 @@ $(document).ready(function() {
 						age = '알 수 없음';
 					}
 					const itemHtml = `
-                        <div class="favorite-item" data-id="${item.desertionNo}">
-                            <img src="${item.popfile}" alt="이미지" class="thumbnail">
-                            <p><strong>품종:</strong> ${kindCd}</p>
-                            <p><strong>나이:</strong> ${age}</p>
-                            <p><strong>발생 장소:</strong> ${item.happenPlace}</p>
-                            <p><strong>성별:</strong> ${gender}</p>
-                            <p><strong>중성화 여부:</strong> ${neuterStatus}</p>
+                 		  <div class="item favorite-item" data-id="${item.desertionNo}">
+                            <img src="${item.popfile}" alt="Thumbnail" class="detail-image">
+							<div class="itme-content">                            
+                           		<p class="detail-kindCd"><strong> ${kindCd}</strong> </p>
+                           		<p> ${age} </p>
+                            	<p> ${gender} / ${neuterStatus} </p>
+                            	<p> 지역: ${item.happenPlace}</p>
+                        	</div>
                         </div>
                     `;
 					$('#favoritesList').append(itemHtml);
