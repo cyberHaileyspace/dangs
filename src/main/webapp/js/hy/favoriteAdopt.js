@@ -1,12 +1,10 @@
 $(document).ready(function() {
-	// 사용자 ID (임시 하드코딩 또는 세션에서 가져오기)
-	const userId = "your_user_id";
-
+	
 	// 관심 등록 데이터 가져오기
 	$.ajax({
 		url: 'GetFavController',
 		type: 'GET',
-		data: { userId: userId },
+		// data: { userId: userId },
 		dataType: 'json',
 		success: function(data) {
 			console.log(data);

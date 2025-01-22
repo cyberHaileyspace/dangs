@@ -61,7 +61,7 @@ $(function (){
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 if (xhr.responseText === 'loggedIn') {
-                    window.location.href = 'AdoptionController?action=favoritesTab';
+                    window.location.href = 'AdoptionController?action=favorites';
                 } else if (xhr.responseText === 'notLoggedIn') {
                     window.location.href = 'loginC';
                 }

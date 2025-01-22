@@ -313,7 +313,7 @@ public class AdoptionDAO {
 		
 	}
 
-	public void getUserFavorites(String userId) {
+	public JsonArray getUserFavorites(String userId) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -430,6 +430,7 @@ public class AdoptionDAO {
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
+		return resultArray;
 	
 	
 
