@@ -247,10 +247,16 @@ public class ShopModel {
 		if(orderpaging != null) {
 			ArrayList<MyPageDTO> items = new ArrayList<MyPageDTO>();
 			
+			if(mypages.size() != 0) {
+				
 			for (int i = start - 1; i > end; i--) {
 				items.add(mypages.get(i));
 			}
 			request.setAttribute("orders", items);
+			}else {
+				request.setAttribute("ment", "주문 내역이 없어요~");
+				System.out.println("멘트 생성 ? >>>>>>>>>>>>>");
+			}
 			
 		}else {
 			ArrayList<ProductDTO> items = new ArrayList<ProductDTO>();

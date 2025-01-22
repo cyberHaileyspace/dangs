@@ -2,9 +2,11 @@ package com.dangs.sw;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.dangs.main.DBManager;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -458,5 +461,46 @@ public class swM {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void getPetDetail(HttpServletRequest request, HttpServletResponse response, String petId) {
+        response.setContentType("application/json;charset=utf-8");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM petDB WHERE pet_id = ?";
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, petId);
+			rs = pstmt.executeQuery();
+			PetDTO pet = null;
+			 if (rs.next()) {
+	              pet = new PetDTO();
+	              pet.setPetName(rs.getString(3));
+	              pet.setPetType(rs.getString(4));
+	              pet.setPetPhoto(rs.getString(5));
+	              pet.setPetSize(rs.getString(6));
+	              pet.setPetBirth(rs.getDate(7));
+	              String petBirthStr = new SimpleDateFormat("yyyy-MM-dd").format(pet.getPetBirth());
+	              pet.setPetBirthStr(petBirthStr);  // petBirth를 String으로 변환한 값을 setter로 설정
+	              pet.setPetGender(rs.getString(8));
+	              pet.setPetDescription(rs.getString(9));
+	            }
+			// petBirth를 String으로 변환
+		        
+		        // JSON 응답
+		        Gson gson = new Gson();
+		        String petInfoJson = gson.toJson(pet);
+		        
+		
+		        response.getWriter().write(petInfoJson);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+		
+		
 	}
 } // swM 끝

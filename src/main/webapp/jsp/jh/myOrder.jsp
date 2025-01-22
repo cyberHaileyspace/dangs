@@ -39,7 +39,10 @@
 			<div class="order-price">결제금액</div>
 			<div class="order-status">주문상태</div>
 		</div>
-		<div id="orderContainer">
+		<div id="orderContainer">								
+			<c:choose>
+				<c:when test="${not empty orders}">
+			
 			<c:forEach var="orders" items="${orders}" varStatus="st">
 				<div class="per-order" data-title="${orders.product_name}">
 					<div>${st.count }</div>
@@ -164,7 +167,12 @@
 					</div>
 				</div>
 			</c:forEach>
-			
+				</c:when>
+				<c:otherwise>
+					<div style="margin-top: 50px; text-align: center;" ><h1> ${ment }</h1></div>
+					
+				</c:otherwise>
+			</c:choose>
 			<!-- paging -->
 			<div class="paging-container">
 			<a class="prev-btn" href="MyOrderPageC?p=1"
