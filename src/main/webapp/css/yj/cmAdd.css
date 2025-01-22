@@ -1,15 +1,18 @@
-body{
+body {
 	margin: 0;
 	padding: 0;
 }
-.container-add{
+
+.container-add {
 	width: 90%;
-    margin: 20px auto;
+	margin: 20px auto;
 }
-.container-add > div {
-    margin-bottom: 20px;
-  }
-.add-menu{
+
+.container-add>div {
+	margin-bottom: 20px;
+}
+
+.add-menu {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 10px;
@@ -17,97 +20,113 @@ body{
 
 .add-size {
 	display: flex;
-/*	margin-bottom: 10px;*/
-	
-/*    padding: 15px 10px;*/
-}
-.add-size input[type=radio]{
-    display: none;
-}
-.add-size input[type=radio]+label{
-	padding: 10px 15px;
-     border-radius: 10px;
-    display: inline-block;
-    cursor: pointer;
-    width: 50px;
-	height: 15px;
-    border: 1px solid #333;
-    line-height: 24px;
-    text-align: center;
-    font-weight:bold;
-    font-size:13px;
-    
-    margin-right: 5px;
-}
-.add-size input[type=radio]+label{
-    background-color: bisque;
-    color: #333;
-}
-.add-size input[type=radio]:checked+label{
-    background-color: #333;
-    color: bisque;
+	/*	margin-bottom: 10px;*/
+
+	/*    padding: 15px 10px;*/
 }
 
-.add-title{
+.add-size input[type=radio] {
+	display: none;
+}
+
+.add-size input[type=radio]+label {
+	padding: 10px 15px;
+	border-radius: 10px;
+	display: inline-block;
+	cursor: pointer;
+	width: 50px;
+	height: 15px;
+	border: 1px solid #333;
+	line-height: 24px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 13px;
+
+	margin-right: 5px;
+}
+
+.add-size input[type=radio]+label {
+	background-color: bisque;
+	color: #333;
+}
+
+.add-size input[type=radio]:checked+label {
+	background-color: #333;
+	color: bisque;
+}
+
+.add-title {
 	display: flex;
 	margin-bottom: 10px;
 }
-.add-ta > textarea{
+
+.add-ta>textarea {
 	width: 600px;
 	height: 50px;
 	resize: none;
 	margin-left: 15px;
 }
-.add-menu2{
-/*	display: flex*/
+
+.add-menu2 {
+	/*	display: flex*/
 	flex-direction: column;
 	margin-bottom: 10px;
 }
+
 .add-category {
 	display: flex;
 }
-.add-category input[type=radio]{
-    display: none;
-}
-.add-category input[type=radio]+label{
-	padding: 10px 15px;
-     border-radius: 10px;
-    display: inline-block;
-    cursor: pointer;
-    width: 55px;
-	height: 15px;
-    border: 1px solid #333;
-    line-height: 24px;
-    text-align: center;
-    font-weight:bold;
-    font-size:13px;
-    
-    margin-right: 5px;
-}
-.add-category input[type=radio]+label{
-    background-color: bisque;
-    color: #333;
-}
-.add-category input[type=radio]:checked+label{
-    background-color: #333;
-    color: bisque;
+
+.add-category input[type=radio] {
+	display: none;
 }
 
-.add-write{
+.add-category input[type=radio]+label {
+	padding: 10px 15px;
+	border-radius: 10px;
+	display: inline-block;
+	cursor: pointer;
+	width: 55px;
+	height: 15px;
+	border: 1px solid #333;
+	line-height: 24px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 13px;
+
+	margin-right: 5px;
+}
+
+.add-category input[type=radio]+label {
+	background-color: bisque;
+	color: #333;
+}
+
+.add-category input[type=radio]:checked+label {
+	background-color: #333;
+	color: bisque;
+}
+
+.add-write {
 	margin-bottom: 10px;
 }
-.add-write > div {
-    margin-bottom: 10px;
-  }
-.add-file{
+
+.add-write>div {
 	margin-bottom: 10px;
 }
-.add-check{
+
+.add-file {
+	margin-bottom: 10px;
+}
+
+.add-check {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-.add-cancel, .add-post{
+
+.add-cancel,
+.add-post {
 	margin-right: 10px;
 	background-color: #ffdd57;
 	border: none;
@@ -115,15 +134,16 @@ body{
 	border-radius: 4px;
 	cursor: pointer;
 }
+
 #att_zone {
-  width: 660px;
-  min-height: 150px;
-  padding: 10px;
-  border: 1px dotted #00f;
+	width: 660px;
+	min-height: 150px;
+	padding: 10px;
+	border: 1px dotted #00f;
 }
 
 #att_zone:empty:before {
-  content: attr(data-placeholder);
-  color: #999;
-  font-size: .9em;
+	content: attr(data-placeholder);
+	color: #999;
+	font-size: .9em;
 }

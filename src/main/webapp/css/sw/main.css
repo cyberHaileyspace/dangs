@@ -15,11 +15,11 @@
 }
 
 
-.sw-post-title{
-		gap: 30px;
+.sw-post-title {
+	gap: 30px;
 }
 
-.sw-post-title div{
+.sw-post-title div {
 	cursor: pointer;
 	white-space: nowrap;
 	overflow: hidden;

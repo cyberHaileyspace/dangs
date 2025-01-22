@@ -7,17 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dangs.sw.swM;
-
-@WebServlet("/getAddressesC")
-public class GetAddressesC extends HttpServlet {
-
+@WebServlet("/Middle02C")
+public class Middle02C extends HttpServlet {
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			swM.getAllAddress(request, response);
+		request.setAttribute("content", "jsp/jm/write.jsp");
+		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 	}
 
 }

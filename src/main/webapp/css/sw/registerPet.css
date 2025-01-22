@@ -1,69 +1,75 @@
 @charset "UTF-8";
+
 /* 고유 클래스 네임을 사용하여 스타일링 충돌 방지 */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: white;
-    color: #333;
-    margin: 0;
-    padding: 0;
+	font-family: 'Arial', sans-serif;
+	background-color: white;
+	color: #333;
+	margin: 0;
+	padding: 0;
 }
 
 .register-pet-container {
-    background-color: ivory;
-    padding: 40px;
-    margin: 30px auto;
-    width: 500px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	background-color: ivory;
+	padding: 40px;
+	margin: 30px auto;
+	width: 500px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    text-align: center;
-    color: #E77D67;
+	text-align: center;
+	color: #E77D67;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
 }
 
 label {
-    font-weight: bold;
-    color: #444;
+	font-weight: bold;
+	color: #444;
 }
 
-input[type="text"], input[type="date"], select, textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 14px;
 }
+
 .pet-gender-options {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+	display: flex;
+	gap: 10px;
+	align-items: center;
 }
+
 button {
-    background-color: #E77D67;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
+	background-color: #E77D67;
+	color: white;
+	padding: 12px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-top: 10px;
 }
 
 button:hover {
-    background-color: #d65c55;
+	background-color: #d65c55;
 }
 
 #petPhotoPreview {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin-top: 10px;
-    display: none;
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	margin-top: 10px;
+	display: none;
 }

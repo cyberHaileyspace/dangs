@@ -11,8 +11,8 @@ body {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    overflow-x: hidden;
+	font-family: Arial, sans-serif;
+	overflow-x: hidden;
 }
 
 @font-face {
@@ -32,6 +32,35 @@ body {
 @font-face {
 	font-family: "GowunDodum-Regular";
 	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+
+}
+
+@font-face {
+	font-family: 'yg-jalnan';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Cafe24Ssurround';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Ownglyph_meetme-Rg';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_1@1.0/Ownglyph_meetme-Rg.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'HakgyoansimGeurimilgiTTF-R';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimGeurimilgiTTF-R.woff2') format('woff2');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -91,42 +120,20 @@ body {
 }
 
 .login {
-    width: 25%;
-    height: 330px;
-    position: sticky;
-    top: 60px;
-    border: 5px solid #F1E1D2;
-    border-radius: 10px;
-    right: -30px;
-    background-color: ivory;
+	width: 25%;
+	height: 330px;
+	position: sticky;
+	top: 60px;
+	border: 5px solid #F1E1D2;
+	border-radius: 10px;
+	right: -30px;
+	background-color: ivory;
 }
 
 .index-content {
 	margin-left: 150px;
-	/*border: 9px solid #E77D67;*/
 	width: 50%;
 	height: 2000px;
-}
-
-.map {
-	margin: auto;
-	margin-top: 50px;
-	border: 5px solid black;
-	width: 80%;
-	height: 25%;
-}
-
-.locationButton {
-	margin: auto;
-	top: 50px;
-	border: 5px solid black;
-	display: flex;
-	width: 20%;
-	height: 100px;
-	background-color: #ffcf9d;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
 }
 
 /*modal*/
@@ -204,17 +211,20 @@ body {
 }
 
 .error-message {
-    color: red;
-    font-size: 12px;
-    display: none; /* 기본적으로 숨김 */
+	color: red;
+	font-size: 12px;
+	display: none;
+	/* 기본적으로 숨김 */
 }
-.swInputDiv{
+
+.swInputDiv {
 	position: relative;
 }
-.swInputDiv span{
+
+.swInputDiv span {
 	position: absolute;
-    right: 9px;
-    top: 6px;
+	right: 9px;
+	top: 6px;
 }
 
 /*modal 끝*/

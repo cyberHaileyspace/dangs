@@ -9,15 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dangs.sw.swM;
 
-@WebServlet("/getAddressesC")
-public class GetAddressesC extends HttpServlet {
-
+@WebServlet("/registerWalkingMateC")
+public class RegisterWalkingMateC extends HttpServlet {
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			swM.getAllAddress(request, response);
+		registerWalkingMateDAO.selectAllLocation(request);
+		request.setAttribute("content", "jsp/jm/walkingmate.jsp");
+		swM.loginCheck(request);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 	}
 
 }

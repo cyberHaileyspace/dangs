@@ -9,15 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dangs.sw.swM;
 
-@WebServlet("/getAddressesC")
-public class GetAddressesC extends HttpServlet {
-
+@WebServlet("/MiddleC")
+public class MiddleC extends HttpServlet {
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			swM.getAllAddress(request, response);
+		request.setAttribute("content", "jsp/jm/search.jsp");
+		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 	}
 
 }
