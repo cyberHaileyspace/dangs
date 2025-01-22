@@ -14,14 +14,17 @@ public class ProductC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("content", "jsp/jh/product.jsp");
-		request.setAttribute("content2", "jsp/jh/recentProduct.jsp");
 
 		ShopModel.getProduct(request, response);
 		ShopModel.showSameCategory(request, response);
 		ShopModel.insertRecentProduct(request, response);
 		swM.loginCheck(request);
 
+//		최근 본 상품
+		ShopModel.getRecentProduct(request, response);
+
+		request.setAttribute("content", "jsp/jh/product.jsp");
+		request.setAttribute("content2", "jsp/jh/recentProduct.jsp");
 		request.getRequestDispatcher("noLoginIndexJh.jsp").forward(request, response);
 	}
 
