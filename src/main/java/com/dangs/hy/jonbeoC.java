@@ -8,25 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/AdoptDetailController")
-public class AdoptDetailController extends HttpServlet {
-	
+@WebServlet("/jonbeoC")
+public class jonbeoC extends HttpServlet {
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		String desertionNo = request.getParameter("desertionNo");
-		
-		String animalDetail = AdoptionDAO.getAdao().getAnimalDetail(desertionNo);
-		
-		request.setAttribute("jonbeo", desertionNo);
-		request.setAttribute("animalDetail", animalDetail);
-		
-		request.setAttribute("content", "jsp/hy/adoptDetail.jsp");
-		
-		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
-		
+		String desertionNo = request.getParameter("asd");
+		System.out.println(desertionNo);
+		AdoptionDAO.getAdao().getDetailTwo(desertionNo, request, response);
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	}

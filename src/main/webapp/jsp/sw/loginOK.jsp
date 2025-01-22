@@ -15,16 +15,12 @@
         </div>
         <div class="stats-section">
             <div class="stat">
-                <span class="label">하트</span>
-                <span class="value">0개</span>
+                <span class="label">포인트</span>
+                <span class="value">${sessionScope.user.point }</span>
             </div>
             <div class="stat">
-                <span class="label">랭킹</span>
-                <span class="value">256위</span>
-            </div>
-            <div class="stat">
-                <span class="label">구독자</span>
-                <span class="value">0명</span>
+                <span class="label">내 글</span>
+                <span class="value">xxx</span>
             </div>
         </div>
         <div class="menu-section">
