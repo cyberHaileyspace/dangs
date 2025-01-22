@@ -15,7 +15,7 @@
 	<div class="container-cm-post">
 	
 	
-		<div class="cm-back"><span> 커뮤니티 > </span></div>
+		<div class="cm-back" onclick="location.href='CmMainC'"><span> 커뮤니티 > </span></div>
 		
 		<div class="post-title"><span> ${getPost.cm_title } </span></div>
 	
@@ -51,7 +51,7 @@
       <c:forEach var="re" items="${cm_reply }">
 	<div class="post-comment">
 		<div class="reply">
-			<div class="reply-img"><img alt="" src="img/userProfile/${getRpPro.user_profile }"></div>
+			<div class="reply-img"><img alt="" src="img/userProfile/${re.user_profile }"></div>
 			<div class="reply-string">
 				<div class="reply-name">${re.cmr_user_id}</div>
 				<div class="reply-text">${re.cmr_text}</div>

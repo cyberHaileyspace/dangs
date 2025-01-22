@@ -8,25 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/CmAddReplyC")
-public class CmAddReplyC extends HttpServlet {
+@WebServlet("/CmRadioC")
+public class CmRadioC extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		CmDAO.addReply(request, response);
-		
-		
-		response.sendRedirect("CmPostC?no="+request.getParameter("no"));
-		
-		
+	CmDAO.radioCm(request, response);
+	
+	
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		/*
-		 * CmDAO.addReply(request, response); response.sendRedirect("CmPostC");
-		 */
 	
 	}
 
