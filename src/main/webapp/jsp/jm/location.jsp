@@ -14,7 +14,6 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-<<<<<<< HEAD
 	<div id="map" class="map"></div>
 	<div style="height: 40px;"></div>
 	<div style="display: flex;">
@@ -179,8 +178,5 @@
 			}
 		});
 	</script>
-=======
-
->>>>>>> 2184d514ac57c147051bcb6c373cfee9fc552e05
 </body>
 </html>

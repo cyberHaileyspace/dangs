@@ -8,12 +8,10 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="css/sw/main.css">
-<script src="https://code.jquery.com/jquery-3.7.1.js"
-	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-	crossorigin="anonymous"></script>
+
 </head>
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 <body>
 <div class="littleBody">
 <div class="swiper-container">
@@ -67,43 +65,44 @@ $(function() {
 
 	
 
-document.getElementById('wishlist-button').addEventListener('click', function() {
-	  const productId = this.getAttribute('data-product-id');
+// document.getElementById('wishlist-button').addEventListener('click', function() {
+// 	  const productId = this.getAttribute('data-product-id');
 
-	  fetch('CheckSessionServlet', {
-	    method: 'GET',
-	    headers: {
-	      'Content-Type': 'application/json'
-	    }
-	  })
-	  .then(response => response.json())
-	  .then(data => {
-	    if (data.isLoggedIn) {
-	      fetch('ToggleWishlistServlet', {
-	        method: 'POST',
-	        headers: {
-	          'Content-Type': 'application/json'
-	        },
-	        body: JSON.stringify({ productId: productId })
-	      })
-	      .then(response => response.json())
-	      .then(result => {
-	        if (result.success) {
-	          const heartIcon = document.querySelector('.heart-icon');
-	          heartIcon.classList.toggle('active', result.isWishlisted);
-	        } else {
-	          alert('찜 상태 변경에 실패했습니다.');
-	        }
-	      });
-	    } else {
-	      window.location.href = 'loginC';
-	    }
-	  })
-	  .catch(error => {
-	    console.error('에러 발생:', error);
-	  });
-	});
+// 	  fetch('CheckSessionServlet', {
+// 	    method: 'GET',
+// 	    headers: {
+// 	      'Content-Type': 'application/json'
+// 	    }
+// 	  })
+// 	  .then(response => response.json())
+// 	  .then(data => {
+// 	    if (data.isLoggedIn) {
+// 	      fetch('ToggleWishlistServlet', {
+// 	        method: 'POST',
+// 	        headers: {
+// 	          'Content-Type': 'application/json'
+// 	        },
+// 	        body: JSON.stringify({ productId: productId })
+// 	      })
+// 	      .then(response => response.json())
+// 	      .then(result => {
+// 	        if (result.success) {
+// 	          const heartIcon = document.querySelector('.heart-icon');
+// 	          heartIcon.classList.toggle('active', result.isWishlisted);
+// 	        } else {
+// 	          alert('찜 상태 변경에 실패했습니다.');
+// 	        }
+// 	      });
+// 	    } else {
+// 	      window.location.href = 'loginC';
+// 	    }
+// 	  })
+// 	  .catch(error => {
+// 	    console.error('에러 발생:', error);
+// 	  });
+// 	});
 });
 </script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </body>
 </html>
