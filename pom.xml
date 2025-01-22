@@ -31,6 +31,10 @@
     <artifactId>lombok</artifactId>
     <version>1.18.36</version>
 </dependency>
-
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.13.0</version>  <!-- 버전은 최신으로 설정 -->
+</dependency>
   </dependencies>
 </project>
