@@ -59,8 +59,12 @@ body {
   position: sticky;
   top: 0px;
   z-index: 2;
-  background-color: #fefefe;
+  /* 카테고리 배경색상을 화이트로 변경했습니다. 다른 분들은 기존 것(current change) 사용하시면 됩니다. */
+  background-color: black;
+  color: white;
   border-bottom: 1px solid lightgrey;
+  /* ******** */
+  color: white;
 }
 
 .index-content {
@@ -144,8 +148,7 @@ body {
 .error-message {
   color: red;
   font-size: 12px;
-  display: none;
-  /* 기본적으로 숨김 */
+  display: none; /* 기본적으로 숨김 */
 }
 
 .swInputDiv {

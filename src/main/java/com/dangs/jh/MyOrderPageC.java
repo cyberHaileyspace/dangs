@@ -7,23 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/MOCfMP")
-public class MOCfMP extends HttpServlet {
+import com.dangs.sw.swM;
+
+@WebServlet("/MyOrderPageC")
+public class MyOrderPageC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String prev_page = "마이페이지";
-		request.setAttribute("prev_page", prev_page);
-		
-//		주문내역에 들어갈 때 마다 주문상태를 자동으로 업데이트
-		ShopModel.orderStatusUpdate(request, response);
-		
-
-//		주문내역 가져오는 메소드		
+		int p = Integer.parseInt(request.getParameter("p"));
 		ShopModel.getAll(request, response);
-		ShopModel.paging(1, request);
+		ShopModel.paging(p, request);
+		
 		request.setAttribute("content", "jsp/jh/myOrder.jsp");
+		swM.loginCheck(request);
 		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

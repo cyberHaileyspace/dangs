@@ -49,9 +49,45 @@
 						style="font-size: 20px; color: #e74c3c; margin-bottom: 20px;">${product_price}</div>
 					<!-- product culumn - price -->
 				</div>
-				<img class="share-img" style="width: 25px; height: 25px"
-					src="https://png.pngtree.com/png-vector/20230316/ourmid/pngtree-share-line-icon-vector-png-image_6651445.png"
-					alt="Share image">
+				<!-- 공유 버튼 -->
+				<div class="share-img-jh" onclick="openModalJh()">
+					<svg xmlns="http://www.w3.org/2000/svg" height="24px"
+						viewBox="0 -960 960 960" width="24px" fill="#000000"
+						style="width: 25px;">
+        <path
+							d="M680-80q-50 0-85-35t-35-85q0-6 3-28L282-392q-16 15-37 23.5t-45 8.5q-50 0-85-35t-35-85q0-50 35-85t85-35q24 0 45 8.5t37 23.5l281-164q-2-7-2.5-13.5T560-760q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35q-24 0-45-8.5T598-672L317-508q2 7 2.5 13.5t.5 14.5q0 8-.5 14.5T317-452l281 164q16-15 37-23.5t45-8.5q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T720-200q0-17-11.5-28.5T680-240q-17 0-28.5 11.5T640-200q0 17 11.5 28.5T680-160ZM200-440q17 0 28.5-11.5T240-480q0-17-11.5-28.5T200-520q-17 0-28.5 11.5T160-480q0 17 11.5 28.5T200-440Zm480-280q17 0 28.5-11.5T720-760q0-17-11.5-28.5T680-800q-17 0-28.5 11.5T640-760q0 17 11.5 28.5T680-720Zm0 520ZM200-480Zm480-280Z" />
+    </svg>
+				</div>
+
+				<!-- 모달 배경 -->
+				<div class="share-modal-background-jh" id="shareModalBackground"
+					style="display: none;">
+					<div class="share-modal-jh">
+						<span class="close-btn-jh" onclick="closeModalJh()">&times;</span>
+						<div class="modal-content-jh">
+							<h2>공유하기</h2>
+							<div class="share-boxes-jh">
+								<div class="share-box1-jh">
+									<div>
+										<img alt="kakao"
+											src="https://cdn-icons-png.flaticon.com/512/2111/2111496.png">
+										<img alt="x"
+											src="https://i.namu.wiki/i/wt5DaQyoEYzve1fU6oj-ZfKOpTAfLAyk6xgLMYDAvNVAsMmwy1Us0MqtoppBea7lBAbusx-dZiXtD7fRkzTgKA.svg">
+										<img alt="instagram"
+											src="https://artfeel.co.kr/web/product/big/201805/10523_shop1_15266062157845.jpg">
+									</div>
+								</div>
+								<div class="share-box2-jh">
+									<div class="url-info">URL :</div>
+									<input class="url-jh" type="text"
+										value="localhost/dangs/ProductC?product_id=${product_id}"
+										readonly class="disabled-input-jh" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
 			<hr>
 			<p>
@@ -175,9 +211,9 @@
 									<fmt:formatNumber value="${products.product_price}"
 										pattern="#,###" />
 									원
-							</div>
-							<div class="product-date">개시일 : ${products.product_date}</div>
 								</div>
+								<div class="product-date">개시일 : ${products.product_date}</div>
+							</div>
 						</div>
 					</div>
 				</c:forEach>

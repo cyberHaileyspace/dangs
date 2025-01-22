@@ -254,3 +254,23 @@ document.addEventListener("DOMContentLoaded", () => {
     commentSection.classList.add("hidden");     // 댓글 섹션 숨기기
   });
 });
+
+
+
+
+// 모달 열기
+function openModalJh() {
+    const modalBackground = document.getElementById('shareModalBackground');
+    modalBackground.style.display = 'flex';
+}
+
+// 모달 닫기
+function closeModalJh() {
+    const modalBackground = document.getElementById('shareModalBackground');
+    modalBackground.style.display = 'none';
+}
+
+// 공유 버튼 기능 (예제용)
+function shareViaJh(platform) {
+    alert(`${platform}로 공유합니다!`);
+}
