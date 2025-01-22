@@ -592,6 +592,26 @@ public class CmDAO {
 			DBManager.close(con, pstmt, rs);
 		}
 	}
+
+	public static void viewCm(HttpServletRequest request) {
+		int postId =Integer.parseInt(request.getParameter("no"));
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "update cm_post set cm_view = cm_view + 1 where cm_no = ?";
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, postId);
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("조회수 증가 로직 정상 작동 중");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, null);
+		}
+		
+	}
 		
 		
 	}

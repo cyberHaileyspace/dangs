@@ -27,7 +27,7 @@
 				<div class="post-date">${getPost.cm_date }</div>
 			</div>
 			<div class="post-items">
-<%-- 				<div class="post-view"><img alt="" src="https://cdn-icons-png.flaticon.com/512/7835/7835667.png">${getPost.cm_view }</div> --%>
+				<div class="post-view"><img alt="" src="https://cdn-icons-png.flaticon.com/512/7835/7835667.png">${getPost.cm_view }</div>
 				<div class="post-like"><img alt="" src="https://cdn-icons-png.flaticon.com/512/833/833234.png">${getPost.cm_like }</div>
 			</div>
 			</div>

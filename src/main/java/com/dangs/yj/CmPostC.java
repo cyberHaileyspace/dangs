@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 public class CmPostC extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//조회수 작업
+		CmDAO.viewCm(request);
 		CmDAO.getCm(request);
 		CmDAO.checkWriter(request);
 		CmDAO.GetReply(request);

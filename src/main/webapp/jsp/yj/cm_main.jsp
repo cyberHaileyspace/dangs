@@ -68,7 +68,7 @@ pageEncoding="UTF-8"%>
       <div class="cm-info">
       	<div class="info-name">작성자 : ${i.cm_user_id }</div>
       	<div class="info-date">작성일 : ${i.cm_date }</div>
-<%--       	<div class="info-view">조회수 : ${i.cm_view }</div> --%>
+       	<div class="info-view">조회수 : ${i.cm_view }</div>
       	<div class="info-like">좋아요 : ${i.cm_like }</div>
       	<%-- <div hidden>${i.cm_no }</div> --%>
       </div>
@@ -77,7 +77,7 @@ pageEncoding="UTF-8"%>
       </c:forEach>
         </div>
       
-      	<div>
+      	<div class="cm-a-tag">
 			<a href="CmPageC?p=1"> [begin] </a>
 			<c:forEach begin="1" end="${pageCount }" var="j">
 			<a href="CmPageC?p=${j }"> [ ${j } ] </a>

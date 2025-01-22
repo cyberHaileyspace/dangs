@@ -196,3 +196,9 @@ body {
 .info-like {
 	margin-left: 10px;
 }
+
+
+.cm-a-tag a{
+	text-decoration: none;
+	color: gray;
+}
