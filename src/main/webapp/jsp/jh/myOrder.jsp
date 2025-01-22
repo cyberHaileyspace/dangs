@@ -169,7 +169,8 @@
 			</c:forEach>
 				</c:when>
 				<c:otherwise>
-					<div style="margin-top: 50px; text-align: center;" ><h1> ${ment }</h1></div>
+					<img alt="no-product-img" src="img/gohan.png">
+					<div style="margin-top: 50px; text-align: center;" > <h1> ${ment }</h1></div>
 					
 				</c:otherwise>
 			</c:choose>

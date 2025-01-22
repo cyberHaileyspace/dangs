@@ -14,7 +14,8 @@ public class MyCartC extends HttpServlet {
 //		my_bookmark에서 get
 		
 		request.setAttribute("content", "jsp/jh/myCart.jsp");
-		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
+		request.setAttribute("content2", "jsp/jh/recentProduct.jsp");
+		request.getRequestDispatcher("noLoginIndexJh.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
