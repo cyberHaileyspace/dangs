@@ -11,18 +11,28 @@ import com.dangs.sw.swM;
 
 @WebServlet("/InsertProductC")
 public class InsertProductC extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+//		최근 본 상품
+		ShopModel.getRecentProduct(request, response);
+
 		request.setAttribute("content", "jsp/jh/insertProduct.jsp");
-		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
+		request.setAttribute("content2", "jsp/jh/recentProduct.jsp");
+		request.getRequestDispatcher("noLoginIndexJh.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		ShopModel.insertProduct(request, response);
 
+//		최근 본 상품
+		ShopModel.getRecentProduct(request, response);
+
 		request.setAttribute("content", "jsp/jh/iPResult.jsp");
-		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
+		request.setAttribute("content2", "jsp/jh/recentProduct.jsp");
+		request.getRequestDispatcher("noLoginIndexJh.jsp").forward(request, response);
 	}
 
 }

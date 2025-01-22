@@ -20,10 +20,12 @@ public class CancelOrRefundC extends HttpServlet {
 //		주문내역 가져오는 메소드
 		ShopModel.getAllByOrderId(request, response);
 		
-		
+//		최근 본 상품
+		ShopModel.getRecentProduct(request, response);
 		
 		request.setAttribute("content", "jsp/jh/cancelOrRefund.jsp");
-		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
+		request.setAttribute("content2", "jsp/jh/recentProduct.jsp");
+		request.getRequestDispatcher("noLoginIndexJh.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,9 +38,12 @@ public class CancelOrRefundC extends HttpServlet {
 //		canceled_order에 저장하는 메소드
 		ShopModel.saveCanceledOrder(request, response);
 		
+//		최근 본 상품
+		ShopModel.getRecentProduct(request, response);
 		
 		request.setAttribute("content", "jsp/jh/corResult.jsp");
-		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
+		request.setAttribute("content2", "jsp/jh/recentProduct.jsp");
+		request.getRequestDispatcher("noLoginIndexJh.jsp").forward(request, response);
 
 	}
 

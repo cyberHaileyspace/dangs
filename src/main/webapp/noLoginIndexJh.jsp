@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
-    <link rel="stylesheet" href="css/noLoginIndex.css" />
+    <link rel="stylesheet" href="css/jh/noLoginIndexJh.css" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.js"
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
@@ -43,6 +43,10 @@ pageEncoding="UTF-8"%>
       <div class="index-content">
         <jsp:include page="${content }"></jsp:include>
       </div>
+      <div class="index-content2">
+        <jsp:include page="${content2 }"></jsp:include>
+      </div>
+      <img alt="easter-egg" src="https://stickershop.line-scdn.net/stickershop/v1/product/23701227/LINEStorePC/main.png?v=1" style="width:100px; height:100px">
     </div>
     <!-- 모달 -->
     <div id="signupModal" class="modal">
