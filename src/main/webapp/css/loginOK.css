@@ -1,95 +1,96 @@
 .loginAA {
-    width: 80%;
-    margin-left: 14px;
-    height: 80%;
-    padding: 23px;
-    /* box-sizing: border-box; */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+	width: 80%;
+	margin-left: 14px;
+	height: 80%;
+	padding: 23px;
+	/* box-sizing: border-box; */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .profile-section {
-    border: 1px solid #F1E1D2;
-    display: flex;
-    text-align: center;
-    position: relative;
-    height: 100px;
-    border-radius: 10px;
-    background-color: #F1E1D2;
+	border: 1px solid #F1E1D2;
+	display: flex;
+	text-align: center;
+	position: relative;
+	height: 100px;
+	border-radius: 10px;
+	background-color: #F1E1D2;
 }
 
 .profile-icon img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    position: relative;
-    left: 10px;
-    top: 10px;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	object-fit: cover;
+	position: relative;
+	left: 10px;
+	top: 10px;
 }
 
 .profile-name {
-    position: relative;
-    left: 35px;
-    font-size: 20px;
-    color: #E77D67;
-    margin-top: 35px;
+	position: relative;
+	left: 35px;
+	font-size: 20px;
+	color: #E77D67;
+	margin-top: 35px;
 }
 
 .settings-icon {
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
-    font-size: 20px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+	font-size: 20px;
 }
 
 .stats-section {
-    display: flex;
-    justify-content: space-around;
-   /* margin: 10px 0;*/
-   background-color: #F1E1D2;
-   border-radius: 10px;
+	display: flex;
+	justify-content: space-around;
+	/* margin: 10px 0;*/
+	background-color: #F1E1D2;
+	border-radius: 10px;
 }
 
 .stat {
-    text-align: center;
+	text-align: center;
 }
 
 .label {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .value {
-    font-size: 16px;
-    color: gray;
+	font-size: 16px;
+	color: gray;
 }
 
 .menu-section {
-    display: flex;
-    justify-content: center;
-    background-color: #F1E1D2;
+	display: flex;
+	gap: 20px;
+	background-color: #F1E1D2;
 }
 
 .menu-item {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .footer-section {
-    text-align: center;
+	text-align: center;
 }
 
 .logout {
-    background-color: #F1E1D2;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 14px;
+	background-color: #F1E1D2;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	font-size: 14px;
+	transition: background-color 0.4s ease;
 }
 
 .logout:hover {
-    background-color: #E77D67;
+	background-color: #E77D67;
 }
 
 /*div{

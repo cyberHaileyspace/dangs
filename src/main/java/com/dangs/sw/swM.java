@@ -186,9 +186,9 @@ public class swM {
 			pstmt.setString(6, address);
 			pstmt.setString(7, img);
 			pstmt.setString(8, userID);
-
-			if (pstmt.executeUpdate() == 1) {
-				System.out.println("수정 성공 !!! 레전드 사건 발생 !!!!");
+			
+			if (pstmt.executeUpdate()==1) {
+				System.out.println("수정 성공 !!");
 				if (newPhoto != null) {
 					File f = new File(path + "/" + oldPhoto);
 					f.delete();

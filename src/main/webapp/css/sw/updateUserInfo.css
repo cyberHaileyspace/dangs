@@ -40,8 +40,9 @@
 	background-color: #ff6b6b;
 	color: white;
 }
-#updateUserInfoSubmit:hover{
-	background-color: darkred;	
+
+#updateUserInfoSubmit:hover {
+	background-color: darkred;
 }
 
 #cancelBtn {
@@ -68,7 +69,6 @@
 #data-container {
 	display: none;
 }
-
 
 /* 사용자 정의 버튼 스타일 */
 .file-label {
