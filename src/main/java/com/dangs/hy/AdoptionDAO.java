@@ -313,96 +313,97 @@ public class AdoptionDAO {
 		
 	}
 
-	public void getUserFavorites(String userId) {
+	public JsonArray getUserFavorites(String userId) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT" +
-			    "    l.desertionno," +
-			    "    jt.desertion_no," +
-			    "    jt.filename," +
-			    "    jt.happen_dt," +
-			    "    jt.happen_place," +
-			    "    jt.kind_cd," +
-			    "    jt.color_cd," +
-			    "    jt.age," +
-			    "    jt.weight," +
-			    "    jt.notice_no," +
-			    "    jt.notice_sdt," +
-			    "    jt.notice_edt," +
-			    "    jt.process_state," +
-			    "    jt.sex_cd," +
-			    "    jt.neuter_yn," +
-			    "    jt.special_mark," +
-			    "    jt.care_nm," +
-			    "    jt.care_tel," +
-			    "    jt.care_addr," +
-			    "    jt.org_nm," +
-			    "    jt.charge_nm," +
-			    "    jt.officetel" +
-			    "    jt.popfile" +
-			    " FROM" +
-			    "    adoption_likes l" +
-			    " JOIN (" +
-			    "    SELECT" +
-			    "        jt.desertion_no," +
-			    "        jt.filename," +
-			    "        jt.happen_dt," +
-			    "        jt.happen_place," +
-			    "        jt.kind_cd," +
-			    "        jt.color_cd," +
-			    "        jt.age," +
-			    "        jt.weight," +
-			    "        jt.notice_no," +
-			    "        jt.notice_sdt," +
-			    "        jt.notice_edt," +
-			    "        jt.process_state," +
-			    "        jt.sex_cd," +
-			    "        jt.neuter_yn," +
-			    "        jt.special_mark," +
-			    "        jt.care_nm," +
-			    "        jt.care_tel," +
-			    "        jt.care_addr," +
-			    "        jt.org_nm," +
-			    "        jt.charge_nm," +
-			    "        jt.officetel," +
-			    "        jt.popfile" +
-			    "    FROM" +
-			    "        json_data_table d," +
-			    "        JSON_TABLE(" +
-			    "            d.json_content," +
-			    "            '$.response.body.items.item[*]'" +
-			    "            COLUMNS (" +
-			    "                desertion_no VARCHAR2(4000) PATH '$.desertionNo'," +
-			    "                filename VARCHAR2(4000) PATH '$.filename'," +
-			    "                happen_dt VARCHAR2(10) PATH '$.happenDt'," +
-			    "                happen_place VARCHAR2(4000) PATH '$.happenPlace'," +
-			    "                kind_cd VARCHAR2(4000) PATH '$.kindCd'," +
-			    "                color_cd VARCHAR2(4000) PATH '$.colorCd'," +
-			    "                age VARCHAR2(10) PATH '$.age'," +
-			    "                weight VARCHAR2(10) PATH '$.weight'," +
-			    "                notice_no VARCHAR2(4000) PATH '$.noticeNo'," +
-			    "                notice_sdt VARCHAR2(10) PATH '$.noticeSdt'," +
-			    "                notice_edt VARCHAR2(10) PATH '$.noticeEdt'," +
-			    "                process_state VARCHAR2(4000) PATH '$.processState'," +
-			    "                sex_cd VARCHAR2(1) PATH '$.sexCd'," +
-			    "                neuter_yn VARCHAR2(1) PATH '$.neuterYn'," +
-			    "                special_mark VARCHAR2(4000) PATH '$.specialMark'," +
-			    "                care_nm VARCHAR2(4000) PATH '$.careNm'," +
-			    "                care_tel VARCHAR2(20) PATH '$.careTel'," +
-			    "                care_addr VARCHAR2(4000) PATH '$.careAddr'," +
-			    "                org_nm VARCHAR2(4000) PATH '$.orgNm'," +
-			    "                charge_nm VARCHAR2(4000) PATH '$.chargeNm'," +
-			    "                officetel VARCHAR2(20) PATH '$.officetel'," +
-			    "                popfile VARCHAR2(4000) PATH '$.popfile'" +
-			    "            )" +
-			    "        ) jt" +
-			    " ) jt" +
-			    " ON" +
-			    "    l.desertionno = jt.desertion_no" +
-			    " WHERE" +
-			    "    l.user_id = ?;";
+		String sql = 
+			    "SELECT " +
+			    "    l.desertionno, " +
+			    "    jt.desertion_no, " +
+			    "    jt.filename, " +
+			    "    jt.happen_dt, " +
+			    "    jt.happen_place, " +
+			    "    jt.kind_cd, " +
+			    "    jt.color_cd, " +
+			    "    jt.age, " +
+			    "    jt.weight, " +
+			    "    jt.notice_no, " +
+			    "    jt.notice_sdt, " +
+			    "    jt.notice_edt, " +
+			    "    jt.popfile, " +
+			    "    jt.process_state, " +
+			    "    jt.sex_cd, " +
+			    "    jt.neuter_yn, " +
+			    "    jt.special_mark, " +
+			    "    jt.care_nm, " +
+			    "    jt.care_tel, " +
+			    "    jt.care_addr, " +
+			    "    jt.org_nm, " +
+			    "    jt.charge_nm, " +
+			    "    jt.officetel " +
+			    "FROM " +
+			    "    adoption_likes l " +
+			    "JOIN ( " +
+			    "    SELECT " +
+			    "        jt.desertion_no, " +
+			    "        jt.filename, " +
+			    "        jt.happen_dt, " +
+			    "        jt.happen_place, " +
+			    "        jt.kind_cd, " +
+			    "        jt.color_cd, " +
+			    "        jt.age, " +
+			    "        jt.weight, " +
+			    "        jt.notice_no, " +
+			    "        jt.notice_sdt, " +
+			    "        jt.notice_edt, " +
+			    "        jt.popfile, " +
+			    "        jt.process_state, " +
+			    "        jt.sex_cd, " +
+			    "        jt.neuter_yn, " +
+			    "        jt.special_mark, " +
+			    "        jt.care_nm, " +
+			    "        jt.care_tel, " +
+			    "        jt.care_addr, " +
+			    "        jt.org_nm, " +
+			    "        jt.charge_nm, " +
+			    "        jt.officetel " +
+			    "    FROM " +
+			    "        json_data_table d, " +
+			    "        JSON_TABLE( " +
+			    "            d.json_content, " +
+			    "            '$.response.body.items.item[*]' " +
+			    "            COLUMNS ( " +
+			    "                desertion_no VARCHAR2(4000) PATH '$.desertionNo', " +
+			    "                filename VARCHAR2(4000) PATH '$.filename', " +
+			    "                happen_dt VARCHAR2(10) PATH '$.happenDt', " +
+			    "                happen_place VARCHAR2(4000) PATH '$.happenPlace', " +
+			    "                kind_cd VARCHAR2(4000) PATH '$.kindCd', " +
+			    "                color_cd VARCHAR2(4000) PATH '$.colorCd', " +
+			    "                age VARCHAR2(10) PATH '$.age', " +
+			    "                weight VARCHAR2(10) PATH '$.weight', " +
+			    "                notice_no VARCHAR2(4000) PATH '$.noticeNo', " +
+			    "                notice_sdt VARCHAR2(10) PATH '$.noticeSdt', " +
+			    "                notice_edt VARCHAR2(10) PATH '$.noticeEdt', " +
+			    "                popfile VARCHAR2(4000) PATH '$.popfile', " +
+			    "                process_state VARCHAR2(4000) PATH '$.processState', " +
+			    "                sex_cd VARCHAR2(1) PATH '$.sexCd', " +
+			    "                neuter_yn VARCHAR2(1) PATH '$.neuterYn', " +
+			    "                special_mark VARCHAR2(4000) PATH '$.specialMark', " +
+			    "                care_nm VARCHAR2(4000) PATH '$.careNm', " +
+			    "                care_tel VARCHAR2(20) PATH '$.careTel', " +
+			    "                care_addr VARCHAR2(4000) PATH '$.careAddr', " +
+			    "                org_nm VARCHAR2(4000) PATH '$.orgNm', " +
+			    "                charge_nm VARCHAR2(4000) PATH '$.chargeNm', " +
+			    "                officetel VARCHAR2(20) PATH '$.officetel' " +
+			    "            ) " +
+			    "        ) jt " +
+			    ") jt " +
+			    "ON " +
+			    "    l.desertionno = jt.desertion_no " +
+			    "WHERE " +
+			    "    l.user_id = ?";
 		
 		JsonArray resultArray = new JsonArray();
 
@@ -430,10 +431,7 @@ public class AdoptionDAO {
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
-	
-	
-
-		
+		return resultArray;
 
 	}
 	

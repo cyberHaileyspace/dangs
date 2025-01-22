@@ -44,26 +44,34 @@ document.addEventListener('DOMContentLoaded', () => {
             		<div class="animalDetailImg">
                 		<img src="${animal.popfile}" alt="Animal Image" >
                 	</div>
-                	<div class="animalDetailInfo">
+                	<div class="animalDetailInfo-container">
                 		<div class="animalBasicInfo">
-                			<div class="ap-title">
+                			<div class="animal_title">
+                				<img src="https://cdn-icons-png.flaticon.com/512/8771/8771588.png">
                 				<div>${kindCd}</div>
-                				<span></span>
+                				<span> | </span>
                 				<div>${age}</div>
                 			</div>
                 			<div class="like-button" onclick="checklog(this)" data-id="${animal.desertionNo}">
                 				<i id="heart-icon" class="fa-regular fa-heart" aria-hidden="true"></i>
                 			</div>
                 		</div>
-                		<div class="animalDetailInfo">	
-                			<div>${animal.sexCd === 'F' ? '여아' : '남아'}</div>
-                			<div>${animal.neuterYn === 'Y' ? '중성화 완료' : '중성화 미완료'}</div>
-                			<div>${animal.colorCd}</div>
-                			<div>${animal.weight}</div>
-                			<div>특징: ${animal.specialMark}</div>
+                		<div class="animalDetailInfo">
+                			<div class="animal_info_low">	
+                				<span>${animal.sexCd === 'F' ? '여아' : '남아'}</span>, 
+                				<span>${animal.neuterYn === 'Y' ? '중성화 완료' : '중성화 미완료'}</span>
+                			</div>
+                			<div class="animal_info_low">	
+                				<span>${animal.colorCd}</span>
+                				<span>${animal.weight}</span>
+                			</div>
+                			<div class="animal_info_low">	
+                				<span>특징:</span> <span> ${animal.specialMark}</span>
+                			</div>
                 		</div>
                 		<div class="animalState">
-                			<div>상태 : ${animal.processState}</div>
+	                		<div>상태 : ${animal.processState}</div>
+	                		<span></span>
 	                		<div>발견 장소: ${animal.happenPlace}</div>
                 		</div>
                 	</div>
