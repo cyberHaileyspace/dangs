@@ -1,0 +1,211 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: "GowunDodum-Regular";
+	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* 전체 페이지 스타일 */
+body {
+	font-family: "GowunDodum-Regular";
+	font-size: 30pt;
+	margin: 0;
+	padding: 0;
+	/* background-color: #f9f9f9; */
+	color: #333;
+	text-align: center;
+}
+
+/* 컨테이너 */
+.main-container {
+	width: 90%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+/* 네비게이션 바 */
+.navigation-bar {
+	background-color: #fff;
+	border-bottom: 1px solid #ddd;
+	padding: 10px;
+	margin-bottom: 20px;
+	border-radius: 10px;
+}
+
+.nav-links {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	justify-content: space-around;
+}
+
+.nav-links li {
+	margin: 0;
+}
+
+.nav-links a {
+	text-decoration: none;
+	font-size: 14px;
+	/* 폰트 크기 조정 */
+	font-weight: bold;
+	padding: 10px 15px;
+	color: #333;
+	/* background-color: #f9f9f9;
+    border: 1px solid #ddd; 
+    border-radius: 5px; */
+	transition: transform 0.2s, background-color 0.2s;
+}
+
+.nav-links a:hover {
+	cursor: pointer;
+}
+
+/* 페이지 헤더 */
+.page-header {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.page-header h1 {
+	font-size: 20px;
+	/* 폰트 크기 조정 */
+	color: #333;
+	margin-bottom: 10px;
+}
+
+.page-header p {
+	font-size: 14px;
+	/* 폰트 크기 조정 */
+	color: #666;
+}
+
+/* 관리자 버튼 */
+.admin-actions {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.admin-button {
+	background-color: #eee;
+	color: #333;
+	font-size: 14px;
+	/* 폰트 크기 조정 */
+	font-weight: bold;
+	padding: 8px 15px;
+	border: 1px solid #ddd;
+	border-radius: 15px;
+	cursor: pointer;
+	transition: transform 0.2s, background-color 0.2s;
+}
+
+.admin-button:hover {
+	background-color: #ddd;
+	transform: scale(1.05);
+}
+
+/* 필터링 섹션 */
+.filter-section {
+	text-align: center;
+	margin-bottom: 20px;
+	padding: 10px;
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	font-size: 16px;
+	/* 폰트 크기 조정 */
+	color: #555;
+}
+
+/* 게시글 섹션 */
+.posts-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 15px;
+}
+
+.posts-grid .item {
+	background-color: #fff;
+	/* 공고 배경 하얀색 */
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	padding: 15px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.posts-grid .item:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 이미지 크기 통일 */
+.posts-grid img {
+	width: 100%;
+	height: 180px;
+	/* 고정 높이로 설정 */
+	object-fit: cover;
+	/* 비율 유지하며 크기 조정 */
+	border-radius: 8px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+/* 게시글 내용 폰트 크기 조정 */
+.posts-grid strong {
+	font-size: 14px;
+	/* 강조 텍스트 크기 */
+	color: #333;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.posts-grid p {
+	font-size: 12px;
+	/* 일반 텍스트 크기 */
+	color: #666;
+	margin: 3px 0;
+}
+
+/* 공고 텍스트 */
+.item-content {
+	font-size: 10px;
+	/* 공고 데이터 글자 크기 */
+	line-height: 1.4;
+	/* 줄 간격 */
+	color: #555;
+	/* 텍스트 색상 */
+}
+
+.item-content strong {
+	font-size: 13px;
+	/* 강조 텍스트 크기 */
+	color: #333;
+	/* 강조 텍스트 색상 */
+}
+
+.item-content div {
+	margin-bottom: 5px;
+	/* 각 항목 간 간격 */
+}
+
+
+
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+	.posts-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.nav-links {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.nav-links a {
+		margin-bottom: 10px;
+	}
+}
