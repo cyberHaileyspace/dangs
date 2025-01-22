@@ -14,7 +14,7 @@
 	<div class="title-wrapper">
 		<div class="title">주문내역</div>
 		<div class="process">
-			<span class="prevPage"> ${prev_page} </span> <span class="next-stage">&gt;</span>
+			<span class="prevPage"> 마이페이지 </span> <span class="next-stage">&gt;</span>
 			<span class="title-now">주문내역</span>
 		</div>
 	</div>
@@ -28,6 +28,7 @@
 		</div>
 
 		<div class="order-category">
+			<div class="order-num">No.</div>
 			<div class="order-date">
 				<b>주문일</b>
 			</div>
@@ -39,8 +40,9 @@
 			<div class="order-status">주문상태</div>
 		</div>
 		<div id="orderContainer">
-			<c:forEach var="orders" items="${orders}">
+			<c:forEach var="orders" items="${orders}" varStatus="st">
 				<div class="per-order" data-title="${orders.product_name}">
+					<div>${st.count }</div>
 					<div>${orders.order_date}</div>
 					<div>${orders.order_id}</div>
 					<div class="img-wrapper">
@@ -162,6 +164,19 @@
 					</div>
 				</div>
 			</c:forEach>
+			
+			<!-- paging -->
+			<div class="paging-container">
+			<a class="prev-btn" href="MyOrderPageC?p=1"
+				style="text-decoration: none;">‹</a>
+			<c:forEach begin="1" end="${pageCount}" var="i">
+				<a class="page-num" href="MyOrderPageC?p=${i}"
+					style="text-decoration: none;">${i}</a>
+			</c:forEach>
+			<a class="next-btn" href="MyOrderPageC?p=${pageCount}"
+				style="text-decoration: none;">›</a>
+		</div>
+			
 		</div>
 
 	</div>

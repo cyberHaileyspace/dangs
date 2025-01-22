@@ -63,7 +63,6 @@ p {
 	color: #e74c3c;
 	margin-bottom: 20px;
 } */
-
 .p-s {
 	display: flex;
 	justify-content: left;
@@ -94,7 +93,8 @@ p {
 }
 
 .category:hover {
-	background-color: #f4f4f4;
+	background-color: black;
+    color: white;
 }
 
 .long-description {
@@ -224,7 +224,21 @@ button:hover {
 	text-align: center;
 	font-weight: bold;
 	padding: 10px;
-	background-color: #f4f4f4;
+	background-color: black;
+	color: white;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	width: 140px;
+	height: 30px;
+	font-size: 20px;
+}
+
+.item-category:hover {
+	text-align: center;
+	font-weight: bold;
+	padding: 10px;
+	background-color: white;
+	color: black;
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	width: 140px;
@@ -236,7 +250,21 @@ button:hover {
 	text-align: center;
 	font-weight: bold;
 	padding: 10px;
-	background-color: #f4f4f4;
+	background-color: black;
+	color: white;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	width: 140px;
+	height: 30px;
+	font-size: 20px;
+}
+
+.heart:hover {
+	text-align: center;
+	font-weight: bold;
+	padding: 10px;
+	background-color: white;
+	color: black;
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	width: 140px;
@@ -409,11 +437,12 @@ textarea {
 
 .swiper-slide .product:hover {
 	transform: translateY(-10px); /* 마우스 오버 시 약간 떠오르기 */
+	background-color: black;
 }
 
 .product-img img {
 	width: 225px;
-    height: 225px;
+	height: 225px;
 	border-bottom: 1px solid #ddd; /* 이미지와 이름 구분선 */
 	margin-bottom: 10px; /* 이미지와 다음 요소 사이의 간격 */
 }
@@ -438,4 +467,92 @@ textarea {
 .pro-info {
 	width: 223px;
 	border: 1px solid black;
+	background-color: white;
+}
+
+/* 배경 */
+.share-modal-background-jh {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6); /* 반투명 어두운 색 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+
+/* 모달 */
+.share-modal-jh {
+	background-color: white;
+	border-radius: 8px;
+	padding: 20px;
+	width: 500px;
+	max-width: 90%;
+	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+	z-index: 1001;
+}
+
+.modal-content-jh h2 {
+	margin: 0;
+	text-align: center;
+	border-bottom: 1px solid;
+}
+
+.share-boxes-jh {
+	display: block;
+	justify-content: space-between;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.share-box1-jh {
+	display: block;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.share-box1-jh div {
+	display: flex;
+	justify-content: space-around;
+	padding-top: 25px;
+}
+
+.share-box2-jh {
+	padding-top: 20px;
+	display: flex;
+	gap: 10px;
+}
+
+.share-box1-jh button, .share-box2-jh button {
+	width: 130px;
+	border-radius: 5px;
+	background-color: black;
+	color: white;
+}
+
+/* 닫기 버튼 */
+.close-btn-jh {
+	display: flex;
+    justify-content: right;
+	font-size: 24px;
+	font-weight: bold;
+	cursor: pointer;
+	height: 0px;
+}
+
+.url-info {
+	font-size: 22px;
+}
+
+.url-jh {
+	width: 340px;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+.share-box1-jh img {
+	width: 40px;
 }

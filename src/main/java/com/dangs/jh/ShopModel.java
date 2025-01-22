@@ -12,11 +12,14 @@ import javax.servlet.http.HttpSession;
 
 import com.dangs.main.DBManager;
 import com.dangs.sw.UserDTO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class ShopModel {
 
 	private static ArrayList<ProductDTO> products;
 	private static ArrayList<OrderDTO> orders;
+	private static ArrayList<MyPageDTO> mypages;
 
 //	develop 필요
 	public static void showAllProduct(HttpServletRequest request, HttpServletResponse response) {
@@ -48,6 +51,7 @@ public class ShopModel {
 				fixed_products.add(products.get(i));
 
 			}
+			System.out.println(products);
 			request.setAttribute("fixed_products", fixed_products);
 
 		} catch (Exception e) {
@@ -84,6 +88,7 @@ public class ShopModel {
 				request.setAttribute("product_category", rs.getString(6));
 				request.setAttribute("product_img", rs.getString(7));
 				request.setAttribute("product_date", rs.getDate(8));
+				request.setAttribute("sub_category", rs.getString(9));
 				request.setAttribute("product_point", rs.getInt(4) / 100);
 			}
 
@@ -214,9 +219,20 @@ public class ShopModel {
 	public static void paging(int pageNum, HttpServletRequest request) {
 		request.setAttribute("curPageNum", pageNum);
 
-		int total = products.size(); // 총데이터수
-		System.out.println("total = " + total);
+		String orderpaging = (String)request.getAttribute("orderpaging");
 		int count = 12; // 한페이지당보여줄개수
+		
+		int total = 0; // 총데이터수
+		if(orderpaging != null) {
+			total = mypages.size();
+			count = 10;
+		} else {
+			total = products.size();
+		}
+			
+		
+		
+		System.out.println("total = " + total);
 		System.out.println(count);
 
 //		페이지 수
@@ -228,14 +244,25 @@ public class ShopModel {
 
 		int end = (pageNum == pageCount) ? -1 : start - (count + 1);
 
-		ArrayList<ProductDTO> items = new ArrayList<ProductDTO>();
-
-		for (int i = start - 1; i > end; i--) {
-			items.add(products.get(i));
+		if(orderpaging != null) {
+			ArrayList<MyPageDTO> items = new ArrayList<MyPageDTO>();
+			
+			for (int i = start - 1; i > end; i--) {
+				items.add(mypages.get(i));
+			}
+			request.setAttribute("orders", items);
+			
+		}else {
+			ArrayList<ProductDTO> items = new ArrayList<ProductDTO>();
+			for (int i = start - 1; i > end; i--) {
+				items.add(products.get(i));
+			}
+			request.setAttribute("products", items);
 		}
 
+
 		request.setAttribute("pageCount", pageCount);
-		request.setAttribute("products", items);
+
 	}
 
 	public static void saveOrder(HttpServletRequest request, HttpServletResponse response) {
@@ -469,7 +496,7 @@ public class ShopModel {
 			rs = pstmt.executeQuery();
 
 			MyPageDTO mypage = null;
-			List<MyPageDTO> mypages = new ArrayList<MyPageDTO>(); // 각 주문의 product_id를 저장할 리스트
+			mypages = new ArrayList<MyPageDTO>(); // 각 주문의 product_id를 저장할 리스트
 
 			while (rs.next()) {
 
@@ -481,8 +508,8 @@ public class ShopModel {
 			}
 
 			System.out.println("mypages: " + mypages);
-
 			request.setAttribute("orders", mypages);
+			request.setAttribute("orderpaging", "orderpaging");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -704,14 +731,12 @@ public class ShopModel {
 		PreparedStatement pstmt = null;
 
 //co_status가 "주문취소"라면 업데이트 하지 않도록 수정함		
-		String sql = "UPDATE canceled_order\n"
-				+ "SET co_status = CASE\n"
-				+ "    WHEN co_date = TRUNC(SYSDATE) - 1 THEN '검토중'\n"
-				+ "    WHEN co_date = TRUNC(SYSDATE) - 2 THEN '취소완료'\n"
-				+ "    WHEN co_date = TRUNC(SYSDATE) - 3 THEN '환불 진행중'\n"
-				+ "    WHEN co_date <= TRUNC(SYSDATE) - 4 THEN '환불완료'\n"
-				+ "    ELSE co_status\n"
-				+ "END";
+		String sql = "UPDATE orderDB " + "SET order_status = CASE "
+				+ "    WHEN order_date < SYSDATE - 5 THEN '환불완료' "
+				+ "    WHEN order_date < SYSDATE - 4 THEN '환불 진행중' "
+				+ "    WHEN order_date < SYSDATE - 3 THEN '취소완료' "
+				+ "    WHEN order_date < SYSDATE - 1 THEN '검토중' "
+				+ "    ELSE order_status " + "END";
 
 		try {
 			con = DBManager.connect();
@@ -720,6 +745,221 @@ public class ShopModel {
 			int updatedRows = pstmt.executeUpdate();
 			System.out.println("canceled_order 업데이트된 행 수: " + updatedRows);
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+	}
+
+	public static void insertProduct(HttpServletRequest request, HttpServletResponse response) {
+		String path = request.getServletContext().getRealPath("img/productImages"); // 서버 상대 경로
+		System.out.println("Upload Path: " + path);
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+		    // MultipartRequest 객체 생성
+		    MultipartRequest mr = new MultipartRequest(
+		        request, 
+		        path, 
+		        1024 * 1024 * 20, // 20MB 제한
+		        "utf-8", 
+		        new DefaultFileRenamePolicy() // 동일 파일명 처리 정책
+		    );
+
+		    
+		    // Form 파라미터 가져오기
+		    String product_name = mr.getParameter("product-name");
+		    int product_price = Integer.parseInt(mr.getParameter("price"));
+		    int product_stock = Integer.parseInt(mr.getParameter("quantity"));
+		    String product_category = mr.getParameter("main-cate");
+		    String sub_category = mr.getParameter("sub-cate");
+
+		    // 세션에서 유저 정보 가져오기
+		    HttpSession hs = request.getSession();
+		    UserDTO user = (UserDTO) hs.getAttribute("user");
+		    if (user == null) {
+		        System.out.println("User is not logged in.");
+		        return;
+		    }
+		    String product_seller = user.getId();
+
+		    // 업로드된 파일 정보 가져오기
+		    String uploadedFile = mr.getFilesystemName("main-img");
+		    String product_img = (uploadedFile != null) ? uploadedFile : "default-product.png"; // 기본 이미지 처리
+
+		    System.out.println("Uploaded Image: " + product_img);
+
+		    // SQL 처리
+		    String sql = "insert into product values (product_seq.nextval, ?, ?, ?, ?, ?, ?, SYSDATE, ?)";
+
+		    con = DBManager.connect();
+		    pstmt = con.prepareStatement(sql);
+		    pstmt.setString(1, product_seller);
+		    pstmt.setString(2, product_name);
+		    pstmt.setInt(3, product_price);
+		    pstmt.setInt(4, product_stock);
+		    pstmt.setString(5, product_category);
+		    pstmt.setString(6, "img/productImages/" + product_img);
+		    pstmt.setString(7, sub_category);
+
+		    // SQL 실행
+		    if (pstmt.executeUpdate() == 1) {
+		        System.out.println("***상품 등록 성공***");
+		    } else {
+		        System.out.println("상품 등록 실패.");
+		    }
+		    
+		} catch (Exception e) {
+		    e.printStackTrace();
+		} finally {
+		    DBManager.close(con, pstmt, null);
+		}
+	}
+
+	public static void getMyProduct(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession hs = request.getSession();
+		UserDTO user = (UserDTO) hs.getAttribute("user");
+		if (user == null) {
+			System.out.println("User is not logged in.");
+			return;
+		}
+
+		String product_seller = user.getId();
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select * from product where product_seller = ?";
+
+		try {
+			if (con == null) {
+				con = DBManager.connect();
+			}
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, product_seller);
+			rs = pstmt.executeQuery();
+
+			ProductDTO product = null;
+			products = new ArrayList<ProductDTO>();
+
+			while (rs.next()) {
+				product = new ProductDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5),
+						rs.getString(6), rs.getString(7), rs.getDate(8), rs.getString(9));
+				products.add(product);
+			}
+			
+			System.out.println(products);
+			
+			request.setAttribute("products", products);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+	}
+
+	public static void updateProduct(HttpServletRequest request, HttpServletResponse response) {
+		String path = request.getServletContext().getRealPath("img/productImages"); // 서버 상대 경로
+		System.out.println("Upload Path: " + path);
+		
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			// MultipartRequest 객체 생성
+		    MultipartRequest mr = new MultipartRequest(
+		        request, 
+		        path, 
+		        1024 * 1024 * 20, // 20MB 제한
+		        "utf-8", 
+		        new DefaultFileRenamePolicy() // 동일 파일명 처리 정책
+		    );
+			
+		    String product_id = mr.getParameter("product_id");
+		    String product_name = mr.getParameter("product-name");
+		    int product_price = Integer.parseInt(mr.getParameter("price"));
+		    int product_stock = Integer.parseInt(mr.getParameter("quantity"));
+		    String product_category = mr.getParameter("main-cate");
+		    String sub_category = mr.getParameter("sub-cate");
+		    
+		    String new_img = mr.getFilesystemName("main-img-new");
+		    String old_img = mr.getParameter("main-img-old");
+		    String file = new_img;
+		    if (new_img == null) {
+				file = old_img;
+			}
+
+			String sql = "update product set product_name = ?, product_price = ?, product_stock = ?, product_category = ?, product_img = ?, product_date = sysdate, sub_category = ? where product_id = ?";
+
+			
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, product_name);
+			pstmt.setInt(2, product_price);
+			pstmt.setInt(3, product_stock);
+			pstmt.setString(4, product_category);			
+			pstmt.setString(5, file);
+			pstmt.setString(6, sub_category);
+			pstmt.setString(7, product_id);
+
+			int updatedRows = pstmt.executeUpdate();
+			System.out.println("업데이트된 행 수: " + updatedRows);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+	}
+
+	public static void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
+		String product_id = request.getParameter("product_id");
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		String sql = "DELETE FROM product WHERE product_id = ?";
+
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, product_id);
+
+			int updatedRows = pstmt.executeUpdate();
+			System.out.println("업데이트된 행 수: " + updatedRows);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(con, pstmt, null);
+		}
+	}
+
+	public static void updateProductStock(HttpServletRequest request, HttpServletResponse response) {
+		String product_id = request.getParameter("product_id");
+		String ordered_stock = request.getParameter("orderedStocks");
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "update product set product_stock = product_stock - ? where product_id = ?";
+		
+		try {
+			con = DBManager.connect();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ordered_stock);
+			pstmt.setString(2, product_id);
+
+			int updatedRows = pstmt.executeUpdate();
+			System.out.println("~!@업데이트된 행 수: " + updatedRows);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
