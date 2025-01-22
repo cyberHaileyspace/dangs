@@ -366,7 +366,7 @@ public class AdoptionDAO {
 			    "        jt.care_addr," +
 			    "        jt.org_nm," +
 			    "        jt.charge_nm," +
-			    "        jt.officetel" +
+			    "        jt.officetel," +
 			    "        jt.popfile" +
 			    "    FROM" +
 			    "        json_data_table d," +
@@ -394,7 +394,7 @@ public class AdoptionDAO {
 			    "                care_addr VARCHAR2(4000) PATH '$.careAddr'," +
 			    "                org_nm VARCHAR2(4000) PATH '$.orgNm'," +
 			    "                charge_nm VARCHAR2(4000) PATH '$.chargeNm'," +
-			    "                officetel VARCHAR2(20) PATH '$.officetel'" +
+			    "                officetel VARCHAR2(20) PATH '$.officetel'," +
 			    "                popfile VARCHAR2(4000) PATH '$.popfile'" +
 			    "            )" +
 			    "        ) jt" +
@@ -422,7 +422,7 @@ public class AdoptionDAO {
 				jsonObj.addProperty("sexCd", rs.getString("sex_cd"));
 				jsonObj.addProperty("neuterYn", rs.getString("neuter_yn"));
 				jsonObj.addProperty("popfile", rs.getString("popfile"));
-
+				resultArray.add(jsonObj);
 			}
 			
 		} catch (Exception e) {

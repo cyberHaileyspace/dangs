@@ -10,6 +10,8 @@
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
 <script type="text/javascript" src="js/hy/favoriteAdopt.js"></script>
+<script>
+</script>
 </head>
 <body>
 
@@ -26,6 +28,9 @@
 	</div>
 
 	<h1>관심 공고</h1>
+	<div id="favoritesList">
+        <!-- 관심 등록 데이터가 여기에 표시됩니다 -->
+    </div>
 
 
 </body>
