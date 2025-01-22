@@ -17,8 +17,8 @@
 		<!-- 네비게이션 바 -->
 		<nav class="navigation-bar">
 			<ul class="nav-links">
-				<li><a href="AdoptionController?action=shelter">보호소 입양 공고</a></li>
-				<li><a href="AdoptionController?action=favorites">관심있는 공고</a></li>
+				<li><a href="#" id="shelterTab">보호소 입양 공고</a></li>
+				<li><a href="#" id="favoritesTab">관심있는 공고</a></li>
 			</ul>
 		</nav>
 
@@ -29,15 +29,15 @@
 		</header>
 
 		<!-- 관리자 버튼 -->
-		<div class="admin-actions">
+<!-- 		<div class="admin-actions">
 			<button onclick="location.href='AdoptAPI'" class="admin-button">데이터셋
 				저장</button>
-		</div>
+		</div> -->
 
 		<!-- 필터링 섹션 -->
-		<div class="filter-section">
+<!-- 		<div class="filter-section">
 			<p>필터링 기능 준비 중...</p>
-		</div>
+		</div> -->
 
 		<!-- 게시글 섹션 -->
 		<div class="posts-section">
@@ -53,5 +53,23 @@
     		<button id="nextPage" class="pagination-button">다음</button>
 		</div>
 	</div>
+<script type="text/javascript">
+$(function (){
+    $('#favoritesTab').click(function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'checkLogin', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                if (xhr.responseText === 'loggedIn') {
+                    window.location.href = 'AdoptionController?action=favoritesTab';
+                } else if (xhr.responseText === 'notLoggedIn') {
+                    window.location.href = 'loginC';
+                }
+            }
+        };
+        xhr.send();
+    });
+})
+</script>
 </body>
 </html>

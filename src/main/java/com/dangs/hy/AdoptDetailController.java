@@ -17,7 +17,7 @@ public class AdoptDetailController extends HttpServlet {
 		
 		String animalDetail = AdoptionDAO.getAdao().getAnimalDetail(desertionNo);
 		
-		request.setAttribute("jonbeo", desertionNo);
+		request.setAttribute("adoptLikes", desertionNo);
 		request.setAttribute("animalDetail", animalDetail);
 		
 		request.setAttribute("content", "jsp/hy/adoptDetail.jsp");
