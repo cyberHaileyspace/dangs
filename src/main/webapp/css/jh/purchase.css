@@ -30,7 +30,8 @@
 	margin-top: 20px
 }
 
-.ordered-product, .payment {
+.ordered-product,
+.payment {
 	padding-left: 2px;
 	margin-bottom: 8px;
 	font-size: 20px;
@@ -58,7 +59,9 @@
 	padding: 10px 16px
 }
 
-.input-addr, .input-phone, .point {
+.input-addr,
+.input-phone,
+.point {
 	font-size: 15px;
 	height: 20px;
 }
@@ -118,11 +121,13 @@
 	margin-bottom: 20px;
 }
 
-.bank-list, .purchase-option {
+.bank-list,
+.purchase-option {
 	margin-bottom: 10px;
 }
 
-.select-bank, .select-purchase {
+.select-bank,
+.select-purchase {
 	width: 100%;
 	padding: 10px;
 	border: 1px solid #000;
@@ -241,20 +246,25 @@ button#paymentBtn:active .payment-Btn {
 /* 다른 결제수단 관련 */
 .radio-table {
 	margin-top: 10px;
-	display: none; /* 테이블을 처음에 숨깁니다. */
+	display: none;
+	/* 테이블을 처음에 숨깁니다. */
 }
 
 .toggle-svg {
-	transition: transform 0.3s ease; /* 회전 애니메이션 추가 */
-	cursor: pointer; /* 커서 변경 */
+	transition: transform 0.3s ease;
+	/* 회전 애니메이션 추가 */
+	cursor: pointer;
+	/* 커서 변경 */
 }
 
 .toggle-svg.rotated {
-	transform: rotate(180deg); /* 회전 효과 */
+	transform: rotate(180deg);
+	/* 회전 효과 */
 }
 
 .hidden {
-	display: none; /* 테이블 숨김 클래스 */
+	display: none;
+	/* 테이블 숨김 클래스 */
 }
 
 .other-svg {
@@ -269,11 +279,12 @@ next-pm {
 
 /* 법률 관련 */
 .detail-table-hidden {
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: #f9f9f9;
-    transition: all 0.3s ease; /* 부드러운 표시 효과 */
+	margin-top: 10px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	background-color: #f9f9f9;
+	transition: all 0.3s ease;
+	/* 부드러운 표시 효과 */
 }
 
 .detail-in-detail {

@@ -1,8 +1,7 @@
 @font-face {
 	font-family: "GowunDodum-Regular";
 	src:
-		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff")
-		format("woff");
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff") format("woff");
 	font-weight: normal;
 	font-style: normal;
 }
@@ -94,7 +93,7 @@ p {
 
 .category:hover {
 	background-color: black;
-    color: white;
+	color: white;
 }
 
 .long-description {
@@ -288,27 +287,39 @@ button:hover {
 
 /* detail 관련*/
 .detail {
-	display: block; /* 세로로 정렬 */
-	justify-content: space-around; /* 아이템 간 간격 균등 */
-	align-items: center; /* 세로 중앙 정렬 */
+	display: block;
+	/* 세로로 정렬 */
+	justify-content: space-around;
+	/* 아이템 간 간격 균등 */
+	align-items: center;
+	/* 세로 중앙 정렬 */
 	/* margin: 10px 0; 상하 간격
     padding: 10px; 내부 여백
     border: 1px solid #ddd; 테두리 */
-	border-radius: 8px; /* 모서리 둥글게 */
-	background-color: #f9f9f9; /* 배경색 */
+	border-radius: 8px;
+	/* 모서리 둥글게 */
+	background-color: #f9f9f9;
+	/* 배경색 */
 }
 
 .detail>div {
-	flex: 1; /* 균등한 크기 */
-	text-align: center; /* 텍스트 및 이미지 중앙 정렬 */
+	flex: 1;
+	/* 균등한 크기 */
+	text-align: center;
+	/* 텍스트 및 이미지 중앙 정렬 */
 }
 
 .detail img {
-	max-width: 100%; /* 가로 크기를 부모에 맞춤 */
-	max-height: 100%; /* 세로 크기를 부모에 맞춤 */
-	object-fit: contain; /* 이미지 비율 유지하며 전체를 보여줌 */
-	border-radius: 5px; /* 이미지 모서리 둥글게 */
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 이미지 그림자 */
+	max-width: 100%;
+	/* 가로 크기를 부모에 맞춤 */
+	max-height: 100%;
+	/* 세로 크기를 부모에 맞춤 */
+	object-fit: contain;
+	/* 이미지 비율 유지하며 전체를 보여줌 */
+	border-radius: 5px;
+	/* 이미지 모서리 둥글게 */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	/* 이미지 그림자 */
 }
 
 .product-id {
@@ -323,7 +334,8 @@ button:hover {
 	font-size: 15px;
 }
 
-.comment, .upper {
+.comment,
+.upper {
 	margin: 10px;
 	padding: 10px;
 	border-bottom: 1px solid #ddd;
@@ -332,7 +344,8 @@ button:hover {
 	text-align: center;
 }
 
-.userDate, .upp-div {
+.userDate,
+.upp-div {
 	display: flex;
 }
 
@@ -341,17 +354,20 @@ button:hover {
 	text-align: center;
 }
 
-.comment1, .upp1 {
+.comment1,
+.upp1 {
 	width: 100%;
 }
 
-.comment2, .upp2 {
+.comment2,
+.upp2 {
 	min-width: 100px;
 	border-right: 1px solid #ddd;
 	margin-right: 10px;
 }
 
-.comment3, .upp3 {
+.comment3,
+.upp3 {
 	min-width: 90px;
 	margin-left: 10px;
 }
@@ -382,9 +398,12 @@ textarea {
 }
 
 .swiper {
-	overflow: hidden; /* 콘텐츠 넘침 방지 */
-	margin-top: 10px; /* 필요하면 Swiper 위쪽 여백 추가 */
-	margin-bottom: 10px; /* 필요하면 Swiper 아래쪽 여백 추가 */
+	overflow: hidden;
+	/* 콘텐츠 넘침 방지 */
+	margin-top: 10px;
+	/* 필요하면 Swiper 위쪽 여백 추가 */
+	margin-bottom: 10px;
+	/* 필요하면 Swiper 아래쪽 여백 추가 */
 	width: 100%;
 	height: 380px;
 	background-color: #f4f4f4;
@@ -426,42 +445,60 @@ textarea {
 	max-height: 100%;
 	box-sizing: border-box;
 	display: flex;
-	flex-direction: column; /* 세로로 정렬 */
-	align-items: center; /* 아이템들을 가운데 정렬 */
-	padding: 20px; /* 제품 간 여백 */
-	border: 1px solid #ddd; /* 제품 박스 테두리 */
-	border-radius: 8px; /* 둥근 모서리 */
-	background-color: #fff; /* 배경색 */
-	transition: transform 0.3s ease-in-out; /* 호버 시 부드러운 전환 */
+	flex-direction: column;
+	/* 세로로 정렬 */
+	align-items: center;
+	/* 아이템들을 가운데 정렬 */
+	padding: 20px;
+	/* 제품 간 여백 */
+	border: 1px solid #ddd;
+	/* 제품 박스 테두리 */
+	border-radius: 8px;
+	/* 둥근 모서리 */
+	background-color: #fff;
+	/* 배경색 */
+	transition: transform 0.3s ease-in-out;
+	/* 호버 시 부드러운 전환 */
 }
 
 .swiper-slide .product:hover {
-	transform: translateY(-10px); /* 마우스 오버 시 약간 떠오르기 */
+	transform: translateY(-10px);
+	/* 마우스 오버 시 약간 떠오르기 */
 	background-color: black;
 }
 
 .product-img img {
 	width: 225px;
 	height: 225px;
-	border-bottom: 1px solid #ddd; /* 이미지와 이름 구분선 */
-	margin-bottom: 10px; /* 이미지와 다음 요소 사이의 간격 */
+	border-bottom: 1px solid #ddd;
+	/* 이미지와 이름 구분선 */
+	margin-bottom: 10px;
+	/* 이미지와 다음 요소 사이의 간격 */
 }
 
 .product-name {
-	font-size: 16px; /* 제품 이름 크기 */
-	font-weight: bold; /* 제품 이름 굵게 */
-	margin-bottom: 10px; /* 이름과 가격 사이 여백 */
+	font-size: 16px;
+	/* 제품 이름 크기 */
+	font-weight: bold;
+	/* 제품 이름 굵게 */
+	margin-bottom: 10px;
+	/* 이름과 가격 사이 여백 */
 }
 
 .product-price {
-	font-size: 14px; /* 가격 크기 */
-	color: #333; /* 가격 색상 */
-	margin-bottom: 10px; /* 가격과 날짜 사이 여백 */
+	font-size: 14px;
+	/* 가격 크기 */
+	color: #333;
+	/* 가격 색상 */
+	margin-bottom: 10px;
+	/* 가격과 날짜 사이 여백 */
 }
 
 .product-date {
-	font-size: 12px; /* 날짜 크기 */
-	color: #888; /* 날짜 색상 */
+	font-size: 12px;
+	/* 날짜 크기 */
+	color: #888;
+	/* 날짜 색상 */
 }
 
 .pro-info {
@@ -477,7 +514,8 @@ textarea {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0, 0, 0, 0.6); /* 반투명 어두운 색 */
+	background-color: rgba(0, 0, 0, 0.6);
+	/* 반투명 어두운 색 */
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -526,7 +564,8 @@ textarea {
 	gap: 10px;
 }
 
-.share-box1-jh button, .share-box2-jh button {
+.share-box1-jh button,
+.share-box2-jh button {
 	width: 130px;
 	border-radius: 5px;
 	background-color: black;
@@ -536,7 +575,7 @@ textarea {
 /* 닫기 버튼 */
 .close-btn-jh {
 	display: flex;
-    justify-content: right;
+	justify-content: right;
 	font-size: 24px;
 	font-weight: bold;
 	cursor: pointer;
