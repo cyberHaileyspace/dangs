@@ -14,8 +14,10 @@ import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dangs.main.DBManager;
+import com.dangs.sw.UserDTO;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -204,6 +206,55 @@ public class AdoptionDAO {
 		
 		
 		
+	}
+
+	@SuppressWarnings("resource")
+	public void getDetailTwo(String desertionNo, HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("application/json;charset=utf-8");
+		HttpSession hs = request.getSession();
+		UserDTO user = (UserDTO) hs.getAttribute("user");
+		String userId = user.getId();
+		System.out.println(desertionNo + "/" + userId);
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = DBManager.connect();
+			
+			// 중복 방지
+			String checkSql = "SELECT COUNT(*) FROM adoption_likes WHERE desertionNo = ? AND user_id = ?";
+			pstmt = con.prepareStatement(checkSql);
+			pstmt.setString(1, desertionNo);
+			pstmt.setString(2, userId);
+			rs = pstmt.executeQuery();
+			JsonObject jo = new JsonObject();
+
+			if (rs.next() && rs.getInt(1) > 0) {
+			    jo.addProperty("status", "fail");
+			    jo.addProperty("message", "이미 관심 등록된 게시물입니다.");
+			    response.getWriter().write(jo.toString());
+			    return;
+			}
+			
+			
+			String sql = "INSERT INTO adoption_likes (desertionNo, user_id) VALUES (?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, desertionNo);
+			pstmt.setString(2, userId);
+			
+			if (pstmt.executeUpdate()>0) {
+	            jo.addProperty("status", "success");
+	            jo.addProperty("message", "관심 등록이 완료되었습니다.");
+			}else {
+	            jo.addProperty("status", "fail");
+	            jo.addProperty("message", "관심 등록에 실패하였습니다.");
+			}
+			   response.getWriter().write(jo.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+		}finally {
+			DBManager.close(con, pstmt, rs);
+		}
 	}
 	
 	

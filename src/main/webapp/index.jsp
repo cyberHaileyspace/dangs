@@ -43,7 +43,7 @@ pageEncoding="UTF-8"%>
       </div>
       <div class="logo-div-03"></div>
     </div>
-    <div style="display: flex">
+    <div style="display: flex; gap:10px;">
       <div class="index-content">
         <jsp:include page="${content }"></jsp:include>
       </div>
