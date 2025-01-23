@@ -56,16 +56,15 @@
 				</div>
 			</c:forEach>
 		</div>
-		<div style="position: relative; top: -360px">
-			<img alt="" src="img/jirol.png" style="width: 100%;">
-		</div>
+<!-- 		<div style="position: relative; top: -360px"> -->
+<!-- 			<img alt="" src="img/jirol.png" style="width: 100%;"> -->
+<!-- 		</div> -->
 
 		<!-- 	<button id="wishlist-button" data-product-id="123"
 		class="wishlist-button">
 		<i class="heart-icon">♡</i>
 	</button> -->
 
-		<h1>오늘의 미친 핫딜</h1>
 
 	</div>
 	<script type="text/javascript">

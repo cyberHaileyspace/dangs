@@ -14,9 +14,7 @@
 
 		<jsp:include page="${petCheck }"></jsp:include>
 
-		<div>
-			<img alt="" src="img/jirol.png" style="width: 100%;">
-		</div>
+<br>
 		<!-- 임시 주문내역 버튼 -->
 		<div class="myPage-product">
 			<div>내 포인트 : 0원</div>
