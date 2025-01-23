@@ -59,7 +59,7 @@
 <!-- 			<div> <span>사진 업로드</span> <input type="file"> </div> -->
 		</div>
 		<div class="add-check">
-			<button class="add-cancel" type="button">취소</button>
+			<button class="add-cancel" type="button" onclick="history.back()">취소</button>
 			<button class="add-post" type="button">등록</button>
 		</div>
 		
