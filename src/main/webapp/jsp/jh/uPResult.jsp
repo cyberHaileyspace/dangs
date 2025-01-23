@@ -18,10 +18,11 @@
 	</div>
 	<div class="result-title">
 		<div class="success-order">
+		<div class="icon-wrapper" style="display: flex; justify-content: center;">
 			<div class="success-icon">
 				<img class="congg" alt="cong"
 					src="https://www.svgrepo.com/show/340261/erase.svg" style="width :100px; height: 100px">
-			</div>
+			</div></div>
 			<div class="result-info">
 				<div class="order-result">상품 수정이 완료되었습니다</div>
 			</div>
