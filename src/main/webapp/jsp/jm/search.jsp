@@ -18,15 +18,16 @@
 	</form>
 	<jsp:include page="${result }"></jsp:include>
 	<button id="regButton" onclick="location.href='Middle02C'">작성하기</button>
+	<button id="searchWriteButton" onclick="location.href='Middle03C?id=${sessionScope.user.id}'">내
+		글 찾기</button>
+</body>
+</html>
 	<%-- <%
 	String user_id = (String) session.getAttribute("user_id"); // 세션에서 사용자 ID 가져오기
 	if (user_id == null) {
 		user_id = ""; // userId가 null인 경우 빈 값으로 설정
 	}
 	%> --%>
-	<button id="searchWriteButton" onclick="location.href='Middle03C?id=${sessionScope.user.id}'">내
-		글 찾기</button>
-</body>
 <%-- <script>
     const user_id = "<%=user_id%>
 	"; // 서버에서 전달받은 사용자 ID
@@ -43,4 +44,3 @@
 						});
 	}
 </script> --%>
-</html>

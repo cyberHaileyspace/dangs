@@ -18,10 +18,8 @@
 						<li class="post-item">
 							<div class="post-header">${i.title}</div>
 							<div class="post-info">
-								<span><strong>작성자 : </strong> ${i.user_id}</span>
-								<br>
-								<span><strong>주소 : </strong> ${i.address}</span>
-								<br>
+								<span><strong>작성자 : </strong> ${i.user_id}</span> <br>
+								<span><strong>주소 : </strong> ${i.address}</span> <br>
 								<span><strong>작성일 : </strong> ${i.date}</span>
 							</div>
 							<div>							

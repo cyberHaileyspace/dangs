@@ -1,6 +1,5 @@
 package com.dangs.jm;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,8 +8,6 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import com.dangs.main.DBManager;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class searchDAO {
 
@@ -158,17 +155,12 @@ public class searchDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
-			// 업로드 기능
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
-			/* String story = request.getParameter("story"); */
-			// 서버상 올라간 파일명
-			/* story = story.replaceAll("\r\n", "<br>"); */
 			String id = request.getParameter("id");
 			System.out.println(id);
 			System.out.println(title);
 			System.out.println(content);
-			/* System.out.println(story); */
 			String sql = "update locationPostDB set location_post_title = ?, location_post_content = ? where location_post_id = ?";
 			con = DBManager.connect();
 			pstmt = con.prepareStatement(sql);
@@ -187,3 +179,9 @@ public class searchDAO {
 	}
 
 }
+
+// 업로드 기능
+/* String story = request.getParameter("story"); */
+// 서버상 올라간 파일명
+/* story = story.replaceAll("\r\n", "<br>"); */
+/* System.out.println(story); */

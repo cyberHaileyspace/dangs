@@ -23,11 +23,13 @@
 										</strong> ${i.date}</span>
 									</div>
 									<div>
-									<span><strong>내용 : </strong> ${i.content}</span>
+										<span><strong>내용 : </strong> ${i.content}</span>
 									</div>
 									<div class="post-actions">
-										<button style="background-color: #007BFF;" onclick="location.href='detailWritingC?id=${i.id}'">수정</button>
-										<button style="background-color: #FA5858;" onclick="deleteWriting('${i.id}')">삭제</button>
+										<button style="background-color: #007BFF;"
+											onclick="location.href='detailWritingC?id=${i.id}'">수정</button>
+										<button style="background-color: #FA5858;"
+											onclick="deleteWriting('${i.id}')">삭제</button>
 									</div>
 								</li>
 							</c:forEach>
@@ -42,11 +44,11 @@
 	</c:choose>
 </body>
 <script>
-function deleteWriting(no) {
-	let ok = confirm('정말 삭제하시겠습니까?');
-	if (ok) {
-		location.href = 'deleteWritingC?id=' + no;
+	function deleteWriting(no) {
+		let ok = confirm('정말 삭제하시겠습니까?');
+		if (ok) {
+			location.href = 'deleteWritingC?id=' + no;
+		}
 	}
-}
 </script>
 </html>
