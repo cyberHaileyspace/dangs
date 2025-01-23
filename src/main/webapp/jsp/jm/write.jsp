@@ -34,7 +34,7 @@
 			</div>
 			<div>
 				<div>
-					<button class="movie-btn">등록</button>
+					<button class="btn-16">등록</button>
 				</div>
 			</div>
 		</div>
