@@ -12,8 +12,7 @@
 <script type="text/javascript" src="js/hy/favoriteAdopt.js"></script>
 </head>
 <body>
-	<div class="main-container">
-		<!-- 네비게이션 바 -->
+
 		<nav class="navigation-bar">
 			<ul class="nav-links">
 				<li><a href="AdoptionController?action=shelter">보호소 입양 공고</a></li>
@@ -21,12 +20,35 @@
 			</ul>
 		</nav>
 
-		<!-- 게시글 섹션 -->
+	<div class="main-container">
 		<div class="posts-section">
 			<div id="favoritesList" class="posts-grid">
 				<!-- API 데이터 표시 -->
 			</div>
 		</div>
 	</div>
+	
+		<script type="text/javascript">
+		$(function() {
+			$('#favoritesTab')
+					.click(
+							function() {
+								var xhr = new XMLHttpRequest();
+								xhr.open('GET', 'checkLogin', true);
+								xhr.onreadystatechange = function() {
+									if (xhr.readyState === 4
+											&& xhr.status === 200) {
+										if (xhr.responseText === 'loggedIn') {
+											window.location.href = 'AdoptionController?action=favorites';
+										} else if (xhr.responseText === 'notLoggedIn') {
+											window.location.href = 'loginC';
+										}
+									}
+								};
+								xhr.send();
+							});
+
+		})
+	</script>
 </body>
 </html>

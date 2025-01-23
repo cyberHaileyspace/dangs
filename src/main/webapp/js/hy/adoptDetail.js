@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	animal = JSON.parse(animalDetails);
 
 
-	
 	if (animalDetails) {
 
 		try {

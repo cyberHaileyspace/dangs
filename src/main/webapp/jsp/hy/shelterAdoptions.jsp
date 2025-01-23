@@ -14,13 +14,13 @@
 </head>
 <body>
 
-	<!-- 네비게이션 바 -->
 	<nav class="navigation-bar">
 		<ul class="nav-links">
 			<li><a href="AdoptionController?action=shelter">보호소 입양 공고</a></li>
 			<li><a href="#" id="favoritesTab">관심있는 공고</a></li>
 		</ul>
 	</nav>
+
 	<div class="main-container">
 		<!-- 페이지 헤더 -->
 		<header class="page-header">
@@ -28,15 +28,9 @@
 			<p>구조 공고 기간이 종료되어 입양이 가능한 아이들입니다.</p>
 		</header>
 
-		<!-- 관리자 버튼 -->
-		<!-- 		<div class="admin-actions">
+		<!--<div class="admin-actions">
 			<button onclick="location.href='AdoptAPI'" class="admin-button">데이터셋
 				저장</button>
-		</div> -->
-
-		<!-- 필터링 섹션 -->
-		<!-- 		<div class="filter-section">
-			<p>필터링 기능 준비 중...</p>
 		</div> -->
 
 		<!-- 게시글 섹션 -->
@@ -46,7 +40,6 @@
 			</div>
 		</div>
 
-		<!-- 페이지네이션 -->
 		<div class="pagination">
 			<button id="prevPage" class="pagination-button">이전</button>
 			<div id="pagination" class="pagination-numbers"></div>
@@ -54,6 +47,7 @@
 			<button id="nextPage" class="pagination-button">다음</button>
 		</div>
 	</div>
+
 	<script type="text/javascript">
 		$(function() {
 			$('#favoritesTab')
