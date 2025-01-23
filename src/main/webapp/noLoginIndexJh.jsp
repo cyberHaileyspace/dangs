@@ -46,7 +46,6 @@ pageEncoding="UTF-8"%>
       <div class="index-content2">
         <jsp:include page="${content2 }"></jsp:include>
       </div>
-      <img alt="easter-egg" src="https://stickershop.line-scdn.net/stickershop/v1/product/23701227/LINEStorePC/main.png?v=1" style="width:100px; height:100px">
     </div>
     <!-- 모달 -->
     <div id="signupModal" class="modal">
