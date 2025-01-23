@@ -21,8 +21,10 @@
 			<input id="pw" class="login-input" name="pw"
 				placeholder="비밀번호를 입력하세요" type="password">
 			<div class="sw-result" style="display: ${hidden}">${result }</div>
+			<br>
 			<button class="login-button">로그인</button>
 		</form>
+		<br>
 		<button id="openModalBtn">회원가입</button>
 	</div>
 	<script type="text/javascript" src="js/sw_reg_modal.js">

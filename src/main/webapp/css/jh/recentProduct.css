@@ -1,0 +1,40 @@
+.title {
+	display: flex;
+    font-size: 20px;
+    background-color: black;
+    color: white;
+    align-items: center;
+    justify-content: center;
+}
+
+.rp-list-container {
+    display: flex;
+    flex-direction: column; /* 세로로 아이템들을 배치 */
+    gap: 20px; /* 각 아이템 사이에 간격을 줌 */
+    padding: 20px; /* 전체 컨테이너에 여백 */
+}
+
+.rp-item {
+    display: flex;
+    flex-direction: column; /* 이미지와 이름을 세로로 배치 */
+    align-items: center; /* 중앙 정렬 */
+    width: 150px; /* 상품 항목의 고정 너비 */
+}
+
+.re-img-wrapper {
+    width: 150px; /* 이미지가 들어갈 공간 */
+    height: 150px; /* 이미지가 들어갈 공간 */
+    overflow: hidden; /* 이미지가 div를 넘지 않게 */
+}
+
+.rp-img {
+    width: 100%; /* div의 크기에 맞춰 이미지 크기 조정 */
+    height: 100%; /* div의 크기에 맞춰 이미지 크기 조정 */
+    object-fit: contain; /* 이미지 비율을 유지하면서 축소 */
+}
+
+.rp-name {
+    font-size: 15px;
+    text-align: center; /* 이름을 가운데 정렬 */
+    margin-top: 5px; /* 이름과 이미지 사이의 여백 */
+}

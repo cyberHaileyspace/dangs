@@ -1,75 +1,21 @@
 @charset "UTF-8";
 
 @font-face {
-	font-family: "RixInooAriDuriR";
-	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2") format("woff2");
+	font-family: "GowunDodum-Regular";
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff")
+		format("woff");
 	font-weight: normal;
 	font-style: normal;
 }
 
 body {
+	font-family: "GowunDodum-Regular";
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: Arial, sans-serif;
 	overflow-x: hidden;
-}
-
-@font-face {
-	font-family: "nanumsquare";
-	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-3@1.0/Batang_Regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: "RixInooAriDuriR";
-	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2") format("woff2");
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: "GowunDodum-Regular";
-	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff") format("woff");
-	font-weight: normal;
-	font-style: normal;
-
-}
-
-@font-face {
-	font-family: 'yg-jalnan';
-	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Cafe24Ssurround';
-	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Ownglyph_meetme-Rg';
-	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_1@1.0/Ownglyph_meetme-Rg.woff2') format('woff2');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'HakgyoansimGeurimilgiTTF-R';
-	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimGeurimilgiTTF-R.woff2') format('woff2');
-	font-weight: normal;
-	font-style: normal;
-}
-
-body {
-	font-family: "GowunDodum-Regular";
-	margin: 0;
-	padding: 0;
-	background-color: darkred;
+	z-index: 2;
 }
 
 .logo {
@@ -106,7 +52,6 @@ body {
 }
 
 .main-wrapper {
-	color: ivory;
 	font-size: 20pt;
 	width: 100%;
 	display: flex;
@@ -115,25 +60,27 @@ body {
 	position: sticky;
 	top: 0px;
 	z-index: 2;
-	background-color: darkgreen;
+	/* 카테고리 배경색상을 화이트로 변경했습니다. 다른 분들은 기존 것(current change) 사용하시면 됩니다. */
+	color: white;
+	background-color: black;
 	border-bottom: 1px solid lightgrey;
-}
-
-.login {
-	width: 25%;
-	height: 330px;
-	position: sticky;
-	top: 60px;
-	border: 5px solid #F1E1D2;
-	border-radius: 10px;
-	right: -30px;
-	background-color: ivory;
+	/* ******** */
 }
 
 .index-content {
 	margin-left: 150px;
-	width: 50%;
-	height: calc(100vh - 61px);
+	width: 1100px;
+	height: 2000px;
+}
+
+.index-content2 {
+	position: sticky;
+	top: 60px; /* 상단에서 고정될 위치 */
+	width: 200px;
+	height: 400px;
+	margin: 50px;
+	/* 나중에 지울거 */
+	border: 1px solid;
 }
 
 /*modal*/
@@ -172,16 +119,13 @@ body {
 	font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;
 }
 
 /* 폼 스타일 */
-
-
 #signupForm input {
 	width: 95%;
 	padding: 8px;
@@ -199,7 +143,6 @@ body {
 	border-radius: 4px;
 	cursor: pointer;
 }
-
 
 #RegSubmit {
 	background-color: #ff6b6b;
@@ -228,3 +171,12 @@ body {
 }
 
 /*modal 끝*/
+
+.index-content2 {
+    display: flex;
+    flex-direction: column; /* 세로로 콘텐츠가 쌓이도록 설정 */
+    gap: 20px; /* 각 아이템 사이에 간격을 줌 */
+    padding: 20px; /* 전체 컨테이너에 여백 */
+    background-color: white;
+    height: fit-content;
+}

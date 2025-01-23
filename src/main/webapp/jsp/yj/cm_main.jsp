@@ -31,11 +31,7 @@ pageEncoding="UTF-8"%>
       </div>
 
       <div>
-<!--         <div class="list-cm">
-          <input type="radio" name="cm-option" value="cm-new" checked="checked" /> 최신순
-          <input type="radio" name="cm-option" value="cm-like" /> 좋아요순
-          <input type="radio" name="cm-option" value="cm-view" /> 조회순
-        </div> -->
+         
         <div class="write-cm">
           <button>
             <img class="write-cm-img"
@@ -51,9 +47,14 @@ pageEncoding="UTF-8"%>
      	 <input type="radio" id="m" name="cm-dog"><label class="size" data-val="중형견" for="m">중형견</label>
      	 <input type="radio" id="l" name="cm-dog"><label class="size" data-val="대형견" for="l">대형견</label>
  		</div>
+         <div class="list-cm">
+          <input type="radio" name="cm-option" value="cm-new" checked="checked" /> 최신순
+          <input type="radio" name="cm-option" value="cm-like" /> 좋아요순
+          <input type="radio" name="cm-option" value="cm-view" /> 조회순
+        </div>
       
       <div id="cm-result">
-     
+     <c:if test="${not empty cm_posts }">
       <c:forEach var="i" items="${cm_posts }">
       <div class="post-cm" onclick="location.href='CmPostC?no=${i.cm_no }'">
       	<div class="cm-kind">
@@ -68,31 +69,29 @@ pageEncoding="UTF-8"%>
       <div class="cm-info">
       	<div class="info-name">작성자 : ${i.cm_user_id }</div>
       	<div class="info-date">작성일 : ${i.cm_date }</div>
-<%--       	<div class="info-view">조회수 : ${i.cm_view }</div> --%>
+       	<div class="info-view">조회수 : ${i.cm_view }</div>
       	<div class="info-like">좋아요 : ${i.cm_like }</div>
-      	<%-- <div hidden>${i.cm_no }</div> --%>
       </div>
-<!--       <hr> -->
+
       </div>
       </c:forEach>
+    
         </div>
       
-      	<div>
-			<a href="CmPageC?p=1"> [begin] </a>
+      	<div class="cm-page-div">
+			<div onclick="location.href='CmPageC?p=1'">begin</div>
 			<c:forEach begin="1" end="${pageCount }" var="j">
-			<a href="CmPageC?p=${j }"> [ ${j } ] </a>
+			<div onclick="location.href='CmPageC?p=${j }'">${j }</div>
 			</c:forEach>
-			<a href="CmPageC?p=${pageCount }"> [end] </a>
+			<div onclick="location.href='CmPageC?p=${pageCount }'">end</div>
 		</div>
       
-<%--       <c:out value="${cm_posts}" /> --%>
-<%-- <c:out value="${pageCount}" /> --%>
-      
-      
+        </c:if>
+        <c:if test="${ment ne '' }"><div style="text-align: center; margin-top: 40px;"> <h1> ${ment }</h1></div></c:if>
     </div>
     <script type="text/javascript">
     $(function (){
-    	$('.write-cm').click(function() {
+    	$('.write-cm-img').click(function() {
     	    var xhr = new XMLHttpRequest();
     	    xhr.open('GET', 'checkLogin', true);
     	    xhr.onreadystatechange = function() {

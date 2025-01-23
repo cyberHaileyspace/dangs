@@ -10,15 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/MyProductC")
 public class MyProductC extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		ShopModel.getMyProduct(request, response);
-		
+
+//		최근 본 상품
+		ShopModel.getRecentProduct(request, response);
+
 		request.setAttribute("content", "jsp/jh/myProduct.jsp");
-		request.getRequestDispatcher("noLoginIndex.jsp").forward(request, response);
+		request.setAttribute("content2", "jsp/jh/recentProduct.jsp");
+		request.getRequestDispatcher("noLoginIndexJh.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 	}
 

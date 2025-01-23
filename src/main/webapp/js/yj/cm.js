@@ -2,6 +2,7 @@ $(function() {
 	searchCm();
 	loadContent();
 	reply();
+	cmRadio();
 })
 
 
@@ -156,4 +157,35 @@ function reply() {
 
 
 	})
+}
+
+
+
+function cmRadio() {
+  // 라디오 버튼 클릭 이벤트 바인딩
+  $("input[name='cm-option']").change(function () {
+    // 선택된 라디오 버튼의 값 가져오기
+    let option = $("input[name='cm-option']:checked").val();
+    console.log("선택된 정렬 옵션:", option);
+
+    // Ajax 요청
+    $.ajax({
+      url: 'CmRadioC', // 서버 요청 URL
+      data: { option },   // 선택된 옵션을 파라미터로 전달
+    })
+    .done(function (resData) {
+      // 서버로부터 응답 데이터 처리
+      console.log("응답 데이터:", resData);
+
+      if (resData.length !== 0) {
+        // 결과가 있을 경우 기존 결과를 지우고 새 결과 표시
+        $("#cm-result").empty();
+        showResult(resData);
+      }
+    })
+    .fail(function (xhr) {
+      // 요청 실패 시 에러 로그 출력
+      console.error("요청 실패:", xhr);
+    });
+  });
 }
