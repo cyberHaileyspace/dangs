@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/jh/recentProduct.css">
 </head>
 <body>
-	<div class="title">최근 본 상품</div>
+	<div class="r-title">최근 본 상품</div>
 	<div class="rp-list-container">
 		<c:forEach var="rp" items="${recentProducts}">
 			<div class="rp-item">
