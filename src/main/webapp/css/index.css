@@ -133,7 +133,7 @@ body {
 .index-content {
 	margin-left: 150px;
 	width: 50%;
-	height: 2000px;
+	height: calc(100vh - 61px);
 }
 
 /*modal*/
